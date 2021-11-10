@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Montserrat&family=Mulish&family=Nunito&family=Open+Sans+Condensed:wght@300&family=Poppins:wght@300&family=Roboto&display=swap");
+
+body {
+  /* font-family: 'Karla', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Mulish', sans-serif;
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif; */
+
+  font-family: "Mulish", sans-serif;
+}
+
+.top-nav-bar {
+  transition: all 0.5s;
+}
+
+.my-name {
+  font-weight: 600;
+}
+
+.navbar-nav .nav-link{
+    font-size: 1rem;
+}
+
+.bg-img-middle-section {
+  /* Make Contents middle of screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  font-weight: 800;
+}
+
+.auto-typing {
+  font-size: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: "Karla", sans-serif;
+}
+
+
+.certificate-container{
+    border-radius: 12px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+.certificate-container img{
+    border-radius: 12px;
+    box-shadow: 5px 5px 15px 1px rgb(0 0 0 / 15%);
+}
+
+.certificate-container:hover{
+    box-shadow: 30px 30px 60px 1px rgb(0 0 0 / 15%);
+}
+
+.nav-item a{
+    color: #adb5bd
+}
+
+.skill-card-header{
+    background: linear-gradient(to right, #538FFB, #5B54FA);
+}
+
+
+/* 
+@media (min-width: 576px) { 
+
+ }
+
+
+@media (min-width: 768px) { 
+
+ }
+
+
+@media (min-width: 992px) { 
+
+ }
+
+
+@media (min-width: 1200px) { 
+
+ }
+ */
+
+@media (min-width: 2400px) { 
+    .navbar-nav .nav-link{
+        font-size: 1.5rem;
+    }
+ }
