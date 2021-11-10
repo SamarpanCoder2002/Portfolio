@@ -1,5 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Montserrat&family=Mulish&family=Nunito&family=Open+Sans+Condensed:wght@300&family=Poppins:wght@300&family=Roboto&display=swap");
 
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
 body {
   /* font-family: 'Karla', sans-serif;
     font-family: 'Montserrat', sans-serif;
@@ -14,14 +30,16 @@ body {
 
 .top-nav-bar {
   transition: all 0.5s;
+  backdrop-filter: blur(30px);
+  background-color: rgba(256, 256, 256, 0.72);
 }
 
 .my-name {
   font-weight: 600;
 }
 
-.navbar-nav .nav-link{
-    font-size: 1rem;
+.navbar-nav .nav-link {
+  font-size: 1rem;
 }
 
 .bg-img-middle-section {
@@ -42,30 +60,28 @@ body {
   font-family: "Karla", sans-serif;
 }
 
-
-.certificate-container{
-    border-radius: 12px;
-    transition: all 0.5s;
-    cursor: pointer;
+.certificate-container {
+  border-radius: 12px;
+  transition: all 0.5s;
+  cursor: pointer;
 }
 
-.certificate-container img{
-    border-radius: 12px;
-    box-shadow: 5px 5px 15px 1px rgb(0 0 0 / 15%);
+.certificate-container img {
+  border-radius: 12px;
+  box-shadow: 5px 5px 15px 1px rgb(0 0 0 / 15%);
 }
 
-.certificate-container:hover{
-    box-shadow: 30px 30px 60px 1px rgb(0 0 0 / 15%);
+.certificate-container:hover {
+  box-shadow: 30px 30px 60px 1px rgb(0 0 0 / 15%);
 }
 
-.nav-item a{
-    color: #adb5bd
+.nav-item a {
+  color: #adb5bd;
 }
 
-.skill-card-header{
-    background: linear-gradient(to right, #538FFB, #5B54FA);
+.skill-card-header {
+  background: linear-gradient(to right, #538ffb, #5b54fa);
 }
-
 
 /* 
 @media (min-width: 576px) { 
@@ -88,8 +104,8 @@ body {
  }
  */
 
-@media (min-width: 2400px) { 
-    .navbar-nav .nav-link{
-        font-size: 1.5rem;
-    }
- }
+@media (min-width: 2400px) {
+  .navbar-nav .nav-link {
+    font-size: 1.5rem;
+  }
+}

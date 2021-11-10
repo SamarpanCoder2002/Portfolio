@@ -12,7 +12,7 @@ const CommonComponent = ({ children }) => {
 
 const NavigationBarSection = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white top-nav-bar sticky-top">
+    <nav className="navbar navbar-expand-lg navbar-light top-nav-bar sticky-top">
       <div className="container-fluid">
         <Link className="navbar-brand " to="/">
           <div className="row w-50">
@@ -41,25 +41,25 @@ const NavigationBarSection = () => {
           id="navbarNavAltMarkup"
         >
           <div className="navbar-nav fw-bold">
-            <Link className="nav-link" aria-current="page" to="/">
+            <Link className="nav-link text-center" aria-current="page" to="/">
               Home
             </Link>
-            <Link className="nav-link" to="/skill">
+            <Link className="nav-link text-center" to="/skill">
               Skills
             </Link>
-            <Link className="nav-link" to="#">
+            <Link className="nav-link text-center" to="#">
               Projects
             </Link>
-            <Link className="nav-link" to="/certificate">
+            <Link className="nav-link text-center" to="/certificate">
               Certificates
             </Link>
-            <Link className="nav-link" to="#">
+            <Link className="nav-link text-center" to="#">
               Education
             </Link>
-            <Link className="nav-link" to="#">
+            <Link className="nav-link text-center" to="#">
               Tutorial
             </Link>
-            <Link className="nav-link" to="#">
+            <Link className="nav-link text-center" to="#">
               Contact
             </Link>
           </div>
