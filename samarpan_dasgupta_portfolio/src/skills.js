@@ -1,58 +1,65 @@
 import { useState } from "react";
 import CommonComponent from "./common";
-
-const skillDataSet = {
-  Frontend: {
-    category: 2,
-    all_categories: {
-      Web: [
-        "HTML5",
-        "CSS3",
-        "Javascript",
-        "React.js",
-        "Redux-Saga",
-        "Bootstrap",
-        "Material UI",
-      ],
-      Mobile: ["Flutter"],
-    },
-  },
-  Backend: {
-    category: 2,
-    all_categories: {
-      Web: ["Node.js", "Express.js", "REST APIs"],
-      Mobile: ["Flutter"],
-    },
-  },
-  Database: {
-    category: 1,
-    all_categories: {
-      Database: ["Firebase", "MongoDB", "SQLite"],
-    },
-  },
-  "Tools Used": {
-    category: 1,
-    all_categories: {
-      "Tools Used": ["NPM", "Github", "Coggle", "Jira", "Canva"],
-    },
-  },
-  "Other Skills": {
-    category: 1,
-    all_categories: {
-      "Other Skills": ["Mobile First Design", "Story Writing", "Video Editing"],
-    },
-  },
-};
+import CustomSkeleton from "./helper/customskeleton";
 
 const SkillSetComponent = () => {
+  const [skillDataSet, setskillDataSet] = useState({
+    Frontend: {
+      category: 2,
+      all_categories: {
+        Web: [
+          "HTML5",
+          "CSS3",
+          "Javascript",
+          "React.js",
+          "Redux-Saga",
+          "Bootstrap",
+          "Material UI",
+        ],
+        Mobile: ["Flutter"],
+      },
+    },
+    Backend: {
+      category: 2,
+      all_categories: {
+        Web: ["Node.js", "Express.js", "REST APIs"],
+        Mobile: ["Flutter"],
+      },
+    },
+    Database: {
+      category: 1,
+      all_categories: {
+        Database: ["Firebase", "MongoDB", "SQLite"],
+      },
+    },
+    "Tools Used": {
+      category: 1,
+      all_categories: {
+        "Tools Used": ["NPM", "Github", "Coggle", "Jira", "Canva"],
+      },
+    },
+    "Other Skills": {
+      category: 1,
+      all_categories: {
+        "Other Skills": [
+          "Mobile First Design",
+          "Story Writing",
+          "Video Editing",
+        ],
+      },
+    },
+  });
+
   return (
     <CommonComponent>
-      <SkillSetSection />
+      {(skillDataSet && <SkillSetSection skillDataSet={skillDataSet} />) || (
+        <CustomSkeleton />
+      )}
     </CommonComponent>
   );
 };
 
-const SkillSetSection = () => {
+const SkillSetSection = ({ skillDataSet }) => {
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-5">Skill Set</h2>
@@ -149,9 +156,7 @@ const ManySkillTypeCollection = ({ allTypeSkillsCollection }) => {
                 aria-labelledby={index}
               >
                 <p className="card-text">
-                  <SkillShow
-                    allCategories={allTypeSkillsCollection[key]}
-                  />
+                  <SkillShow allCategories={allTypeSkillsCollection[key]} />
                 </p>
               </div>
             </div>

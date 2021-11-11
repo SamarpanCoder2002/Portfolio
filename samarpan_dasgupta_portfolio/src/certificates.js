@@ -1,4 +1,6 @@
+import { useState } from "react";
 import CommonComponent from "./common";
+import CustomSkeleton from "./helper/customskeleton";
 import certificate from "./images/certificate.png";
 import react_redux_certificate from "./images/react-redux.png";
 
@@ -9,33 +11,37 @@ const CertificatesComponent = () => {
 };
 
 const CertificationCollectionSection = () => {
+  const [certificates, setcertificates] = useState([
+    certificate,
+    react_redux_certificate,
+    certificate,
+    react_redux_certificate,
+    certificate,
+    react_redux_certificate,
+    certificate,
+    react_redux_certificate,
+  ]);
+
   return (
     <div className="container certificate-collection mt-5">
       <h2 className="text-center mb-5">Certificates</h2>
       <div className="row">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
+        {(certificates && certificates.map((certi, index) => {
           return (
-            <div className="col-md-6 col-lg-4">
-              {i % 2 === 0 ? <CertificationCard2 /> : <CertificationCard />}
+            <div className="col-md-6 col-lg-3" key={index}>
+              <CertificationCard particularCertificate={certi} />
             </div>
           );
-        })}
+        })) || <CustomSkeleton />}
       </div>
     </div>
   );
 };
 
-const CertificationCard = () => {
+const CertificationCard = ({ particularCertificate }) => {
   return (
     <div class="certificate-container mb-5 mx-0 mx-md-3">
-      <img src={certificate} class="card-img-top" alt="..." />
-    </div>
-  );
-};
-const CertificationCard2 = () => {
-  return (
-    <div class="certificate-container mb-5 mx-0 mx-md-3">
-      <img src={react_redux_certificate} class="card-img-top" alt="..." />
+      <img src={particularCertificate} class="card-img-top" alt="..." />
     </div>
   );
 };

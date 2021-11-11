@@ -47,7 +47,7 @@ const NavigationBarSection = () => {
             <Link className="nav-link text-center" to="/skill">
               Skills
             </Link>
-            <Link className="nav-link text-center" to="#">
+            <Link className="nav-link text-center" to="/project">
               Projects
             </Link>
             <Link className="nav-link text-center" to="/certificate">

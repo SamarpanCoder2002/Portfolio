@@ -42,6 +42,10 @@ body {
   font-size: 1rem;
 }
 
+.nav-item a {
+  color: #adb5bd;
+}
+
 .bg-img-middle-section {
   /* Make Contents middle of screen */
   display: flex;
@@ -60,6 +64,8 @@ body {
   font-family: "Karla", sans-serif;
 }
 
+/* Certificate Section */
+
 .certificate-container {
   border-radius: 12px;
   transition: all 0.5s;
@@ -72,16 +78,59 @@ body {
 }
 
 .certificate-container:hover {
-  box-shadow: 30px 30px 60px 1px rgb(0 0 0 / 15%);
+  box-shadow: 0px 15px 50px rgb(0 0 0 / 15%);
 }
 
-.nav-item a {
-  color: #adb5bd;
-}
+/* Certificate Section Ends */
 
 .skill-card-header {
   background: linear-gradient(to right, #538ffb, #5b54fa);
 }
+
+.filter-button {
+  background: linear-gradient(to right, #538ffb, #5b54fa);
+}
+
+/* Project Section */
+
+.project-container {
+  cursor: pointer;
+  transition: all 0.5s;
+  border: 0;
+  box-shadow: 5px 5px 15px 1px rgb(0 0 0 / 15%);
+}
+
+.project-container:hover {
+  box-shadow: 0 40px 60px rgba(12, 5, 62, 0.15);
+}
+
+.project-container .card-body .card-inside-hover-body {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: 1;
+  transition: all 1s;
+  border-radius: 5px;
+}
+
+.project-container .card-body .card-inside-hover-body:hover {
+  background-color: rgb(91, 84, 250, 0.7);
+  opacity: 1;
+}
+
+/* .project-container .card-body .card-inside-hover-body .all-in-one .tech-stack .tech-stack-name{
+  
+} */
+
+
+
+/* Project Section Ends Here */
+
+
 
 /* 
 @media (min-width: 576px) { 
