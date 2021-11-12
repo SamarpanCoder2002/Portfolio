@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import logo from "./images/logo.png";
+import { useLocation } from "react-router";
 
 const CommonComponent = ({ children }) => {
+  const location = useLocation();
+
   return (
     <div className="container-fluid m-0 p-0">
       {<NavigationBarSection />}
+      {location.pathname === "/" && <ConnectWithMe />}
       {children}
     </div>
   );
@@ -68,5 +72,44 @@ const NavigationBarSection = () => {
     </nav>
   );
 };
+
+const ConnectWithMe = () => (
+  <ul className="list-unstyled position-absolute social-links">
+    <div className="social-media-container" rel="noreferrer">
+      <a
+        href="https://www.facebook.com/samarpan.dasgupta.3"
+        target="_blank"
+        className="social-media-container-item mb-5"
+        rel="noreferrer"
+      >
+        facebook
+      </a>
+      <a
+        href="https://www.instagram.com/samarpan_dasgupta/"
+        target="_blank"
+        className="social-media-container-item mb-5"
+        rel="noreferrer"
+      >
+        instagram
+      </a>
+      <a
+        href="https://www.linkedin.com/in/samarpan-dasgupta-4aa1061b0/"
+        target="_blank"
+        className="social-media-container-item mb-5"
+        rel="noreferrer"
+      >
+        linkedIn
+      </a>
+      <a
+        href="https://github.com/SamarpanCoder2002"
+        target="_blank"
+        className="social-media-container-item mb-5"
+        rel="noreferrer"
+      >
+        github
+      </a>
+    </div>
+  </ul>
+);
 
 export default CommonComponent;

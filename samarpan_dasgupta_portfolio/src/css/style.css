@@ -28,6 +28,8 @@ body {
   font-family: "Mulish", sans-serif;
 }
 
+/* Common Section */
+
 .top-nav-bar {
   transition: all 0.5s;
   backdrop-filter: blur(30px);
@@ -46,7 +48,35 @@ body {
   color: #adb5bd;
 }
 
-.bg-img-middle-section {
+.social-media-container {
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  -webkit-transform: rotate(180deg);
+  writing-mode: vertical-rl;
+  padding-top: 4 rem;
+  transform: rotate(180deg) skew(360deg, 0deg);
+  opacity: 1;
+}
+
+.social-media-container a {
+  text-decoration: none;
+}
+
+.social-media-container-item {
+  padding-bottom: 1.8rem;
+  color: #050505;
+  font-size: 1rem;
+}
+
+.social-links {
+  left: 1.5%;
+}
+
+/* Common Section Ends */
+
+/* Home Section Starts */
+
+.bg-home-section {
   /* Make Contents middle of screen */
   display: flex;
   flex-direction: column;
@@ -56,6 +86,14 @@ body {
   font-weight: 800;
 }
 
+.bg-home-section img {
+  border: 6px solid #eee;
+}
+
+.bg-home-section .home-page-status {
+  font-size: 1.25rem;
+}
+
 .auto-typing {
   font-size: 30px;
   display: flex;
@@ -63,6 +101,8 @@ body {
   justify-content: center;
   font-family: "Karla", sans-serif;
 }
+
+/* Home Section Ends */
 
 /* Certificate Section */
 
@@ -126,35 +166,45 @@ body {
   
 } */
 
-
-
 /* Project Section Ends Here */
 
+@media (max-width: 576px) {
+  .social-links {
+    left: 5%;
+  }
 
+  .bg-home-section .home-page-my-name {
+    font-size: 24px;
+  }
 
-/* 
-@media (min-width: 576px) { 
+  .bg-home-section .home-page-status {
+    font-size: 0.9rem;
+  }
 
- }
+  .auto-typing {
+    font-size: 20px;
+  }
+}
 
+@media (max-width: 768px) {
+  .social-links {
+    left: 3%;
+  }
+}
 
-@media (min-width: 768px) { 
-
- }
-
-
+/*
 @media (min-width: 992px) { 
 
  }
 
-
-@media (min-width: 1200px) { 
-
- }
- */
+*/
 
 @media (min-width: 2400px) {
   .navbar-nav .nav-link {
+    font-size: 1.5rem;
+  }
+
+  .social-media-container-item {
     font-size: 1.5rem;
   }
 }

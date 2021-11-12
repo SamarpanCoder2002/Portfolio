@@ -8,15 +8,16 @@ const HomePage = () => {
 
 const MiddleSection = () => {
   return (
-    <div className="container bg-img-middle-section" align="center">
+    <div className="container bg-home-section" align="center">
       <img
         src={samarpan_dasgupta_pic}
         alt="Samarpan Dasgupta Logo"
-        width="150px"
+        height="25%"
+        
         style={{ borderRadius: "50%" }}
       />
-      <h3 className="display-5 fw-bold">Samarpan Dasgupta</h3>
-      <h6 className="fs-5">Loves To Write Code</h6>
+      <h3 className="display-5 fw-bold home-page-my-name">Samarpan Dasgupta</h3>
+      <h6 className="home-page-status">Loves To Write Code</h6>
       <AutoTypingHelper />
     </div>
   );
