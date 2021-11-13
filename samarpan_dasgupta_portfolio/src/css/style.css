@@ -181,7 +181,6 @@ a {
   background: #f8f8f8;
   backdrop-filter: blur(30px);
   width: 100%;
-  
 }
 
 .footer .email {
@@ -200,8 +199,12 @@ a {
     1px 1px 0 #1b98f5;
 }
 
-.footer .social-icons ul li{
-    color: white;
+.footer .social-icons ul li {
+  color: white;
+}
+
+.footer .copy {
+  font-size: 1rem;
 }
 
 /* Footer Section Ends Here */

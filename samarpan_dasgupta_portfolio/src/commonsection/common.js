@@ -64,7 +64,7 @@ const NavigationBarSection = () => {
             <Link className="nav-link text-center" to="/tutorial">
               Tutorial
             </Link>
-            <Link className="nav-link text-center" to="#">
+            <Link className="nav-link text-center" to="/contact">
               Contact
             </Link>
           </div>
@@ -128,7 +128,7 @@ const socialMediaInformation = [
   {
     icon: "fab fa-linkedin-in fa-2x",
     link: "https://www.linkedin.com/in/samarpan-dasgupta-4aa1061b0/",
-    color: "#3b5998",
+    color: "#2867B2",
   },
 
   {
@@ -151,7 +151,7 @@ const socialMediaInformation = [
 
 const Footer = () => (
   <div className="container-fluid mt-5 footer d-block sticky-bottom">
-    <div className="container py-5">
+    <div className="container py-5 px-4">
       <div className="row">
         <div className="col-lg-6">
           <h2 className="fs-4 fw-bold">🙋 Connect With Me at</h2>
@@ -173,6 +173,11 @@ const Footer = () => (
               />
             ))}
           </ul>
+
+          <div class="copy fw-bold">
+            © 2021, Designed and Developed by &nbsp;
+            <a href="https://samarpandasgupta.com/">Samarpan Dasgupta</a>
+          </div>
         </div>
       </div>
     </div>
