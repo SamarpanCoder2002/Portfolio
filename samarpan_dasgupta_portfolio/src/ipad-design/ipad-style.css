@@ -1,0 +1,52 @@
+.custom-ipad {
+  height: 315px;
+  width: 560px;
+  border-radius: 20px;
+  outline: 10px solid #1f2020;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 6px 6px rgba(0, 0, 0, 0.5);
+  background-size: contain;
+  padding-left: 0;
+}
+
+.custom-ipad .contain-video iframe {
+  height: 315px;
+  width: 560px;
+  z-index: 1;
+  background-size: cover;
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .custom-ipad {
+    height: 300px;
+    width: 480px;
+  }
+
+  .custom-ipad .contain-video iframe {
+    height: 300px;
+    width: 480px;
+  }
+}
+
+@media (max-width: 576px) {
+  .custom-ipad {
+    height: 200px;
+    width: 300px;
+  }
+  .custom-ipad .contain-video iframe {
+    height: 200px;
+    width: 300px;
+  }
+}
+
+@media (min-width: 2400px) {
+  .custom-ipad {
+    height: 500px;
+    width: 900px;
+  }
+
+  .custom-ipad .contain-video iframe {
+    height: 500px;
+    width: 900px;
+  }
+}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "./images/logo.png";
+import logo from "../images/logo.png";
 import { useLocation } from "react-router";
 
 const CommonComponent = ({ children }) => {
@@ -10,6 +10,7 @@ const CommonComponent = ({ children }) => {
       {<NavigationBarSection />}
       {location.pathname === "/" && <ConnectWithMe />}
       {children}
+      {location.pathname !== "/" && <Footer />}
     </div>
   );
 };
@@ -57,10 +58,10 @@ const NavigationBarSection = () => {
             <Link className="nav-link text-center" to="/certificate">
               Certificates
             </Link>
-            <Link className="nav-link text-center" to="#">
+            <Link className="nav-link text-center" to="/education">
               Education
             </Link>
-            <Link className="nav-link text-center" to="#">
+            <Link className="nav-link text-center" to="/tutorial">
               Tutorial
             </Link>
             <Link className="nav-link text-center" to="#">
@@ -110,6 +111,80 @@ const ConnectWithMe = () => (
       </a>
     </div>
   </ul>
+);
+
+const socialMediaInformation = [
+  {
+    icon: "fab fa-youtube fa-2x",
+    link: "https://www.youtube.com/channel/UCafv0dsb4Xp8sSWoKdmw5BQ",
+    color: "red",
+  },
+
+  {
+    icon: "fab fa-github fa-2x",
+    link: "https://www.github.com/SamarpanCoder2002",
+    color: "#1d1a1a",
+  },
+  {
+    icon: "fab fa-linkedin-in fa-2x",
+    link: "https://www.linkedin.com/in/samarpan-dasgupta-4aa1061b0/",
+    color: "#3b5998",
+  },
+
+  {
+    icon: "fab fa-facebook-f fa-2x",
+    link: "https://www.facebook.com/samarpan.dasgupta.3/",
+    color: "#3b5998",
+  },
+  {
+    icon: "fab fa-instagram fa-2x",
+    link: "https://www.instagram.com/samarpan_dasgupta/",
+    color: "#e4405f",
+  },
+
+  {
+    icon: "fab fa-twitter fa-2x",
+    link: "https://twitter.com/SamarpanDasgup1",
+    color: "#1da1f2",
+  },
+];
+
+const Footer = () => (
+  <div className="container-fluid mt-5 footer d-block sticky-bottom">
+    <div className="container py-5">
+      <div className="row">
+        <div className="col-lg-6">
+          <h2 className="fs-4 fw-bold">🙋 Connect With Me at</h2>
+          <a
+            class="email"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=samarpanofficial2021@gmail.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            samarpanofficial2021@gmail.com
+          </a>
+
+          <ul class="social-icons list-unstyled d-flex flex-wrap w-100 justify-content-between align-items-center mt-3">
+            {socialMediaInformation.map((item) => (
+              <SocialMediaIcons
+                icon={item.icon}
+                link={item.link}
+                color={item.color}
+              />
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const SocialMediaIcons = ({ icon, link, color }) => (
+  <li>
+    <a href={link} target="_blank" rel="noreferrer">
+      <i class={icon} style={{ color: `${color}` }}></i>
+    </a>
+  </li>
 );
 
 export default CommonComponent;

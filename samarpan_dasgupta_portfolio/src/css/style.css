@@ -28,6 +28,10 @@ body {
   font-family: "Mulish", sans-serif;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 /* Common Section */
 
 .top-nav-bar {
@@ -162,11 +166,45 @@ body {
   opacity: 1;
 }
 
-/* .project-container .card-body .card-inside-hover-body .all-in-one .tech-stack .tech-stack-name{
-  
-} */
-
 /* Project Section Ends Here */
+
+/* Education Section Starts Here */
+
+.bg-education-section {
+  overflow: hidden;
+}
+/* Education Section Ends Here */
+
+/* Footer section Starts Here */
+
+.footer {
+  background: #f8f8f8;
+  backdrop-filter: blur(30px);
+  width: 100%;
+  
+}
+
+.footer .email {
+  font-size: 1.7rem;
+  letter-spacing: 1.5px;
+  color: #f8f8f8;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+
+  transition: all 0.5s;
+}
+
+.footer .email:hover {
+  color: #1b98f5;
+  text-shadow: -1px -1px 0 #1b98f5, 1px -1px 0 #1b98f5, -1px 1px 0 #1b98f5,
+    1px 1px 0 #1b98f5;
+}
+
+.footer .social-icons ul li{
+    color: white;
+}
+
+/* Footer Section Ends Here */
 
 @media (max-width: 576px) {
   .social-links {
@@ -183,6 +221,18 @@ body {
 
   .auto-typing {
     font-size: 20px;
+  }
+
+  .footer .email {
+    font-size: 1.2rem;
+    color: #1b98f5;
+    letter-spacing: 0px;
+    text-shadow: none;
+    font-weight: 600;
+  }
+
+  .footer .email:hover {
+    text-shadow: none;
   }
 }
 

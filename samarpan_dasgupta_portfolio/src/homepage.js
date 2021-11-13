@@ -1,5 +1,5 @@
 import Typewriter from "typewriter-effect";
-import CommonComponent from "./common";
+import CommonComponent from "./commonsection/common";
 import samarpan_dasgupta_pic from "./images/samarpan_dasgupta.jpg";
 
 const HomePage = () => {
@@ -16,7 +16,7 @@ const MiddleSection = () => {
         
         style={{ borderRadius: "50%" }}
       />
-      <h3 className="display-5 fw-bold home-page-my-name">Samarpan Dasgupta</h3>
+      <h3 className="display-5 fw-bold home-page-my-name mt-2">Samarpan Dasgupta</h3>
       <h6 className="home-page-status">Loves To Write Code</h6>
       <AutoTypingHelper />
     </div>

@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CertificatesComponent from "./certificates";
+import EducationComponent from "./educationpage";
 import HomePage from "./homepage";
 import ProjectComponent from "./project";
 import SkillSetComponent from "./skills";
+import TutorialComponent from "./tutorial/tutorialpage";
 
 const RoutesEntryPoint =()=> {
 
@@ -14,6 +16,8 @@ const RoutesEntryPoint =()=> {
                 <Route path="/certificate" exact element={<CertificatesComponent />}/>
                 <Route path="/skill" exact element={<SkillSetComponent />}/>
                 <Route path="/project" exact element={<ProjectComponent />}/>
+                <Route path="/education" exact element={<EducationComponent />}/>
+                <Route path="/tutorial" exact element={<TutorialComponent />}/>
             </Routes>
         </Router>
     );

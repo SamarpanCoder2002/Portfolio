@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import CommonComponent from "./common";
+import CommonComponent from "./commonsection/common";
 import CustomSkeleton from "./helper/customskeleton";
 
 const ProjectComponent = () => {
@@ -158,7 +158,7 @@ const ProjectFilterComponent = ({ projectsCategory }) => {
         {projectsCategory.map((category, index) => {
           return (
             <li onClick={() => setdropdownIndex(index)}>
-              <a className="dropdown-item" href="#index">
+              <a className="dropdown-item" href={`#${category}`}>
                 {category}
               </a>
             </li>

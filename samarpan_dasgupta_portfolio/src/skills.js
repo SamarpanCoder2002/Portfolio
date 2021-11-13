@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CommonComponent from "./common";
+import CommonComponent from "./commonsection/common";
 import CustomSkeleton from "./helper/customskeleton";
 
 const SkillSetComponent = () => {
