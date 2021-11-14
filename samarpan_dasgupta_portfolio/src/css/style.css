@@ -181,10 +181,13 @@ a {
   background: #f8f8f8;
   backdrop-filter: blur(30px);
   width: 100%;
+  height: 70vh;
+  /* display: inline-block;
+  overflow: hidden; */
 }
 
 .footer .email {
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   letter-spacing: 1.5px;
   color: #f8f8f8;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
@@ -208,6 +211,42 @@ a {
 }
 
 /* Footer Section Ends Here */
+
+/* Contact Section Starts Here */
+
+.contact-page .image img {
+  height: 443px;
+}
+
+.contact-page button {
+  background-color: #3dbe29;
+  border: 0;
+  transition: all 0.5s;
+}
+
+.contact-page button:hover {
+  background-color: #3dbe29;
+}
+.contact-page button:focus {
+  background-color: rgb(61, 190, 41);
+  box-shadow: 0 0 0 0.25rem rgba(61, 190, 41, 0.5);
+}
+
+.contact-page .contact-for-freelancing ol li {
+  font-size: 1rem;
+}
+
+.contact-page .contact-for-freelancing .services-heading {
+  font-size: 1.25rem;
+}
+
+/* Contact Section Ends Here */
+
+@media (max-width: 768px) {
+  .social-links {
+    left: 3%;
+  }
+}
 
 @media (max-width: 576px) {
   .social-links {
@@ -239,18 +278,25 @@ a {
   }
 }
 
-@media (max-width: 768px) {
-  .social-links {
-    left: 3%;
+@media (max-width: 360px) {
+  .contact-page {
+    height: 100vh;
   }
 }
 
-/*
-@media (min-width: 992px) { 
+/* @media (max-width: 768px) {
+  
+} */
 
- }
+@media (min-width: 992px) {
+  .footer .email {
+    font-size: 1.4rem;
+  }
 
-*/
+  .footer .copy {
+    font-size: 1.1rem;
+  }
+}
 
 @media (min-width: 2400px) {
   .navbar-nav .nav-link {
@@ -259,5 +305,21 @@ a {
 
   .social-media-container-item {
     font-size: 1.5rem;
+  }
+
+  .footer .email {
+    font-size: 1.6rem;
+  }
+
+  .footer .copy {
+    font-size: 1.5rem;
+  }
+
+  .contact-page .contact-for-freelancing .services-heading {
+    font-size: 1.7rem;
+  }
+
+  .contact-page .contact-for-freelancing ol li {
+    font-size: 1.3rem;
   }
 }

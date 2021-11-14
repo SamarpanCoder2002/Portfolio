@@ -153,8 +153,8 @@ const Footer = () => (
   <div className="container-fluid mt-5 footer d-block sticky-bottom">
     <div className="container py-5 px-4">
       <div className="row">
-        <div className="col-lg-6">
-          <h2 className="fs-4 fw-bold">🙋 Connect With Me at</h2>
+        <div className="col-lg-8">
+          <h2 className="fs-2 fw-bold">🙋 Connect With Me at</h2>
           <a
             class="email"
             href="https://mail.google.com/mail/?view=cm&fs=1&to=samarpanofficial2021@gmail.com"
@@ -164,7 +164,7 @@ const Footer = () => (
             samarpanofficial2021@gmail.com
           </a>
 
-          <ul class="social-icons list-unstyled d-flex flex-wrap w-100 justify-content-between align-items-center mt-3">
+          <ul class="social-icons list-unstyled d-flex flex-wrap w-100 justify-content-between align-items-center mt-5">
             {socialMediaInformation.map((item) => (
               <SocialMediaIcons
                 icon={item.icon}
@@ -174,7 +174,7 @@ const Footer = () => (
             ))}
           </ul>
 
-          <div class="copy fw-bold">
+          <div class="copy fw-bold mt-5">
             © 2021, Designed and Developed by &nbsp;
             <a href="https://samarpandasgupta.com/">Samarpan Dasgupta</a>
           </div>

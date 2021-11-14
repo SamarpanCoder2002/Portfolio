@@ -1,4 +1,5 @@
 import CommonComponent from "./commonsection/common";
+import ContactPageImage from "./images/conatact-page-image.jpg";
 
 const ContactComponent = () => {
   return (
@@ -10,37 +11,44 @@ const ContactComponent = () => {
 
 const ContactSection = () => {
   return (
-    <div className="container mt-5">
+    <div className="container mt-3 contact-page py-5" >
       <h2 className="text-center">Contact</h2>
-      <div className="row">
-        <div className="col-lg-6 mb-5">
-          <ConatctForFreelancing />
+      <div className="row mt-4">
+        <div className="col-lg-6 d-none d-lg-block">
+          <ImageInLargeScreen />
         </div>
-        <div className="col-lg-6">
-          <ContactForPersonalProject />
+        <div className="col-lg-6 col-12">
+          <ConatctForFreelancing />
         </div>
       </div>
     </div>
   );
 };
 
+const ImageInLargeScreen = () => {
+  return (
+    <div className="container mt-3 image">
+      <img src={ContactPageImage} alt="contact" className="img-fluid" />
+    </div>
+  );
+};
+
 const ConatctForFreelancing = () => {
   return (
-    <div className="container mt-3">
-      <p className="fs-6 text-center">
+    <div className="container mt-3 contact-for-freelancing">
+      <p className="fs-5 text-center">
         Want to Hire me as a Freelancer? Send me an email with relevant
         information and I will get back to you as soon as possible!
       </p>
 
-        <p className="fs-5 fw-bold mt-5">🌟 Services I provide</p>
-        <ol style={{lineHeight: "2rem"}}>
-            <li className="fs-6">Web Design</li>
-            <li className="fs-6">Frontend Web App Using React</li>
-            <li className="fs-6">Full Stack Web App Using MERN Stack</li>
-            <li className="fs-6">Android App Design Using Flutter</li>
-            <li className="fs-6">Full Stack Android App Using Flutter</li>
-        </ol>
-        
+      <p className="fw-bold mt-5 services-heading">🌟 Services I provide</p>
+      <ol style={{ lineHeight: "2rem" }}>
+        <li >Web Design</li>
+        <li >Frontend Web App Using React</li>
+        <li >Full Stack Web App Using MERN Stack</li>
+        <li >Android App Design Using Flutter</li>
+        <li >Full Stack Android App Using Flutter</li>
+      </ol>
 
       <a
         href="https://mail.google.com/mail/?view=cm&fs=1&to=contactsamarpandev@gmail.com"
@@ -49,27 +57,6 @@ const ConatctForFreelancing = () => {
       >
         <button type="submit" className="btn btn-primary w-100 mt-5">
           Send Email to Samarpan
-        </button>
-      </a>
-    </div>
-  );
-};
-
-const ContactForPersonalProject = () => {
-  return (
-    <div className="container mt-3">
-      <p className="fs-6 text-center">
-        Help Required in your personal project? Send me an email with relevant
-        information and I will contact you soon!
-      </p>
-
-      <a
-        href="https://mail.yahoo.com/mail/?view=cm&fs=1&to=samarpanofficial2021@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <button type="submit" className="btn btn-primary w-100">
-          Request Help From Samarpan
         </button>
       </a>
     </div>

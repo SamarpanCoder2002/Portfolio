@@ -36,7 +36,7 @@ const educationDetails = [
 ];
 
 const EducationContainer = () => (
-  <div className="container bg-education-section mt-5">
+  <div className="container bg-education-section mt-5 py-md-5">
     <h2 className="text-center mb-5">Education</h2>
     <div className="row mt-5 mt-md-0">
       {educationDetails.map((item, index) => (
