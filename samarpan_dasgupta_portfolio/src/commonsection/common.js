@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import { useLocation } from "react-router";
@@ -9,15 +10,19 @@ const CommonComponent = ({ children }) => {
     <div className="container-fluid m-0 p-0">
       {<NavigationBarSection />}
       {location.pathname === "/" && <ConnectWithMe />}
+
       {children}
+
       {location.pathname !== "/" && <Footer />}
     </div>
   );
 };
 
 const NavigationBarSection = () => {
+  const [isOpenMenu, setisOpenMenu] = useState(false);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light top-nav-bar sticky-top">
+    <nav className="navbar navbar-expand-lg navbar-light top-nav-bar sticky-top ">
       <div className="container-fluid">
         <Link className="navbar-brand " to="/">
           <div className="row w-50">
@@ -38,8 +43,17 @@ const NavigationBarSection = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
           style={{ border: "none" }}
+          onClick={() => setisOpenMenu(!isOpenMenu)}
         >
-          <span className="navbar-toggler-icon"></span>
+          {isOpenMenu ? (
+            <img
+              src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-cancel-mintab-for-ios-becris-lineal-becris.png"
+              alt="close menu"
+              width="30"
+            />
+          ) : (
+            <span className="navbar-toggler-icon"></span>
+          )}
         </button>
         <div
           className="collapse navbar-collapse justify-content-end"
@@ -48,6 +62,13 @@ const NavigationBarSection = () => {
           <div className="navbar-nav fw-bold">
             <Link className="nav-link text-center" aria-current="page" to="/">
               Home
+            </Link>
+            <Link
+              className="nav-link text-center"
+              aria-current="page"
+              to="/about"
+            >
+              About
             </Link>
             <Link className="nav-link text-center" to="/skill">
               Skills

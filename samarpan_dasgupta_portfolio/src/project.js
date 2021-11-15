@@ -19,12 +19,11 @@ const ProjectBringing = () => {
     "MERN Projects",
   ]);
 
-  
-
   const [projectsCollection, setprojectsCollection] = useState([
     {
       projectName: "Project 1",
-      projectDescription: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet itaque omnis animi nesciunt facilis odio cum voluptates, iure odit neque obcaecati beatae, maiores impedit doloribus repudiandae unde asperiores laudantium dolor sapiente aperiam, magnam quas ea explicabo! Voluptatibus veniam tempora est corporis qui inventore at, dicta, sint, nulla ipsam a voluptatem!",
+      projectDescription:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet itaque omnis animi nesciunt facilis odio cum voluptates, iure odit neque obcaecati beatae, maiores impedit doloribus repudiandae unde asperiores laudantium dolor sapiente aperiam, magnam quas ea explicabo! Voluptatibus veniam tempora est corporis qui inventore at, dicta, sint, nulla ipsam a voluptatem!",
       projectImage: "http://i3.ytimg.com/vi/VO_COUhJ3G4/maxresdefault.jpg",
       projectShowCase: "https://samarpandasgupta.com/",
       projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
@@ -154,7 +153,7 @@ const ProjectFilterComponent = ({ projectsCategory }) => {
       >
         {projectsCategory[dropdownIndex]}
       </button>
-      <ul className="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+      <ul className="dropdown-menu">
         {projectsCategory.map((category, index) => {
           return (
             <li onClick={() => setdropdownIndex(index)}>

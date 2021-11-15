@@ -1,8 +1,8 @@
 import Typewriter from "typewriter-effect";
 import CommonComponent from "./commonsection/common";
-import samarpan_dasgupta_pic from "./images/samarpan_dasgupta.jpg";
+import samarpan_dasgupta_pic from "./images/samarpan_dasgupta.png";
 
-const HomePage = () => {
+const HomeComponent = () => {
   return <CommonComponent>{<MiddleSection />}</CommonComponent>;
 };
 
@@ -26,10 +26,10 @@ const MiddleSection = () => {
 const AutoTypingHelper = () => {
   return (
     <p className="auto-typing mt-2">
-      &nbsp;I am&nbsp;
+      &nbsp;I am a&nbsp;
       <Typewriter
         options={{
-          strings: ["a Developer", "a Designer", "a Freelancer", "a Youtuber"],
+          strings: ["Developer", "Designer", "Freelancer", "Youtuber"],
           autoStart: true,
           loop: true,
           delay: 40,
@@ -41,4 +41,4 @@ const AutoTypingHelper = () => {
   );
 };
 
-export default HomePage;
+export default HomeComponent;

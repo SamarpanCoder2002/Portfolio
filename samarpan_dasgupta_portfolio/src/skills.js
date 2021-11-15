@@ -82,7 +82,7 @@ const SkillSetSection = ({ skillDataSet }) => {
 const SkillContainer = ({ skillSingleSet, mainTechSkillName }) => {
   return (
     <div className="card w-100 skill-set-card mb-4 mx-md-3 list-group">
-      <p className="card-header text-center text-white skill-card-header">
+      <p className="card-header text-center skill-card-header text-white">
         {mainTechSkillName}
       </p>
 
@@ -108,7 +108,7 @@ const ManySkillTypeCollection = ({ allTypeSkillsCollection }) => {
 
   const getCardActivationStatusNavItem = (index) => {
     if (index === currIndex) {
-      return "nav-link active";
+      return "nav-link active text-black";
     } else {
       return "nav-link";
     }
@@ -124,7 +124,7 @@ const ManySkillTypeCollection = ({ allTypeSkillsCollection }) => {
 
   return (
     <>
-      <div className="card-header ">
+      <div className="card-header domain-options">
         <ul
           className="nav nav-tabs card-header-tabs"
           id="bologna-list"

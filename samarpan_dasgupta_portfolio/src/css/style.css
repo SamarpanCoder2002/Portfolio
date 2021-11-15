@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Montserrat&family=Mulish&family=Nunito&family=Open+Sans+Condensed:wght@300&family=Poppins:wght@300&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Montserrat&family=Mulish&family=Nunito&family=Open+Sans+Condensed:wght@300&family=Poppins:wght@300&family=Raleway&family=Roboto&display=swap");
 
 ::-webkit-scrollbar {
   width: 15px;
@@ -52,6 +53,13 @@ a {
   color: #adb5bd;
 }
 
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .social-media-container {
   -webkit-writing-mode: vertical-rl;
   -ms-writing-mode: tb-rl;
@@ -91,7 +99,7 @@ a {
 }
 
 .bg-home-section img {
-  border: 6px solid #eee;
+  /* border: 6px solid #eee; */
 }
 
 .bg-home-section .home-page-status {
@@ -127,13 +135,32 @@ a {
 
 /* Certificate Section Ends */
 
+/* Skill Section starts */
+
 .skill-card-header {
   background: linear-gradient(to right, #538ffb, #5b54fa);
+  border: 0;
+  font-size: 1.25rem;
+}
+
+.skill-set-card .domain-options{
+  background: linear-gradient(to right, #538ffb, #5b54fa);
+  border: 0;
+}
+
+.skill-set-card .domain-options .card-header-tabs .nav-item a{
+  color: white;
+}
+
+.skill-set-card .domain-options .card-header-tabs .nav-item a:hover{
+  color: white;
 }
 
 .filter-button {
   background: linear-gradient(to right, #538ffb, #5b54fa);
 }
+
+/* Skill Section Ends */
 
 /* Project Section */
 
@@ -242,6 +269,38 @@ a {
 
 /* Contact Section Ends Here */
 
+/* About Page Starts */
+
+.about-page {
+  width: 70%;
+}
+
+.about-page h2 {
+  font-size: 2rem;
+  color: #f8f8f8;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  transition: all 0.5s;
+  letter-spacing: 1.5px;
+}
+
+/* .about-page h2:hover {
+  color: #1b98f5;
+  text-shadow: -1px -1px 0 #1b98f5, 1px -1px 0 #1b98f5, -1px 1px 0 #1b98f5,
+    1px 1px 0 #1b98f5;
+    transform: scale(1.4);
+} */
+
+.about-page p,
+.about-page p a {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+}
+
+/* About Page Ends */
+
 @media (max-width: 768px) {
   .social-links {
     left: 3%;
@@ -276,17 +335,32 @@ a {
   .footer .email:hover {
     text-shadow: none;
   }
+
+  .about-page {
+    width: 90%;
+  }
+
+  .about-page p,
+  .about-page p a {
+    font-size: 1.2rem;
+  }
 }
 
 @media (max-width: 360px) {
   .contact-page {
-    height: 100vh;
+    height: 130vh;
   }
 }
 
 /* @media (max-width: 768px) {
   
 } */
+
+@media (min-width: 576px) {
+  .about-page p {
+    text-align: justify;
+  }
+}
 
 @media (min-width: 992px) {
   .footer .email {
@@ -295,6 +369,18 @@ a {
 
   .footer .copy {
     font-size: 1.1rem;
+  }
+
+  .about-page h2 {
+    font-size: 3.5rem;
+  }
+
+  .about-page p {
+    font-size: 1.8rem;
+  }
+
+  .about-page p a {
+    font-size: 2rem;
   }
 }
 
