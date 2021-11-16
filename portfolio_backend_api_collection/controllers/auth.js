@@ -30,7 +30,7 @@ exports.signin = (req, res) => {
             return res.status(200).json({
               token,
               message: "Sign in successful",
-              role: 1,
+              role: process.env.ADMIN_IDENTIFICATION_ROLE,
             });
           });
         })

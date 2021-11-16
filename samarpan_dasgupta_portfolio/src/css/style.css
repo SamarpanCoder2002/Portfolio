@@ -143,16 +143,16 @@ a {
   font-size: 1.25rem;
 }
 
-.skill-set-card .domain-options{
+.skill-set-card .domain-options {
   background: linear-gradient(to right, #538ffb, #5b54fa);
   border: 0;
 }
 
-.skill-set-card .domain-options .card-header-tabs .nav-item a{
+.skill-set-card .domain-options .card-header-tabs .nav-item a {
   color: white;
 }
 
-.skill-set-card .domain-options .card-header-tabs .nav-item a:hover{
+.skill-set-card .domain-options .card-header-tabs .nav-item a:hover {
   color: white;
 }
 
@@ -301,6 +301,40 @@ a {
 
 /* About Page Ends */
 
+/* Admin Site From Here */
+
+/* Admin Login Page Start From Here */
+
+.admin-login-bg {
+  background-color: #f6f6f6;
+}
+
+.admin-login-bg .card {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+}
+/* Admin Login Page Ends Here */
+
+/* Admin Dashboard Page */
+
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  font-weight: 800;
+}
+
+.admin-dashboard h4 {
+  font-size: 5rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  transition: all 0.5s;
+  letter-spacing: 1.5px;
+}
+
+/* Admin Dashboard Page Ends */
+
 @media (max-width: 768px) {
   .social-links {
     left: 3%;
@@ -343,6 +377,10 @@ a {
   .about-page p,
   .about-page p a {
     font-size: 1.2rem;
+  }
+
+  .admin-dashboard h4 {
+    font-size: 2.8rem;
   }
 }
 

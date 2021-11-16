@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import { useLocation } from "react-router";
+import isAdminAuthenticated from "../admin/checking/helper";
 
 const CommonComponent = ({ children }) => {
   const location = useLocation();
@@ -13,7 +14,7 @@ const CommonComponent = ({ children }) => {
 
       {children}
 
-      {location.pathname !== "/" && <Footer />}
+      {location.pathname !== "/" && !isAdminAuthenticated() && <Footer />}
     </div>
   );
 };
@@ -22,7 +23,7 @@ const NavigationBarSection = () => {
   const [isOpenMenu, setisOpenMenu] = useState(false);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light top-nav-bar sticky-top ">
+    <nav className="navbar navbar-expand-lg navbar-light top-nav-bar sticky-top">
       <div className="container-fluid">
         <Link className="navbar-brand " to="/">
           <div className="row w-50">
@@ -60,34 +61,74 @@ const NavigationBarSection = () => {
           id="navbarNavAltMarkup"
         >
           <div className="navbar-nav fw-bold">
-            <Link className="nav-link text-center" aria-current="page" to="/">
-              Home
-            </Link>
-            <Link
-              className="nav-link text-center"
-              aria-current="page"
-              to="/about"
-            >
-              About
-            </Link>
-            <Link className="nav-link text-center" to="/skill">
-              Skills
-            </Link>
-            <Link className="nav-link text-center" to="/project">
-              Projects
-            </Link>
-            <Link className="nav-link text-center" to="/certificate">
-              Certificates
-            </Link>
-            <Link className="nav-link text-center" to="/education">
-              Education
-            </Link>
-            <Link className="nav-link text-center" to="/tutorial">
-              Tutorial
-            </Link>
-            <Link className="nav-link text-center" to="/contact">
-              Contact
-            </Link>
+            {!isAdminAuthenticated() && (
+              <Link className="nav-link text-center" aria-current="page" to="/">
+                Home
+              </Link>
+            )}
+            {!isAdminAuthenticated() && (
+              <Link
+                className="nav-link text-center"
+                aria-current="page"
+                to="/about"
+              >
+                About
+              </Link>
+            )}
+            {!isAdminAuthenticated() && (
+              <Link className="nav-link text-center" to="/skill">
+                Skills
+              </Link>
+            )}
+            {!isAdminAuthenticated() && (
+              <Link className="nav-link text-center" to="/project">
+                Projects
+              </Link>
+            )}
+            {!isAdminAuthenticated() && (
+              <Link className="nav-link text-center" to="/certificate">
+                Certificates
+              </Link>
+            )}
+            {!isAdminAuthenticated() && (
+              <Link className="nav-link text-center" to="/education">
+                Education
+              </Link>
+            )}
+            {!isAdminAuthenticated() && (
+              <Link className="nav-link text-center" to="/tutorial">
+                Tutorial
+              </Link>
+            )}
+            {!isAdminAuthenticated() && (
+              <Link className="nav-link text-center" to="/contact">
+                Contact
+              </Link>
+            )}
+            {isAdminAuthenticated() && (
+              <Link
+                className="nav-link text-center"
+                to="/admin/certificate-management"
+              >
+                Certificate Management
+              </Link>
+            )}
+            {isAdminAuthenticated() && (
+              <Link
+                className="nav-link text-center"
+                to="/admin/project-management"
+              >
+                Project Management
+              </Link>
+            )}
+            {isAdminAuthenticated() && (
+              <span
+                className="nav-link text-center"
+                style={{ cursor: "pointer" }}
+              >
+                Signout
+              </span>
+            )}
           </div>
         </div>
       </div>
