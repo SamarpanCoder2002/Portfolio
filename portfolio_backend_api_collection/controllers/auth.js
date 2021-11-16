@@ -25,8 +25,13 @@ exports.signin = (req, res) => {
         .then((userCredential) => {
           const user = userCredential.user;
 
-          return res.status(200).json({
-            message: "Signin successful",
+          user.getIdToken(true).then((token) => {
+            res.cookie("token", token);
+            return res.status(200).json({
+              token,
+              message: "Sign in successful",
+              role: 1,
+            });
           });
         })
         .catch((error) => {
@@ -43,8 +48,9 @@ exports.signin = (req, res) => {
 };
 
 exports.signout = (req, res) => {
-  const auth = getAuth();
+
   res.clearCookie("token");
+  const auth = getAuth();
 
   auth.signOut().then(() => {
     return res.status(200).json({
@@ -55,22 +61,40 @@ exports.signout = (req, res) => {
 
 exports.isSignedIn = (req, res, next) => {
   const auth = getAuth();
-  setPersistence(auth, browserSessionPersistence)
-    .then(() => {
-      auth.currentUser
-        .getIdToken(true)
-        .then((token) => {
-          next();
-        })
-        .catch((error) => {
-          return res.status(401).json({
-            message: "Sign in Unsuccessful",
-          });
-        });
+
+  if (!auth.currentUser) {
+    return res.status(401).json({
+      error: "UnAuthorized",
+    });
+  }
+
+  auth.currentUser
+    .getIdToken(true)
+    .then((token) => {
+      next();
     })
     .catch((error) => {
       return res.status(401).json({
-        error: "UnAuthorized",
+        message: "Sign in Unsuccessful",
       });
     });
+
+  // setPersistence(auth, browserSessionPersistence)
+  //   .then(() => {
+  //     auth.currentUser
+  //       .getIdToken(true)
+  //       .then((token) => {
+  //         next();
+  //       })
+  //       .catch((error) => {
+  //         return res.status(401).json({
+  //           message: "Sign in Unsuccessful",
+  //         });
+  //       });
+  //   })
+  //   .catch((error) => {
+  //     return res.status(401).json({
+  //       error: "UnAuthorized",
+  //     });
+  //   });
 };
