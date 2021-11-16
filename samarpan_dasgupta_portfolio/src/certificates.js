@@ -28,7 +28,7 @@ const CertificationCollectionSection = () => {
       <div className="row">
         {(certificates && certificates.map((certi, index) => {
           return (
-            <div className="col-md-6 col-lg-3" key={index}>
+            <div className="col-md-6 col-lg-4" key={index}>
               <CertificationCard particularCertificate={certi} />
             </div>
           );
@@ -40,7 +40,7 @@ const CertificationCollectionSection = () => {
 
 const CertificationCard = ({ particularCertificate }) => {
   return (
-    <div class="certificate-container mb-5 mx-0 mx-md-3">
+    <div class="certificate-container mb-5 mx-0 col-md-12" onClick={() => window.open(particularCertificate, "_blank")}>
       <img src={particularCertificate} class="card-img-top" alt="..." />
     </div>
   );

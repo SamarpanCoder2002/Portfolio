@@ -12,6 +12,7 @@ const cors = require("cors");
 /// My Routes
 const authRoutes = require("./routes/auth");
 const projectRoutes = require("./routes/project");
+const certificateRoutes = require("./routes/certificate");
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -35,6 +36,7 @@ app.use(cors());
 /// My Routes
 app.use("/api", authRoutes);
 app.use("/api", projectRoutes);
+app.use("/api", certificateRoutes);
 
 const PORT = process.env.PORT || 8000;
 

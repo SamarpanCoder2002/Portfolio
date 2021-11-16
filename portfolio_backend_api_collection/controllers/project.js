@@ -11,15 +11,13 @@ const {
 const ProjectModel = require("../models/project");
 
 exports.addProject = (req, res) => {
-  // TODO: Uplaod the image to the storage at first
+  
 
   const projectModel = new ProjectModel(req.body);
 
   const db = getFirestore();
 
   try {
-    // console.log(projectModel.toJSON());
-
     const project = {};
 
     project[req.body.projectDomainRank] = projectModel.toJSON();
@@ -27,8 +25,8 @@ exports.addProject = (req, res) => {
     setDoc(doc(db, "projects", req.body.projectType), project, {
       merge: true,
     })
-      .then((projectRef) => {
-        console.log("Document Written with Id: ", projectRef);
+      .then(() => {
+        
         res.status(200).json({
           message: "Project Added Successfully",
         });
@@ -112,8 +110,7 @@ exports.updateProject = (req, res) => {
       const project = docFile.data();
 
       if (project[oldPreference]) {
-        /// TODO: if image local file, have to upload it to the storage
-        /// and also update the image url in the project object
+        
 
         console.log(project[oldPreference]);
 
