@@ -158,6 +158,16 @@ a {
 
 .filter-button {
   background: linear-gradient(to right, #538ffb, #5b54fa);
+  transform: all 0.5s;
+}
+
+.project-add-button,.certificate-add-button {
+  background: #4dd637;
+  transform: all 0.5s;
+}
+
+.project-add-button:focus, .certificate-add-button:focus{
+  box-shadow:0 0 0 .25rem rgba(49,253,100,.5)
 }
 
 /* Skill Section Ends */
@@ -330,6 +340,10 @@ a {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
   transition: all 0.5s;
+  letter-spacing: 1.5px;
+}
+
+.admin-dashboard p {
   letter-spacing: 1.5px;
 }
 

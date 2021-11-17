@@ -46,7 +46,9 @@ exports.getAllCertificates = async (req, res) => {
     .then((querySnapShot) => {
       const certificates = [];
       querySnapShot.forEach((doc) => {
-        certificates.push(doc.data());
+        const c_data = doc.data();
+        c_data['id'] = doc.id;
+        certificates.push(c_data);
       });
 
       res.status(200).json(certificates.reverse());

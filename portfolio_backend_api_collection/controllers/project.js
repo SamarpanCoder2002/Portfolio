@@ -11,8 +11,6 @@ const {
 const ProjectModel = require("../models/project");
 
 exports.addProject = (req, res) => {
-  
-
   const projectModel = new ProjectModel(req.body);
 
   const db = getFirestore();
@@ -20,13 +18,12 @@ exports.addProject = (req, res) => {
   try {
     const project = {};
 
-    project[req.body.projectDomainRank] = projectModel.toJSON();
+    project[Date.now().toString()] = projectModel.toJSON();
 
     setDoc(doc(db, "projects", req.body.projectType), project, {
       merge: true,
     })
       .then(() => {
-        
         res.status(200).json({
           message: "Project Added Successfully",
         });
@@ -67,16 +64,16 @@ exports.getAllProject = async (req, res) => {
     });
 };
 
-exports.getProjectByDomainPreferenceName = (req, res) => {
-  const { domain, preference } = req.body;
+exports.getProjectsByDomain = (req, res) => {
+  const domain = req.params.domainName;
 
   const db = getFirestore();
 
   getDoc(doc(db, "projects", domain)).then((doc) => {
     if (doc.exists()) {
-      const project = doc.data()[preference];
+      const projectCollection = doc.data();
 
-      if (project) return res.status(200).json(project);
+      if (projectCollection) return res.status(200).json(projectCollection);
 
       return res.status(404).json({
         error: "Project not found",
@@ -92,65 +89,59 @@ exports.getProjectByDomainPreferenceName = (req, res) => {
 exports.updateProject = (req, res) => {
   const db = getFirestore();
 
+  const id = req.params.projectId;
+
   const {
     domain,
-    oldPreference,
-    newPreference,
-    name,
-    description,
-    image,
-    showCase,
-    demoVideo,
-    downloadLink,
+    projectName,
+    projectDescription,
+    projectImage,
+    projectShowCase,
+    projectDemoVideo,
+    projectDownloadLink,
     projectTechUsed,
   } = req.body;
 
   getDoc(doc(db, "projects", domain)).then((docFile) => {
     if (docFile.exists()) {
-      const project = docFile.data();
+      let project = docFile.data()[id];
 
-      if (project[oldPreference]) {
-        
+      console.log(project);
 
-        console.log(project[oldPreference]);
+      if (project) {
+        project = {
+          ...project,
+          projectName,
+          projectDescription,
+          projectImage,
+          projectShowCase,
+          projectDemoVideo,
+          projectDownloadLink,
+          projectTechUsed,
+        };
 
-        delete project[oldPreference];
+        const updatedProject = {};
 
-        console.log(project);
+        updatedProject[id] = project;
 
-        if (!project[newPreference]) {
-          project[newPreference] = {
-            name,
-            description,
-            image,
-            showCase,
-            demoVideo,
-            downloadLink,
-            projectTechUsed,
-          };
-
-          setDoc(doc(db, "projects", domain), project)
-            .then((projectRef) => {
-              res.status(200).json({
-                message: "Project Updated Successfully",
-              });
-            })
-            .catch((error) => {
-              console.error("Error adding document: ", error);
-              res.status(400).json({
-                error: "Error adding project",
-              });
+        setDoc(doc(db, "projects", domain), updatedProject, {
+          merge: true,
+        })
+          .then(() => {
+            res.status(200).json({
+              message: "Project Updated Successfully",
             });
-        } else {
-          return res.status(403).json({
-            error: "Another Project Exist in this new preference",
+          })
+          .catch((error) => {
+            console.error("Error adding document: ", error);
+            res.status(400).json({
+              error: "Error adding project",
+            });
           });
-        }
-      } else {
+      } else
         return res.status(404).json({
-          error: "Project not found in old reference",
+          error: "Project not found",
         });
-      }
     } else {
       return res.status(404).json({
         error: "Project not found",
@@ -162,17 +153,19 @@ exports.updateProject = (req, res) => {
 exports.deleteProject = (req, res) => {
   const db = getFirestore();
 
-  const { domain, preference } = req.body;
+  const id = req.params.projectId;
+
+  const { domain } = req.body;
 
   getDoc(doc(db, "projects", domain)).then((docFile) => {
     if (docFile.exists()) {
-      const project = docFile.data();
+      const projectBundle = docFile.data();
 
-      if (project[preference]) {
-        delete project[preference];
+      if (projectBundle[id]) {
+        delete projectBundle[id];
 
-        setDoc(doc(db, "projects", domain), project)
-          .then((projectRef) => {
+        setDoc(doc(db, "projects", domain), projectBundle)
+          .then(() => {
             res.status(200).json({
               message: "Project Deleted Successfully",
             });

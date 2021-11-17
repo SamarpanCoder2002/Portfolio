@@ -26,7 +26,7 @@ exports.signin = (req, res) => {
           const user = userCredential.user;
 
           user.getIdToken(true).then((token) => {
-            res.cookie("token", token);
+            res.cookie(process.env.COOKIE_IDENTIFIER, token);
             return res.status(200).json({
               token,
               message: "Sign in successful",
@@ -49,7 +49,7 @@ exports.signin = (req, res) => {
 
 exports.signout = (req, res) => {
 
-  res.clearCookie("token");
+  res.clearCookie(process.env.COOKIE_IDENTIFIER);
   const auth = getAuth();
 
   auth.signOut().then(() => {

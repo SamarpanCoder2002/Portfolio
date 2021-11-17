@@ -21,12 +21,12 @@ class ProjectModel {
 
   toJSON = () => {
     return {
-      name: this.name,
-      description: this.description,
-      image: this.image,
-      showCase: this.showCase,
-      demoVideo: this.demoVideo,
-      downloadLink: this.downloadLink,
+      projectName: this.name,
+      projectDescription: this.description,
+      projectImage: this.image,
+      projectShowCase: this.showCase,
+      projectDemoVideo: this.demoVideo,
+      projectDownloadLink: this.downloadLink,
       projectTechUsed: this.projectTechUsed,
       projectType: this.projectType,
     };

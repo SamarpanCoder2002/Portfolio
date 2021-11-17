@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import isAdminAuthenticated from "./admin/checking/helper";
 import CommonComponent from "./commonsection/common";
 import CustomSkeleton from "./helper/customskeleton";
 
@@ -19,6 +20,7 @@ const ProjectBringing = () => {
     "MERN Projects",
   ]);
 
+  /// Project API will update that only
   const [projectsCollection, setprojectsCollection] = useState([
     {
       projectName: "Project 1",
@@ -56,62 +58,6 @@ const ProjectBringing = () => {
       projectImage: "http://i3.ytimg.com/vi/VO_COUhJ3G4/maxresdefault.jpg",
       projectShowCase: "https://samarpandasgupta.com/",
       projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
-      projectDownloadLink: null,
-      projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
-    },
-    {
-      projectName: "Project 5",
-      projectDescription: "Project 5 Description",
-      projectImage: "http://i3.ytimg.com/vi/rr8A7aSobBw/maxresdefault.jpg",
-      projectShowCase: "https://samarpandasgupta.com/",
-      projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
-      projectDownloadLink:
-        "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
-      projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
-    },
-    {
-      projectName: "Project 6",
-      projectDescription: "Project 6 Description",
-      projectImage: "http://i3.ytimg.com/vi/VO_COUhJ3G4/maxresdefault.jpg",
-      projectShowCase: "https://samarpandasgupta.com/",
-      projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
-      projectDownloadLink: null,
-      projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
-    },
-    {
-      projectName: "Project 7",
-      projectDescription: "Project 7 Description",
-      projectImage: "http://i3.ytimg.com/vi/rr8A7aSobBw/maxresdefault.jpg",
-      projectShowCase: "https://samarpandasgupta.com/",
-      projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
-      projectDownloadLink:
-        "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
-      projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
-    },
-    {
-      projectName: "Project 8",
-      projectDescription: "Project 8 Description",
-      projectImage: "http://i3.ytimg.com/vi/VO_COUhJ3G4/maxresdefault.jpg",
-      projectShowCase: "https://samarpandasgupta.com/",
-      projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
-      projectDownloadLink: null,
-      projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
-    },
-    {
-      projectName: "Project 9",
-      projectDescription: "Project 9 Description",
-      projectImage: "http://i3.ytimg.com/vi/rr8A7aSobBw/maxresdefault.jpg",
-      projectShowCase: "https://samarpandasgupta.com/",
-      projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
-      projectDownloadLink: null,
-      projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
-    },
-    {
-      projectName: "Project 10",
-      projectDescription: "Project 10 Description",
-      projectImage: "http://i3.ytimg.com/vi/VO_COUhJ3G4/maxresdefault.jpg",
-      projectShowCase: "https://samarpandasgupta.com/",
-      projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
       projectDownloadLink:
         "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
       projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
@@ -121,16 +67,26 @@ const ProjectBringing = () => {
   return (
     <div className="container certificate-collection mt-5">
       <h2 className="text-center mb-5">Projects</h2>
-      {(projectsCategory && (
+      {(projectsCollection && (
         <ProjectFilterComponent projectsCategory={projectsCategory} />
       )) || <CustomSkeleton />}
+
+      {projectsCollection && isAdminAuthenticated() && (
+        <>
+          <AdminProjectAddButton projectsCategory={projectsCategory} />
+          <ModalComponent projectsCategory={projectsCategory} />
+        </>
+      )}
+
       <div className="row">
-        {projectsCategory &&
-          projectsCollection &&
+        {projectsCollection &&
           projectsCollection.map((project, index) => {
             return (
-              <div className="col-lg-4">
-                <ProjectShowCaseComponent project={project} />
+              <div className="col-lg-4" key={index}>
+                <ProjectShowCaseComponent
+                  project={project}
+                  projectsCategory={projectsCategory}
+                />
               </div>
             );
           })}
@@ -156,7 +112,7 @@ const ProjectFilterComponent = ({ projectsCategory }) => {
       <ul className="dropdown-menu">
         {projectsCategory.map((category, index) => {
           return (
-            <li onClick={() => setdropdownIndex(index)}>
+            <li onClick={() => setdropdownIndex(index)} key={index}>
               <a className="dropdown-item" href={`#${category}`}>
                 {category}
               </a>
@@ -168,7 +124,7 @@ const ProjectFilterComponent = ({ projectsCategory }) => {
   );
 };
 
-const ProjectShowCaseComponent = ({ project }) => {
+const ProjectShowCaseComponent = ({ project, projectsCategory }) => {
   return (
     <div className="card mb-5 mx-0 mx-md-3 project-container">
       <img
@@ -179,13 +135,25 @@ const ProjectShowCaseComponent = ({ project }) => {
       <div className="card-body">
         <h5 className="card-title">{project.projectName}</h5>
         <p className="card-text">{project.projectDescription}</p>
-        {<ProjectMaterial project={project} />}
+        {
+          <>
+            <ProjectMaterial
+              project={project}
+              projectsCategory={projectsCategory}
+            />
+
+            <ModalComponent
+              project={project}
+              projectsCategory={projectsCategory}
+            />
+          </>
+        }
       </div>
     </div>
   );
 };
 
-const ProjectMaterial = ({ project }) => {
+const ProjectMaterial = ({ project, projectsCategory }) => {
   return (
     <div className="card-inside-hover-body p-3">
       <h2 className="text-center text-white fw-bold">Tech Stack</h2>
@@ -194,6 +162,12 @@ const ProjectMaterial = ({ project }) => {
         style={{ height: "90%" }}
       >
         <TechStackNameCollection project={project} />
+        {isAdminAuthenticated() && (
+          <AdminControlSection
+            project={project}
+            projectsCategory={projectsCategory}
+          />
+        )}
         <ProjectShowCaseOptionsManagement project={project} />
       </div>
     </div>
@@ -210,6 +184,7 @@ const TechStackNameCollection = ({ project }) => (
         <div
           className="badge mx-2 tech-stack-name"
           style={{ backgroundColor: "#EDC126" }}
+          key={index}
         >
           {tech}
         </div>
@@ -220,7 +195,7 @@ const TechStackNameCollection = ({ project }) => (
 
 const ProjectShowCaseOptionsManagement = ({ project }) => (
   <div
-    class="container w-100 d-flex flex-wrap justify-content-around align-items-center "
+    className="container w-100 d-flex flex-wrap justify-content-around align-items-center "
     style={{ height: "70%" }}
   >
     {project.projectShowCase && (
@@ -261,5 +236,205 @@ const MakeButton = ({ linkToRedirect, buttonName }) => (
     </button>
   </a>
 );
+
+const AdminControlSection = ({ project, projectsCategory }) => {
+  return (
+    <div
+      className="w-100 d-flex justify-content-around align-items-center"
+      style={{ height: "5vh" }}
+    >
+      <button
+        className="btn btn-info text-white"
+        data-bs-toggle="modal"
+        data-bs-target="#modalUpdateProject"
+      >
+        Update Project
+      </button>
+
+      {/* <button className="btn btn-danger text-white">Delete Project</button> */}
+    </div>
+  );
+};
+
+const AdminProjectAddButton = ({ projectsCategory }) => (
+  <div className="container mb-5 text-center">
+    <button
+      className="btn text-white project-add-button"
+      data-bs-toggle="modal"
+      data-bs-target="#modalAddProject"
+    >
+      <i className="fas fa-plus"></i> &nbsp;&nbsp; Add New Project
+    </button>
+  </div>
+);
+
+const ModalComponent = ({ project, projectsCategory }) => {
+  projectsCategory.shift();
+  return (
+    <div
+      className="modal fade"
+      id={project ? "modalUpdateProject" : "modalAddProject"}
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        className="modal-dialog modal-fullscreen modal-notify border-0"
+        role="document"
+      >
+        <div
+          className="modal-content text-center"
+          style={{ background: "#f6f6f6" }}
+        >
+          <div
+            className="modal-body border-0 justify-content-center align-items-center d-flex"
+            style={{ background: "#f6f6f6" }}
+          >
+            <FormComponent
+              project={project}
+              projectsCategory={projectsCategory}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const FormComponent = ({ project, projectsCategory }) => {
+  return (
+    <section className="vh-100 admin-login-bg">
+      <div className="container-fluid py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+          <div className="col col-lg-12">
+            <div className="card" style={{ borderRadius: "1rem" }}>
+              <div className="row g-0">
+                <div className="col-lg-6 d-none d-lg-block">
+                  <img
+                    src="https://images.pexels.com/photos/7191989/pexels-photo-7191989.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                    alt="login form"
+                    className="img-fluid h-100"
+                    style={{ borderRadius: "1rem 0 0 1rem" }}
+                  />
+                </div>
+                <div className="col-lg-6 d-flex align-items-center">
+                  <div className="card-body p-4 text-black">
+                    <form className="form-inline">
+                      {<FormHeading project={project} />}
+
+                      <FormType
+                        value={project && project.projectName}
+                        label="Name"
+                      />
+                      <FormType
+                        value={project && project.projectImage}
+                        label="Image"
+                      />
+                      <FormType
+                        value={project && project.projectShowCase}
+                        label="Show Case"
+                      />
+                      <FormType
+                        value={project && project.projectDemoVideo}
+                        label="Demo Video"
+                      />
+                      <FormType
+                        value={project && project.projectDownloadLink}
+                        label="Download Link"
+                      />
+
+                      <ProjectTypeComponent
+                        projectsCategory={projectsCategory}
+                      />
+
+                      <ProjectDescriptionInputComponent project={project} />
+
+                      <FormButton project={project} />
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const FormType = ({ value, label }) => {
+  console.log(label);
+  console.log(value);
+  return (
+    <div className="form-outline mb-4 d-flex flex-wrap">
+      <label htmlFor="rg-from">{label} </label>
+      <input
+        type={"text"}
+        id="form2Example17"
+        className="form-control form-control-lg"
+        value={value}
+      />
+    </div>
+  );
+};
+
+const ProjectTypeComponent = ({ projectsCategory }) => (
+  <select className="form-select mb-4" aria-label="Default select example">
+    {projectsCategory.map((category, index) => {
+      return (
+        <option value={category} key={index}>
+          {category}
+        </option>
+      );
+    })}
+  </select>
+);
+
+const ProjectDescriptionInputComponent = ({ project }) => (
+  <div className="form-outline mb-4 d-flex flex-wrap">
+    <label htmlFor="description">Description</label>
+    <textarea
+      type="text"
+      id="form2Example27"
+      className="form-control form-control-lg"
+    />
+  </div>
+);
+
+const FormHeading = ({ project }) => (
+  <div className="mb-3">
+    <span className="h3 fw-bold mb-0" style={{ color: "#4DD637" }}>
+      {project ? "Update This Project" : "Add New Project"}
+    </span>
+  </div>
+);
+
+const FormButton = ({ project }) => {
+  return (
+    <div className="row w-100 ">
+      <div className="col-md-6">
+        <a
+          href="#deletecertificateno"
+          type="button"
+          className="btn  btn-danger waves-effect w-75 mb-3"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </a>
+      </div>
+      <div className="col-md-6">
+        <a
+          href="#deletecertificateno"
+          type="button"
+          className="btn project-add-button waves-effect w-75 text-white"
+          data-bs-dismiss="modal"
+        >
+          {project ? "Update" : "Save"}
+        </a>
+      </div>
+    </div>
+  );
+};
 
 export default ProjectComponent;
