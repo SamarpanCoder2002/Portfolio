@@ -349,6 +349,12 @@ a {
 
 /* Admin Dashboard Page Ends */
 
+.tag{
+  background-color: rgb(61, 190, 41);
+  font-size: 0.8rem;
+  border-radius: 40px;
+}
+
 @media (max-width: 768px) {
   .social-links {
     left: 3%;

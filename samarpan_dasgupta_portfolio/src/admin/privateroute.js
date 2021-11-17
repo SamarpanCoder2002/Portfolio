@@ -1,6 +1,7 @@
 import isAdminAuthenticated from "./checking/helper";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import AdminSignIn from "./adminsignin";
+import AdminProjectFormEntryPoint from "./projectform";
 
 require("dotenv").config();
 
@@ -28,4 +29,19 @@ export const AdminIsSignedIn = () => {
   }
 
   return <AdminSignIn />;
+};
+
+export const AdminProjectFormEntry = () => {
+  const { state } = useLocation();
+
+  if (state) {
+    const { project, projectsCategory } = state;
+    return (
+      <AdminProjectFormEntryPoint
+        project={project}
+        projectsCategory={projectsCategory}
+      />
+    );
+  }
+  return <Navigate to="/admin/project-management" />;
 };

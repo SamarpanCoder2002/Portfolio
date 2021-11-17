@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import isAdminAuthenticated from "./admin/checking/helper";
 import CommonComponent from "./commonsection/common";
 import CustomSkeleton from "./helper/customskeleton";
@@ -30,6 +31,7 @@ const ProjectBringing = () => {
       projectShowCase: "https://samarpandasgupta.com/",
       projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
       projectDownloadLink: null,
+      projectId: 1,
       projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
     },
     {
@@ -40,6 +42,7 @@ const ProjectBringing = () => {
       projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
       projectDownloadLink:
         "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
+      projectId: 2,
       projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
     },
     {
@@ -50,6 +53,7 @@ const ProjectBringing = () => {
       projectShowCase: "https://samarpandasgupta.com/",
       projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
       projectDownloadLink: null,
+      projectId: 3,
       projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
     },
     {
@@ -60,6 +64,7 @@ const ProjectBringing = () => {
       projectDemoVideo: "https://youtu.be/XadGEZYr5Go",
       projectDownloadLink:
         "https://play.google.com/store/apps/details?id=com.king.candycrushsaga",
+      projectId: 4,
       projectTechUsed: ["C", "C++", "Java", "Python", "Dart", "Javascript"],
     },
   ]);
@@ -228,157 +233,43 @@ const MakeButton = ({ linkToRedirect, buttonName }) => (
 );
 
 const AdminControlSection = ({ project, projectsCategory }) => {
+  const navigate = useNavigate();
+
   return (
     <div
       className="w-100 d-flex justify-content-around align-items-center"
       style={{ height: "5vh" }}
     >
-      <button className="btn btn-info text-white" onClick={() => {}}>Update Project</button>
+      <button
+        className="btn btn-info text-white"
+        onClick={() => {
+          navigate("/admin/project-form-entry", {
+            state: { project: project, projectsCategory: projectsCategory },
+          });
+        }}
+      >
+        Update Project
+      </button>
 
-      {/* <button className="btn btn-danger text-white">Delete Project</button> */}
+      <button className="btn btn-danger text-white">Delete Project</button>
     </div>
   );
 };
 
-const AdminProjectAddButton = ({ projectsCategory }) => (
-  <div className="container mb-5 text-center">
-    <button className="btn text-white project-add-button">
-      <i className="fas fa-plus"></i> &nbsp;&nbsp; Add New Project
-    </button>
-  </div>
-);
-
-const FormComponent = ({ project, projectsCategory }) => {
+const AdminProjectAddButton = ({ projectsCategory }) => {
+  const navigate = useNavigate();
   return (
-    <section className="vh-100 admin-login-bg">
-      <div className="container-fluid py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col col-lg-12">
-            <div className="card" style={{ borderRadius: "1rem" }}>
-              <div className="row g-0">
-                <div className="col-lg-6 d-none d-lg-block">
-                  <img
-                    src="https://images.pexels.com/photos/7191989/pexels-photo-7191989.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                    alt="login form"
-                    className="img-fluid h-100"
-                    style={{ borderRadius: "1rem 0 0 1rem" }}
-                  />
-                </div>
-                <div className="col-lg-6 d-flex align-items-center">
-                  <div className="card-body p-4 text-black">
-                    <form className="form-inline">
-                      {<FormHeading project={project} />}
-
-                      <FormType
-                        value={project && project.projectName}
-                        label="Name"
-                      />
-                      <FormType
-                        value={project && project.projectImage}
-                        label="Image"
-                      />
-                      <FormType
-                        value={project && project.projectShowCase}
-                        label="Show Case"
-                      />
-                      <FormType
-                        value={project && project.projectDemoVideo}
-                        label="Demo Video"
-                      />
-                      <FormType
-                        value={project && project.projectDownloadLink}
-                        label="Download Link"
-                      />
-
-                      <ProjectTypeComponent
-                        projectsCategory={projectsCategory}
-                      />
-
-                      <ProjectDescriptionInputComponent project={project} />
-
-                      <FormButton project={project} />
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const FormType = ({ value, label }) => {
-  console.log(label);
-  console.log(value);
-  return (
-    <div className="form-outline mb-4 d-flex flex-wrap">
-      <label htmlFor="rg-from">{label} </label>
-      <input
-        type={"text"}
-        id="form2Example17"
-        className="form-control form-control-lg"
-        value={value}
-      />
-    </div>
-  );
-};
-
-const ProjectTypeComponent = ({ projectsCategory }) => (
-  <select className="form-select mb-4" aria-label="Default select example">
-    {projectsCategory.map((category, index) => {
-      return (
-        <option value={category} key={index}>
-          {category}
-        </option>
-      );
-    })}
-  </select>
-);
-
-const ProjectDescriptionInputComponent = ({ project }) => (
-  <div className="form-outline mb-4 d-flex flex-wrap">
-    <label htmlFor="description">Description</label>
-    <textarea
-      type="text"
-      id="form2Example27"
-      className="form-control form-control-lg"
-    />
-  </div>
-);
-
-const FormHeading = ({ project }) => (
-  <div className="mb-3">
-    <span className="h3 fw-bold mb-0" style={{ color: "#4DD637" }}>
-      {project ? "Update This Project" : "Add New Project"}
-    </span>
-  </div>
-);
-
-const FormButton = ({ project }) => {
-  return (
-    <div className="row w-100 ">
-      <div className="col-md-6">
-        <a
-          href="#deletecertificateno"
-          type="button"
-          className="btn  btn-danger waves-effect w-75 mb-3"
-          data-bs-dismiss="modal"
-        >
-          Close
-        </a>
-      </div>
-      <div className="col-md-6">
-        <a
-          href="#deletecertificateno"
-          type="button"
-          className="btn project-add-button waves-effect w-75 text-white"
-          data-bs-dismiss="modal"
-        >
-          {project ? "Update" : "Save"}
-        </a>
-      </div>
+    <div className="container mb-5 text-center">
+      <button
+        className="btn text-white project-add-button"
+        onClick={() => {
+          navigate("/admin/project-form-entry", {
+            state: { projectsCategory: projectsCategory },
+          });
+        }}
+      >
+        <i className="fas fa-plus"></i> &nbsp;&nbsp; Add New Project
+      </button>
     </div>
   );
 };
