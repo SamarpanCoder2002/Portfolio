@@ -72,10 +72,7 @@ const ProjectBringing = () => {
       )) || <CustomSkeleton />}
 
       {projectsCollection && isAdminAuthenticated() && (
-        <>
-          <AdminProjectAddButton projectsCategory={projectsCategory} />
-          <ModalComponent projectsCategory={projectsCategory} />
-        </>
+        <AdminProjectAddButton projectsCategory={projectsCategory} />
       )}
 
       <div className="row">
@@ -136,17 +133,10 @@ const ProjectShowCaseComponent = ({ project, projectsCategory }) => {
         <h5 className="card-title">{project.projectName}</h5>
         <p className="card-text">{project.projectDescription}</p>
         {
-          <>
-            <ProjectMaterial
-              project={project}
-              projectsCategory={projectsCategory}
-            />
-
-            <ModalComponent
-              project={project}
-              projectsCategory={projectsCategory}
-            />
-          </>
+          <ProjectMaterial
+            project={project}
+            projectsCategory={projectsCategory}
+          />
         }
       </div>
     </div>
@@ -243,13 +233,7 @@ const AdminControlSection = ({ project, projectsCategory }) => {
       className="w-100 d-flex justify-content-around align-items-center"
       style={{ height: "5vh" }}
     >
-      <button
-        className="btn btn-info text-white"
-        data-bs-toggle="modal"
-        data-bs-target="#modalUpdateProject"
-      >
-        Update Project
-      </button>
+      <button className="btn btn-info text-white" onClick={() => {}}>Update Project</button>
 
       {/* <button className="btn btn-danger text-white">Delete Project</button> */}
     </div>
@@ -258,49 +242,11 @@ const AdminControlSection = ({ project, projectsCategory }) => {
 
 const AdminProjectAddButton = ({ projectsCategory }) => (
   <div className="container mb-5 text-center">
-    <button
-      className="btn text-white project-add-button"
-      data-bs-toggle="modal"
-      data-bs-target="#modalAddProject"
-    >
+    <button className="btn text-white project-add-button">
       <i className="fas fa-plus"></i> &nbsp;&nbsp; Add New Project
     </button>
   </div>
 );
-
-const ModalComponent = ({ project, projectsCategory }) => {
-  projectsCategory.shift();
-  return (
-    <div
-      className="modal fade"
-      id={project ? "modalUpdateProject" : "modalAddProject"}
-      tabIndex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div
-        className="modal-dialog modal-fullscreen modal-notify border-0"
-        role="document"
-      >
-        <div
-          className="modal-content text-center"
-          style={{ background: "#f6f6f6" }}
-        >
-          <div
-            className="modal-body border-0 justify-content-center align-items-center d-flex"
-            style={{ background: "#f6f6f6" }}
-          >
-            <FormComponent
-              project={project}
-              projectsCategory={projectsCategory}
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const FormComponent = ({ project, projectsCategory }) => {
   return (
