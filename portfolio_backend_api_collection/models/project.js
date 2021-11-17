@@ -29,6 +29,7 @@ class ProjectModel {
       projectDownloadLink: this.downloadLink,
       projectTechUsed: this.projectTechUsed,
       projectType: this.projectType,
+      projectId: Date.now(),
     };
   };
 }

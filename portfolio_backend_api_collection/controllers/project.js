@@ -17,8 +17,8 @@ exports.addProject = (req, res) => {
 
   try {
     const project = {};
-
-    project[Date.now().toString()] = projectModel.toJSON();
+    const json = projectModel.toJSON();
+    project[json.projectId] = json;
 
     setDoc(doc(db, "projects", req.body.projectType), project, {
       merge: true,
