@@ -4,8 +4,10 @@ import { useState } from "react";
 const AdminProjectFormEntryPoint = ({ project, projectsCategory }) => {
   projectsCategory.shift(); // remove first element from array
 
+  const [isLoading, setisLoading] = useState(false);
+
   return (
-    <CommonComponent>
+    <CommonComponent isLoading={isLoading}>
       <section className="vh-150 admin-login-bg">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -25,6 +27,8 @@ const AdminProjectFormEntryPoint = ({ project, projectsCategory }) => {
                       <FormMaker
                         project={project}
                         projectsCategory={projectsCategory}
+                        isLoading={isLoading}
+                        setisLoading={setisLoading}
                       />
                     </div>
                   </div>
@@ -38,7 +42,7 @@ const AdminProjectFormEntryPoint = ({ project, projectsCategory }) => {
   );
 };
 
-const FormMaker = ({ project, projectsCategory }) => {
+const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
   const [projectTechUsedTemp, setProjectTechUsedTemp] = useState(
     project && project.projectTechUsed ? project.projectTechUsed : []
   );
@@ -199,7 +203,12 @@ const FormMaker = ({ project, projectsCategory }) => {
 
       <TechUsedSection name="projectTechUsed" />
 
-      <FormButton newForm={newForm} oldProject={project} />
+      <FormButton
+        newForm={newForm}
+        oldProject={project}
+        isLoading={isLoading}
+        setisLoading={setisLoading}
+      />
     </div>
   );
 };
@@ -212,7 +221,15 @@ const FormHeading = ({ project }) => (
   </div>
 );
 
-const FormButton = ({ newForm, oldProject }) => {
+const FormButton = ({ newForm, oldProject, isLoading, setisLoading }) => {
+  const buttonClassName = () => {
+    if (isLoading) {
+      return "btn project-add-button w-100 text-white disabled";
+    } else {
+      return "btn project-add-button w-100 text-white";
+    }
+  };
+
   return (
     <div className="row w-100 mx-1">
       <div className="col-md-6">
@@ -229,8 +246,9 @@ const FormButton = ({ newForm, oldProject }) => {
       </div>
       <div className="col-md-6">
         <button
-          className="btn project-add-button w-100 text-white"
+          className={buttonClassName()}
           onClick={() => {
+            setisLoading(true);
             console.log(newForm);
           }}
         >

@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import { useLocation } from "react-router";
 import isAdminAuthenticated from "../admin/checking/helper";
+import LoadingBar from "./loadingwithstyle/loadingbar";
 
-const CommonComponent = ({ children }) => {
+const CommonComponent = ({ children, isLoading }) => {
   const location = useLocation();
 
   return (
     <div className="container-fluid m-0 p-0">
-      {<NavigationBarSection />}
+      {<NavigationBarSection isLoading={isLoading} />}
       {location.pathname === "/" && <ConnectWithMe />}
 
       {children}
@@ -19,120 +20,127 @@ const CommonComponent = ({ children }) => {
   );
 };
 
-const NavigationBarSection = () => {
+const NavigationBarSection = ({ isLoading }) => {
   const [isOpenMenu, setisOpenMenu] = useState(false);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light top-nav-bar sticky-top">
-      <div className="container-fluid">
-        <Link className="navbar-brand " to="/">
-          <div className="row w-50">
-            <div className="col-md-6">
-              <img src={logo} alt="Logo" width="50px" />
+    <div className="sticky-top">
+      <nav className="navbar navbar-expand-lg navbar-light top-nav-bar">
+        <div className="container-fluid">
+          <Link className="navbar-brand " to="/">
+            <div className="row w-50">
+              <div className="col-md-6">
+                <img src={logo} alt="Logo" width="50px" />
+              </div>
+              <div className="col-md-6 d-none d-md-block mt-2 my-name">
+                Samarpan Dasgupta
+              </div>
             </div>
-            <div className="col-md-6 d-none d-md-block mt-2 my-name">
-              Samarpan Dasgupta
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            style={{ border: "none" }}
+            onClick={() => setisOpenMenu(!isOpenMenu)}
+          >
+            {isOpenMenu ? (
+              <img
+                src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-cancel-mintab-for-ios-becris-lineal-becris.png"
+                alt="close menu"
+                width="30"
+              />
+            ) : (
+              <span className="navbar-toggler-icon"></span>
+            )}
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNavAltMarkup"
+          >
+            <div className="navbar-nav fw-bold">
+              {!isAdminAuthenticated() && (
+                <Link
+                  className="nav-link text-center"
+                  aria-current="page"
+                  to="/"
+                >
+                  Home
+                </Link>
+              )}
+              {!isAdminAuthenticated() && (
+                <Link
+                  className="nav-link text-center"
+                  aria-current="page"
+                  to="/about"
+                >
+                  About
+                </Link>
+              )}
+              {!isAdminAuthenticated() && (
+                <Link className="nav-link text-center" to="/skill">
+                  Skills
+                </Link>
+              )}
+              {!isAdminAuthenticated() && (
+                <Link className="nav-link text-center" to="/project">
+                  Projects
+                </Link>
+              )}
+              {!isAdminAuthenticated() && (
+                <Link className="nav-link text-center" to="/certificate">
+                  Certificates
+                </Link>
+              )}
+              {!isAdminAuthenticated() && (
+                <Link className="nav-link text-center" to="/education">
+                  Education
+                </Link>
+              )}
+              {!isAdminAuthenticated() && (
+                <Link className="nav-link text-center" to="/tutorial">
+                  Tutorial
+                </Link>
+              )}
+              {!isAdminAuthenticated() && (
+                <Link className="nav-link text-center" to="/contact">
+                  Contact
+                </Link>
+              )}
+              {isAdminAuthenticated() && (
+                <Link
+                  className="nav-link text-center"
+                  to="/admin/certificate-management"
+                >
+                  Certificate Management
+                </Link>
+              )}
+              {isAdminAuthenticated() && (
+                <Link
+                  className="nav-link text-center"
+                  to="/admin/project-management"
+                >
+                  Project Management
+                </Link>
+              )}
+              {isAdminAuthenticated() && (
+                <span
+                  className="nav-link text-center"
+                  style={{ cursor: "pointer" }}
+                >
+                  Signout
+                </span>
+              )}
             </div>
-          </div>
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          style={{ border: "none" }}
-          onClick={() => setisOpenMenu(!isOpenMenu)}
-        >
-          {isOpenMenu ? (
-            <img
-              src="https://img.icons8.com/external-becris-lineal-becris/64/000000/external-cancel-mintab-for-ios-becris-lineal-becris.png"
-              alt="close menu"
-              width="30"
-            />
-          ) : (
-            <span className="navbar-toggler-icon"></span>
-          )}
-        </button>
-        <div
-          className="collapse navbar-collapse justify-content-end"
-          id="navbarNavAltMarkup"
-        >
-          <div className="navbar-nav fw-bold">
-            {!isAdminAuthenticated() && (
-              <Link className="nav-link text-center" aria-current="page" to="/">
-                Home
-              </Link>
-            )}
-            {!isAdminAuthenticated() && (
-              <Link
-                className="nav-link text-center"
-                aria-current="page"
-                to="/about"
-              >
-                About
-              </Link>
-            )}
-            {!isAdminAuthenticated() && (
-              <Link className="nav-link text-center" to="/skill">
-                Skills
-              </Link>
-            )}
-            {!isAdminAuthenticated() && (
-              <Link className="nav-link text-center" to="/project">
-                Projects
-              </Link>
-            )}
-            {!isAdminAuthenticated() && (
-              <Link className="nav-link text-center" to="/certificate">
-                Certificates
-              </Link>
-            )}
-            {!isAdminAuthenticated() && (
-              <Link className="nav-link text-center" to="/education">
-                Education
-              </Link>
-            )}
-            {!isAdminAuthenticated() && (
-              <Link className="nav-link text-center" to="/tutorial">
-                Tutorial
-              </Link>
-            )}
-            {!isAdminAuthenticated() && (
-              <Link className="nav-link text-center" to="/contact">
-                Contact
-              </Link>
-            )}
-            {isAdminAuthenticated() && (
-              <Link
-                className="nav-link text-center"
-                to="/admin/certificate-management"
-              >
-                Certificate Management
-              </Link>
-            )}
-            {isAdminAuthenticated() && (
-              <Link
-                className="nav-link text-center"
-                to="/admin/project-management"
-              >
-                Project Management
-              </Link>
-            )}
-            {isAdminAuthenticated() && (
-              <span
-                className="nav-link text-center"
-                style={{ cursor: "pointer" }}
-              >
-                Signout
-              </span>
-            )}
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+      <LoadingBar isLoading={isLoading} />
+    </div>
   );
 };
 

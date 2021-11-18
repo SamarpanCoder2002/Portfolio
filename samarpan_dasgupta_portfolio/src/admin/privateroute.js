@@ -2,6 +2,7 @@ import isAdminAuthenticated from "./checking/helper";
 import { Navigate, useLocation } from "react-router-dom";
 import AdminSignIn from "./adminsignin";
 import AdminProjectFormEntryPoint from "./projectform";
+import AdminCertificateFormEntryPoint from "./certificateform";
 
 require("dotenv").config();
 
@@ -44,4 +45,14 @@ export const AdminProjectFormEntry = () => {
     );
   }
   return <Navigate to="/admin/project-management" />;
+};
+
+export const AdminCertificateFormEntry = () => {
+  const { state } = useLocation();
+
+  if (state) {
+    return <AdminCertificateFormEntryPoint />;
+  }
+
+  return <Navigate to="/admin/certificate-management" />;
 };

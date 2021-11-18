@@ -7,8 +7,13 @@ import {
 import AboutComponent from "./aboutpage";
 import isAdminAuthenticated from "./admin/checking/helper";
 import DashboardComponent from "./admin/dashboard";
-import AdminPrivateRoute, { AdminIsSignedIn, AdminProjectFormEntry } from "./admin/privateroute";
+import AdminPrivateRoute, {
+  AdminCertificateFormEntry,
+  AdminIsSignedIn,
+  AdminProjectFormEntry,
+} from "./admin/privateroute";
 import CertificatesComponent from "./certificates";
+import LoadingBar from "./commonsection/loadingwithstyle/loadingbar";
 import ContactComponent from "./contactpage";
 import EducationComponent from "./educationpage";
 import HomeComponent from "./homepage";
@@ -65,13 +70,17 @@ const RoutesEntryPoint = () => {
             exact
             element={<AdminPrivateRoute Component={ProjectComponent} />}
           />
-           <Route
-          path="project-form-entry"
-          exact
-          element={<AdminProjectFormEntry />}
-        />
+          <Route
+            path="project-form-entry"
+            exact
+            element={<AdminProjectFormEntry />}
+          />
+          <Route
+            path="certificate-form-entry"
+            exact
+            element={<AdminCertificateFormEntry />}
+          />
         </Route>
-       
       </Routes>
     </Router>
   );

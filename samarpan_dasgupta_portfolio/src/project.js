@@ -5,8 +5,9 @@ import CommonComponent from "./commonsection/common";
 import CustomSkeleton from "./helper/customskeleton";
 
 const ProjectComponent = () => {
+  const [isLoading, setisLoading] = useState(false);
   return (
-    <CommonComponent>
+    <CommonComponent isLoading={isLoading}>
       <ProjectBringing />
     </CommonComponent>
   );

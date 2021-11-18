@@ -1,11 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import isAdminAuthenticated from "./admin/checking/helper";
 import CommonComponent from "./commonsection/common";
 import CustomSkeleton from "./helper/customskeleton";
 
 const CertificatesComponent = () => {
+  const [isLoading, setisLoading] = useState(false);
   return (
-    <CommonComponent>{<CertificationCollectionSection />}</CommonComponent>
+    <CommonComponent isLoading={isLoading}>
+      {<CertificationCollectionSection />}
+    </CommonComponent>
   );
 };
 
@@ -20,17 +24,17 @@ const CertificationCollectionSection = () => {
     {
       image:
         "https://images.all-free-download.com/images/graphicthumb/certificate_template_elegant_bright_classic_decor_6852680.jpg",
-      name: "sample100",
+      name: "sample200",
       id: "1637071479849",
     },
     {
-      name: "sample100",
+      name: "sample300",
       image:
         "https://images.all-free-download.com/images/graphicthumb/certificate_template_elegant_bright_classic_decor_6852680.jpg",
       id: "1637071424173",
     },
     {
-      name: "sample100",
+      name: "sample400",
       image:
         "https://images.all-free-download.com/images/graphicthumb/certificate_template_elegant_bright_classic_decor_6852680.jpg",
       id: "1637071173041",
@@ -104,7 +108,7 @@ const DeleteCertificate = ({ id }) => {
         className="modal-dialog modal-fullscreen-sm-down modal-notify modal-danger border-0"
         role="document"
       >
-        <div className="modal-content text-center">
+        <div className="modal-content text-center border-0">
           <div className="modal-header bg-danger justify-content-center">
             <h4 className="text-center text-white">Delete Confirmation</h4>
           </div>
@@ -139,9 +143,17 @@ const DeleteCertificate = ({ id }) => {
 };
 
 const AdminCertificateAddButton = () => {
+  const navigate = useNavigate();
   return (
     <div className="container my-5 text-center">
-      <button className="btn text-white certificate-add-button">
+      <button
+        className="btn text-white certificate-add-button"
+        onClick={() => {
+          navigate("/admin/certificate-form-entry", {
+            state: true,
+          });
+        }}
+      >
         <i class="fas fa-plus"></i> &nbsp;&nbsp; Add New Certificate
       </button>
     </div>
