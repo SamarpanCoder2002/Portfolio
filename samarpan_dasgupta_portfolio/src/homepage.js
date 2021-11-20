@@ -13,11 +13,24 @@ const MiddleSection = () => {
         src={samarpan_dasgupta_pic}
         alt="Samarpan Dasgupta Logo"
         height="25%"
-        
+        data-aos="zoom-in"
+        data-aos-duration="1000"
         style={{ borderRadius: "50%" }}
       />
-      <h3 className="display-5 fw-bold home-page-my-name mt-2">Samarpan Dasgupta</h3>
-      <h6 className="home-page-status">Loves To Write Code</h6>
+      <h3
+        className="display-5 fw-bold home-page-my-name mt-2"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
+        Samarpan Dasgupta
+      </h3>
+      <h6
+        className="home-page-status fw-bold"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
+        Loves To Write Code
+      </h6>
       <AutoTypingHelper />
     </div>
   );
@@ -25,7 +38,12 @@ const MiddleSection = () => {
 
 const AutoTypingHelper = () => {
   return (
-    <div className="auto-typing mt-2">
+    <div
+      className="auto-typing mt-2"
+      data-aos="zoom-in"
+      data-aos-duration="2000"
+      data-aos-delay="1000"
+    >
       &nbsp;I am a&nbsp;
       <Typewriter
         options={{
@@ -38,7 +56,7 @@ const AutoTypingHelper = () => {
         }}
       />
     </div>
-  )
+  );
 };
 
 export default HomeComponent;

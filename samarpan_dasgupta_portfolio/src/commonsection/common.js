@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import { useLocation } from "react-router";
 import isAdminAuthenticated from "../admin/auth/helper";
 import LoadingBar from "./loadingwithstyle/loadingbar";
 import signoutHandler from "../admin/auth/adminsignout";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const CommonComponent = ({ children, isLoading }) => {
   const location = useLocation();
@@ -24,8 +26,17 @@ const CommonComponent = ({ children, isLoading }) => {
 const NavigationBarSection = ({ isLoading }) => {
   const [isOpenMenu, setisOpenMenu] = useState(false);
 
+  useEffect(() => {
+    AOS.init();
+  });
+
   return (
-    <div className="sticky-top">
+    <div
+      className="sticky-top"
+      data-aos="fade-down"
+      data-aos-duration="2000"
+      data-aos-delay="1200"
+    >
       <nav className="navbar navbar-expand-lg navbar-light top-nav-bar">
         <div className="container-fluid">
           <Link className="navbar-brand " to="/">
@@ -149,7 +160,12 @@ const NavigationBarSection = ({ isLoading }) => {
 };
 
 const ConnectWithMe = () => (
-  <ul className="list-unstyled position-absolute social-links">
+  <ul
+    className="list-unstyled position-absolute social-links"
+    data-aos="fade-right"
+    data-aos-duration="2000"
+    data-aos-delay="1400"
+  >
     <div className="social-media-container" rel="noreferrer">
       <a
         href="https://www.facebook.com/samarpan.dasgupta.3"
@@ -224,7 +240,11 @@ const socialMediaInformation = [
 ];
 
 const Footer = () => (
-  <div className="container-fluid mt-5 footer d-block sticky-bottom">
+  <div
+    className="container-fluid mt-5 footer d-block sticky-bottom"
+    data-aos="fade-up"
+    data-aos-duration="1000"
+  >
     <div className="container py-5 px-4">
       <div className="row">
         <div className="col-lg-8">

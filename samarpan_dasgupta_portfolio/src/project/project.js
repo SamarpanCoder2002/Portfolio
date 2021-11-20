@@ -345,7 +345,7 @@ const AdminControlSection = ({ project, projectsCategory, setisLoading }) => {
           width="20px"
           className="pb-1"
         ></img>
-        &nbsp;Update Project
+        &nbsp;Update
       </button>
 
       <button
@@ -358,7 +358,7 @@ const AdminControlSection = ({ project, projectsCategory, setisLoading }) => {
           alt="Delete Icon"
           className="pb-1"
         ></img>
-        &nbsp;Delete Project
+        &nbsp;Delete
       </button>
     </div>
   );

@@ -36,6 +36,8 @@ a {
 
 /* Common Section */
 
+
+
 .top-nav-bar {
   transition: all 0.5s;
   backdrop-filter: blur(30px);
@@ -99,10 +101,6 @@ a {
   font-weight: 800;
 }
 
-.bg-home-section img {
-  /* border: 6px solid #eee; */
-}
-
 .bg-home-section .home-page-status {
   font-size: 1.25rem;
 }
@@ -116,6 +114,10 @@ a {
 }
 
 /* Home Section Ends */
+
+/*About Page */
+
+/*About page Ends here */
 
 /* Certificate Section */
 
@@ -167,7 +169,7 @@ a {
   background: #4dd637;
   transition: all 0.5s;
 }
-.project-add-button:hover{
+.project-add-button:hover {
   box-shadow: 0 0 0 0.25rem rgba(77, 214, 55, 0.5);
 }
 
@@ -219,7 +221,7 @@ a {
   cursor: default;
 }
 
-.project-container .card-body .card-inside-hover-body .project-github-link{
+.project-container .card-body .card-inside-hover-body .project-github-link {
   width: 40px;
   cursor: pointer;
 }
@@ -330,7 +332,7 @@ a {
   font-family: "Raleway", sans-serif;
   font-size: 1.4rem;
   font-weight: bold;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.2px;
 }
 
 /* About Page Ends */
@@ -386,6 +388,15 @@ a {
 }
 
 @media (max-width: 576px) {
+  .preloader .my-name h1{
+    font-size: calc(1.2rem + 3.9vw);
+  }
+
+  .preloader .identity h4{
+    font-size: calc(0.9rem + .1vw);
+    
+  }
+
   .social-links {
     left: 5%;
   }
@@ -427,7 +438,7 @@ a {
     font-size: 2.8rem;
   }
 
-  .project-container .card-body .card-inside-hover-body .project-github-link{
+  .project-container .card-body .card-inside-hover-body .project-github-link {
     width: 35px;
   }
 }
