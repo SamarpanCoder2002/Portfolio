@@ -182,7 +182,7 @@ a {
 
 .project-add-button:focus,
 .new-project-add-button:hover {
-  box-shadow: 0 0 0 0.25rem rgba(244, 190, 44, 0.5);
+  box-shadow: 0 0 0 0.25rem #f4be2c80;
 }
 
 /* Skill Section Ends */
@@ -217,6 +217,11 @@ a {
   transition: all 1s;
   border-radius: 8px;
   cursor: default;
+}
+
+.project-container .card-body .card-inside-hover-body .project-github-link{
+  width: 40px;
+  cursor: pointer;
 }
 
 .project-container .card-body .card-inside-hover-body:hover {
@@ -420,6 +425,10 @@ a {
 
   .admin-dashboard h4 {
     font-size: 2.8rem;
+  }
+
+  .project-container .card-body .card-inside-hover-body .project-github-link{
+    width: 35px;
   }
 }
 

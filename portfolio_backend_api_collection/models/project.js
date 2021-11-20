@@ -8,6 +8,7 @@ class ProjectModel {
     projectDownloadLink,
     projectTechUsed,
     projectType,
+    projectGithubLink,
   }) {
     this.name = projectName;
     this.description = projectDescription;
@@ -17,6 +18,7 @@ class ProjectModel {
     this.downloadLink = projectDownloadLink;
     this.projectTechUsed = projectTechUsed;
     this.projectType = projectType;
+    this.projectGithubLink = projectGithubLink;
   }
 
   toJSON = () => {
@@ -29,6 +31,7 @@ class ProjectModel {
       projectDownloadLink: this.downloadLink,
       projectTechUsed: this.projectTechUsed,
       projectType: this.projectType,
+      projectGithubLink: this.projectGithubLink,
       projectId: Date.now(),
     };
   };

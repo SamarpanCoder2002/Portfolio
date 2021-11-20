@@ -59,6 +59,7 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
     projectTechUsed:
       project && project.projectTechUsed ? project.projectTechUsed : [],
     projectType: project ? project.projectType : projectsCategory[0],
+    projectGithubLink: project ? project.projectGithubLink : "",
   });
 
   const {
@@ -69,6 +70,7 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
     projectDemoVideo,
     projectDownloadLink,
     projectType,
+    projectGithubLink,
   } = newForm;
 
   const handleChange = (name) => (e) => {
@@ -87,6 +89,7 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
           className="form-control form-control-lg"
           value={projectName}
           name="projectName"
+          placeholder="Enter Project Name"
           onChange={handleChange("projectName")}
           onClick={() => {
             if (isFail) {
@@ -102,6 +105,7 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
           className="form-control form-control-lg"
           value={projectImage}
           name="projectImage"
+          placeholder="Enter Project Image Link"
           onChange={handleChange("projectImage")}
           onClick={() => {
             if (isFail) {
@@ -111,13 +115,30 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
         />
       </div>
       <div className="form-outline mb-4 d-flex flex-wrap">
-        <label htmlFor="rg-from">Show Case * </label>
+        <label htmlFor="rg-from">Show Case </label>
         <input
           id="form2Example17"
           className="form-control form-control-lg"
           value={projectShowCase}
           name="projectShowCase"
+          placeholder="Enter Project ShowCase Link"
           onChange={handleChange("projectShowCase")}
+          onClick={() => {
+            if (isFail) {
+              setIsFail(null);
+            }
+          }}
+        />
+      </div>
+      <div className="form-outline mb-4 d-flex flex-wrap">
+        <label htmlFor="rg-from">Github Link </label>
+        <input
+          id="form2Example17"
+          className="form-control form-control-lg"
+          value={projectGithubLink}
+          name="projectGithubLink"
+          placeholder="Enter Github Repo Link"
+          onChange={handleChange("projectGithubLink")}
           onClick={() => {
             if (isFail) {
               setIsFail(null);
@@ -132,6 +153,7 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
           className="form-control form-control-lg"
           value={projectDemoVideo}
           name="projectDemoVideo"
+          placeholder="Enter Demo Video Link"
           onChange={handleChange("projectDemoVideo")}
           onClick={() => {
             if (isFail) {
@@ -147,6 +169,7 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
           className="form-control form-control-lg"
           value={projectDownloadLink}
           name="projectDownloadLink"
+          placeholder="Enter Download Link"
           onChange={handleChange("projectDownloadLink")}
           onClick={() => {
             if (isFail) {

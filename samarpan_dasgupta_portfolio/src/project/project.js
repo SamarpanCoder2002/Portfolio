@@ -202,9 +202,9 @@ const ProjectShowCaseComponent = ({
 
 const ProjectMaterial = ({ project, projectsCategory, setisLoading }) => {
   return (
-    <div className="card-inside-hover-body p-3">
+    <div className="card-inside-hover-body">
       <div
-        className="d-flex flex-wrap justify-content-center align-items-center text-white w-100 all-in-one "
+        className="d-flex flex-wrap justify-content-center align-items-center text-white w-100 all-in-one p-3"
         style={{ height: "100%" }}
       >
         <TechStackNameCollection project={project} />
@@ -217,7 +217,23 @@ const ProjectMaterial = ({ project, projectsCategory, setisLoading }) => {
         )}
         <ProjectShowCaseOptionsManagement project={project} />
       </div>
+      <ProjectGithubLink project={project} />
     </div>
+  );
+};
+
+const ProjectGithubLink = ({ project }) => {
+  return (
+    (project.projectGithubLink && (
+      <img
+        src="https://img.icons8.com/ios-filled/50/ffffff/github.png"
+        className="position-absolute top-0 left-0 project-github-link p-1"
+        alt="github-logo"
+        onClick={() => {
+          window.open(project.projectGithubLink);
+        }}
+      />
+    )) || <></>
   );
 };
 
@@ -323,10 +339,11 @@ const AdminControlSection = ({ project, projectsCategory, setisLoading }) => {
           });
         }}
       >
-        <img src="https://img.icons8.com/pastel-glyph/64/ffffff/loop.png"
-        alt="Update Icon"
-        width="20px"
-        className="pb-1"
+        <img
+          src="https://img.icons8.com/pastel-glyph/64/ffffff/loop.png"
+          alt="Update Icon"
+          width="20px"
+          className="pb-1"
         ></img>
         &nbsp;Update Project
       </button>
