@@ -1,13 +1,13 @@
 class CertificateModel {
-  constructor({ certificateName, certificatelink }) {
-    this.name = certificateName;
-    this.image = certificatelink;
+  constructor({ name, image }) {
+    this.certificateName = name;
+    this.certificateImage = image;
   }
 
   toJSON() {
     return {
-      name: this.name,
-      image: this.image,
+      name: this.certificateName,
+      image: this.certificateImage,
     };
   }
 }

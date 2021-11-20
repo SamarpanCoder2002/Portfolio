@@ -17,7 +17,7 @@ const totalNumberOfCertificates = async () => {
 };
 
 exports.addCertificate = (req, res) => {
-  const certificateModel = new CertificateModel(req.body);
+  const certificateModel = new CertificateModel(req.body.certificate);
 
   const db = getFirestore();
 
@@ -30,12 +30,14 @@ exports.addCertificate = (req, res) => {
   )
     .then(() => {
       res.status(200).json({
+        code: 200,
         message: "Certificate Added Successfully",
       });
     })
     .catch((error) => {
       console.error("Error getting documents: ", error);
       res.status(500).json({
+        code: 500,
         error: "Error Adding Certificate",
       });
     });
@@ -47,7 +49,7 @@ exports.getAllCertificates = async (req, res) => {
       const certificates = [];
       querySnapShot.forEach((doc) => {
         const c_data = doc.data();
-        c_data['id'] = doc.id;
+        c_data["id"] = doc.id;
         certificates.push(c_data);
       });
 

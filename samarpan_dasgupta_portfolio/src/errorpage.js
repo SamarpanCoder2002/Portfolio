@@ -8,7 +8,7 @@ const ErrorPath = () => (
     >
       <div class="text-center py-5">
         <h1 class="display-1">404</h1>
-        <h2>File not found</h2>
+        <h2>😔 Found Nothing Here</h2>
       </div>
     </main>
   </CommonComponent>

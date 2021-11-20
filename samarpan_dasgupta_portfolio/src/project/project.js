@@ -224,13 +224,17 @@ const ProjectMaterial = ({ project, projectsCategory, setisLoading }) => {
 const TechStackNameCollection = ({ project }) => (
   <div
     style={{ height: "40%" }}
-    className=" container-fluid d-flex flex-wrap justify-content-center align-items-center tech-stack" 
+    className=" container-fluid d-flex flex-wrap justify-content-center align-items-center tech-stack"
   >
     {project.projectTechUsed.map((tech, index) => {
       return (
         <div
           className="badge mx-2 tech-stack-name mb-md-1"
-          style={{ backgroundColor: "#EDC126", fontSize: "0.9rem", letterSpacing: "1px" }}
+          style={{
+            backgroundColor: "#EDC126",
+            fontSize: "0.9rem",
+            letterSpacing: "1px",
+          }}
           key={index}
         >
           {tech}
@@ -243,7 +247,7 @@ const TechStackNameCollection = ({ project }) => (
 const ProjectShowCaseOptionsManagement = ({ project }) => (
   <div
     className="container w-100 d-flex flex-wrap justify-content-around align-items-center "
-    style={{ height: isAdminAuthenticated()?"30%":"60%" }}
+    style={{ height: isAdminAuthenticated() ? "30%" : "60%" }}
   >
     {project.projectShowCase && (
       <MakeButton
@@ -319,14 +323,25 @@ const AdminControlSection = ({ project, projectsCategory, setisLoading }) => {
           });
         }}
       >
-        Update Project
+        <img src="https://img.icons8.com/pastel-glyph/64/ffffff/loop.png"
+        alt="Update Icon"
+        width="20px"
+        className="pb-1"
+        ></img>
+        &nbsp;Update Project
       </button>
 
       <button
         className="btn btn-danger text-white"
         onClick={() => handleDelete()}
       >
-        Delete Project
+        <img
+          src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/ffffff/external-delete-miscellaneous-kiranshastry-lineal-kiranshastry.png"
+          width="20px"
+          alt="Delete Icon"
+          className="pb-1"
+        ></img>
+        &nbsp;Delete Project
       </button>
     </div>
   );

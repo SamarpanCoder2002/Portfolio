@@ -65,6 +65,7 @@ exports.isSignedIn = (req, res, next) => {
 
   if (!auth.currentUser) {
     return res.status(401).json({
+      code: 401,
       error: "UnAuthorized",
     });
   }
@@ -79,23 +80,4 @@ exports.isSignedIn = (req, res, next) => {
         message: "Sign in Unsuccessful",
       });
     });
-
-  // setPersistence(auth, browserSessionPersistence)
-  //   .then(() => {
-  //     auth.currentUser
-  //       .getIdToken(true)
-  //       .then((token) => {
-  //         next();
-  //       })
-  //       .catch((error) => {
-  //         return res.status(401).json({
-  //           message: "Sign in Unsuccessful",
-  //         });
-  //       });
-  //   })
-  //   .catch((error) => {
-  //     return res.status(401).json({
-  //       error: "UnAuthorized",
-  //     });
-  //   });
 };

@@ -16,7 +16,7 @@ const CommonComponent = ({ children, isLoading }) => {
 
       {children}
 
-      {(location.pathname !== "/") && !isAdminAuthenticated() && <Footer />}
+      {location.pathname !== "/" && !isAdminAuthenticated() && <Footer />}
     </div>
   );
 };
@@ -228,7 +228,15 @@ const Footer = () => (
     <div className="container py-5 px-4">
       <div className="row">
         <div className="col-lg-8">
-          <h2 className="fs-2 fw-bold">🙋 Connect With Me at</h2>
+          <h2 className="fs-2 fw-bold">
+            <img
+              src="https://img.icons8.com/emoji/96/ffffff/person-raising-hand.png"
+              width="40px"
+              className="pb-3"
+              alt="raising hand"
+            />{" "}
+            Connect With Me at
+          </h2>
           <a
             class="email"
             href="https://mail.google.com/mail/?view=cm&fs=1&to=samarpanofficial2021@gmail.com"

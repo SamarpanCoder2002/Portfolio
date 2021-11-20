@@ -1,5 +1,7 @@
 import { useState } from "react";
 import CommonComponent from "../commonsection/common";
+import { addCertificate } from "../certificate/helper/api_call";
+import MessageSection from "../commonsection/alertmessage.js/s_f_msg";
 
 const AdminCertificateFormEntryPoint = () => {
   const [isLoading, setisLoading] = useState(false);
@@ -39,6 +41,9 @@ const AdminCertificateFormEntryPoint = () => {
 };
 
 const FormMaker = ({ setisLoading, isLoading }) => {
+  const [isSuccess, setisSuccess] = useState(null);
+  const [isError, setisError] = useState(null);
+
   const [form, setForm] = useState({
     name: "",
     image: "",
@@ -53,7 +58,24 @@ const FormMaker = ({ setisLoading, isLoading }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
+    window.scrollTo(0, 0);
+    setisLoading(true);
+
+    addCertificate(form)
+      .then((data) => {
+        if (data.code === 200) {
+          setisSuccess("😸 " + data.message);
+          window.location.href = "/admin/certificate-management";
+        } else {
+          setisError("😔 Certificate Adding Error");
+        }
+      })
+      .catch((err) => {
+        setisError("😔 Certificate Adding Error");
+      })
+      .then(() => {
+        setisLoading(false);
+      });
   };
 
   const submitButton = () => {
@@ -66,6 +88,7 @@ const FormMaker = ({ setisLoading, isLoading }) => {
 
   return (
     <div>
+      <MessageSection isSuccess={isSuccess} isFail={isError} />
       <h3 className="text-center fw-bold" style={{ color: "#4DD637" }}>
         Add New Certificate
       </h3>
@@ -79,6 +102,11 @@ const FormMaker = ({ setisLoading, isLoading }) => {
             id="name"
             placeholder="Name of the Certificate"
             onChange={handleChange}
+            required
+            onClick={() => {
+              isSuccess && setisSuccess(null);
+              isError && setisError(null);
+            }}
           />
         </div>
         <div className="form-group mt-3">
@@ -90,16 +118,15 @@ const FormMaker = ({ setisLoading, isLoading }) => {
             id="image"
             placeholder="Certificate Image Link"
             onChange={handleChange}
+            required
+            onClick={() => {
+              isSuccess && setisSuccess(null);
+              isError && setisError(null);
+            }}
           />
         </div>
 
-        <button
-          type="submit"
-          className={submitButton()}
-          onClick={() => {
-            setisLoading(true);
-          }}
-        >
+        <button type="submit" className={submitButton()}>
           Submit
         </button>
       </form>

@@ -13,7 +13,7 @@ import {
   AdminIsSignedIn,
   AdminProjectFormEntry,
 } from "./admin/privateroute";
-import CertificatesComponent from "./certificates";
+import CertificatesComponent from "./certificate/certificates";
 import ContactComponent from "./contactpage";
 import EducationComponent from "./educationpage";
 import ErrorPath from "./errorpage";
