@@ -5,13 +5,12 @@ const {
   getDoc,
   doc,
   setDoc,
-  updateDoc,
 } = require("firebase/firestore");
 
 const ProjectModel = require("../models/project");
 
 exports.addProject = (req, res) => {
-  const projectModel = new ProjectModel(req.body);
+  const projectModel = new ProjectModel(req.body.project);
 
   const db = getFirestore();
 
@@ -20,7 +19,7 @@ exports.addProject = (req, res) => {
     const json = projectModel.toJSON();
     project[json.projectId] = json;
 
-    setDoc(doc(db, "projects", req.body.projectType), project, {
+    setDoc(doc(db, "projects", req.body.project.projectType), project, {
       merge: true,
     })
       .then(() => {
@@ -49,9 +48,7 @@ exports.getAllProject = async (req, res) => {
     .then((querySnapshot) => {
       const projects = [];
       querySnapshot.forEach((doc) => {
-        const modifiedData = {};
-        modifiedData[doc.id] = doc.data();
-        projects.push(modifiedData);
+        projects.push(doc.data());
       });
 
       res.status(200).json(projects);
@@ -92,7 +89,7 @@ exports.updateProject = (req, res) => {
   const id = req.params.projectId;
 
   const {
-    domain,
+    projectType,
     projectName,
     projectDescription,
     projectImage,
@@ -100,13 +97,11 @@ exports.updateProject = (req, res) => {
     projectDemoVideo,
     projectDownloadLink,
     projectTechUsed,
-  } = req.body;
+  } = req.body.project;
 
-  getDoc(doc(db, "projects", domain)).then((docFile) => {
+  getDoc(doc(db, "projects", projectType)).then((docFile) => {
     if (docFile.exists()) {
       let project = docFile.data()[id];
-
-      console.log(project);
 
       if (project) {
         project = {
@@ -118,13 +113,14 @@ exports.updateProject = (req, res) => {
           projectDemoVideo,
           projectDownloadLink,
           projectTechUsed,
+          projectType,
         };
 
         const updatedProject = {};
 
         updatedProject[id] = project;
 
-        setDoc(doc(db, "projects", domain), updatedProject, {
+        setDoc(doc(db, "projects", projectType), updatedProject, {
           merge: true,
         })
           .then(() => {
@@ -155,16 +151,16 @@ exports.deleteProject = (req, res) => {
 
   const id = req.params.projectId;
 
-  const { domain } = req.body;
+  const { projectType } = req.body;
 
-  getDoc(doc(db, "projects", domain)).then((docFile) => {
+  getDoc(doc(db, "projects", projectType)).then((docFile) => {
     if (docFile.exists()) {
       const projectBundle = docFile.data();
 
       if (projectBundle[id]) {
         delete projectBundle[id];
 
-        setDoc(doc(db, "projects", domain), projectBundle)
+        setDoc(doc(db, "projects", projectType), projectBundle)
           .then(() => {
             res.status(200).json({
               message: "Project Deleted Successfully",
@@ -187,8 +183,4 @@ exports.deleteProject = (req, res) => {
       });
     }
   });
-};
-
-const uploadImage = async (next) => {
-  // TODO
 };

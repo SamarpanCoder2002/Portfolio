@@ -1,15 +1,14 @@
-import isAdminAuthenticated from "./checking/helper";
+import isAdminAuthenticated from "./auth/helper";
 import { Navigate, useLocation } from "react-router-dom";
-import AdminSignIn from "./adminsignin";
+import AdminSignIn from "./auth/adminsignin";
 import AdminProjectFormEntryPoint from "./projectform";
 import AdminCertificateFormEntryPoint from "./certificateform";
 
-require("dotenv").config();
-
-const AdminPrivateRoute = ({ Component }) => {
+export const AdminPrivateRoute = ({ Component }) => {
   if (
     isAdminAuthenticated() &&
-    isAdminAuthenticated().role === process.env.ADMIN_IDENTIFICATION_ROLE
+    isAdminAuthenticated().role ===
+      process.env.REACT_APP_ADMIN_IDENTIFICATION_ROLE
   ) {
     return <Component />;
   }
@@ -17,14 +16,11 @@ const AdminPrivateRoute = ({ Component }) => {
   return <Navigate to="/admin/signin" />;
 };
 
-export default AdminPrivateRoute;
-
 export const AdminIsSignedIn = () => {
-  console.log(isAdminAuthenticated());
-
   if (
     isAdminAuthenticated() &&
-    isAdminAuthenticated().role === process.env.ADMIN_IDENTIFICATION_ROLE
+    isAdminAuthenticated().role ===
+      process.env.REACT_APP_ADMIN_IDENTIFICATION_ROLE
   ) {
     return <Navigate to="/admin/dashboard" />;
   }

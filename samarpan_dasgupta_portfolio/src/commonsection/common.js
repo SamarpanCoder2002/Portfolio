@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import { useLocation } from "react-router";
-import isAdminAuthenticated from "../admin/checking/helper";
+import isAdminAuthenticated from "../admin/auth/helper";
 import LoadingBar from "./loadingwithstyle/loadingbar";
+import signoutHandler from "../admin/auth/adminsignout";
 
 const CommonComponent = ({ children, isLoading }) => {
   const location = useLocation();
@@ -15,7 +16,7 @@ const CommonComponent = ({ children, isLoading }) => {
 
       {children}
 
-      {location.pathname !== "/" && !isAdminAuthenticated() && <Footer />}
+      {(location.pathname !== "/") && !isAdminAuthenticated() && <Footer />}
     </div>
   );
 };
@@ -131,6 +132,9 @@ const NavigationBarSection = ({ isLoading }) => {
                 <span
                   className="nav-link text-center"
                   style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    signoutHandler();
+                  }}
                 >
                   Signout
                 </span>

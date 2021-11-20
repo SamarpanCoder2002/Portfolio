@@ -1,20 +1,20 @@
 class ProjectModel {
   constructor({
-    name,
-    description,
-    image,
-    showCase,
-    demoVideo,
-    downloadLink,
+    projectName,
+    projectDescription,
+    projectImage,
+    projectShowCase,
+    projectDemoVideo,
+    projectDownloadLink,
     projectTechUsed,
     projectType,
   }) {
-    this.name = name;
-    this.description = description;
-    this.image = image;
-    this.showCase = showCase;
-    this.demoVideo = demoVideo;
-    this.downloadLink = downloadLink;
+    this.name = projectName;
+    this.description = projectDescription;
+    this.image = projectImage;
+    this.showCase = projectShowCase;
+    this.demoVideo = projectDemoVideo;
+    this.downloadLink = projectDownloadLink;
     this.projectTechUsed = projectTechUsed;
     this.projectType = projectType;
   }

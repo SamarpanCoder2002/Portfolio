@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const { ContextRunnerImpl } = require("express-validator/src/chain");
 
 const {
   getAuth,

@@ -5,19 +5,20 @@ import {
   Navigate,
 } from "react-router-dom";
 import AboutComponent from "./aboutpage";
-import isAdminAuthenticated from "./admin/checking/helper";
+import isAdminAuthenticated from "./admin/auth/helper";
 import DashboardComponent from "./admin/dashboard";
-import AdminPrivateRoute, {
+import {
+  AdminPrivateRoute,
   AdminCertificateFormEntry,
   AdminIsSignedIn,
   AdminProjectFormEntry,
 } from "./admin/privateroute";
 import CertificatesComponent from "./certificates";
-import LoadingBar from "./commonsection/loadingwithstyle/loadingbar";
 import ContactComponent from "./contactpage";
 import EducationComponent from "./educationpage";
+import ErrorPath from "./errorpage";
 import HomeComponent from "./homepage";
-import ProjectComponent from "./project";
+import ProjectComponent from "./project/project";
 import SkillSetComponent from "./skills";
 import TutorialComponent from "./tutorial/tutorialpage";
 
@@ -80,7 +81,9 @@ const RoutesEntryPoint = () => {
             exact
             element={<AdminCertificateFormEntry />}
           />
+          <Route path="*" element={<ErrorPath />} />
         </Route>
+        <Route path="*" element={<ErrorPath />} />
       </Routes>
     </Router>
   );

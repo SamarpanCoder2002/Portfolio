@@ -25,7 +25,7 @@ const MiddleSection = () => {
 
 const AutoTypingHelper = () => {
   return (
-    <p className="auto-typing mt-2">
+    <div className="auto-typing mt-2">
       &nbsp;I am a&nbsp;
       <Typewriter
         options={{
@@ -37,8 +37,8 @@ const AutoTypingHelper = () => {
           typeSpeed: 40,
         }}
       />
-    </p>
-  );
+    </div>
+  )
 };
 
 export default HomeComponent;

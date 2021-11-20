@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import isAdminAuthenticated from "./admin/checking/helper";
+import isAdminAuthenticated from "./admin/auth/helper";
 import CommonComponent from "./commonsection/common";
 import CustomSkeleton from "./helper/customskeleton";
 

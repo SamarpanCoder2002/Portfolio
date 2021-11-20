@@ -1,5 +1,7 @@
 import CommonComponent from "../commonsection/common";
 import { useState } from "react";
+import { addNewProject, updateProject } from "../project/helper/api_call";
+import MessageSection from "../commonsection/alertmessage.js/s_f_msg";
 
 const AdminProjectFormEntryPoint = ({ project, projectsCategory }) => {
   projectsCategory.shift(); // remove first element from array
@@ -43,9 +45,8 @@ const AdminProjectFormEntryPoint = ({ project, projectsCategory }) => {
 };
 
 const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
-  const [projectTechUsedTemp, setProjectTechUsedTemp] = useState(
-    project && project.projectTechUsed ? project.projectTechUsed : []
-  );
+  const [isSuccess, setIsSuccess] = useState(null);
+  const [isFail, setIsFail] = useState(null);
 
   const [newForm, setnewForm] = useState({
     projectName: project ? project.projectName : "",
@@ -57,6 +58,7 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
     projectId: project ? project.projectId : 0,
     projectTechUsed:
       project && project.projectTechUsed ? project.projectTechUsed : [],
+    projectType: project ? project.projectType : projectsCategory[0],
   });
 
   const {
@@ -66,67 +68,8 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
     projectShowCase,
     projectDemoVideo,
     projectDownloadLink,
+    projectType,
   } = newForm;
-
-  const ProjectTypeComponent = ({ projectsCategory }) => (
-    <select className="form-select mb-4" aria-label="Default select example">
-      {projectsCategory.map((category, index) => {
-        return (
-          <option value={category} key={index}>
-            {category}
-          </option>
-        );
-      })}
-    </select>
-  );
-
-  const TechUsedSection = ({ name }) => {
-    const handleDelete = (index) => {
-      setProjectTechUsedTemp(
-        projectTechUsedTemp.filter((tag, i) => i !== index)
-      );
-    };
-
-    return (
-      <div>
-        <div className="form-outline mb-4 d-flex flex-wrap">
-          <label htmlFor="rg-from">Tech Used</label>
-          <input
-            type="text"
-            id="form2Example17"
-            className="form-control form-control-lg"
-            placeholder="Write Tech Name and Enter"
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                const temp = projectTechUsedTemp;
-                temp.push(e.target.value);
-
-                setnewForm({ ...newForm, [name]: temp });
-                setProjectTechUsedTemp(temp);
-
-                e.target.value = "";
-              }
-            }}
-          />
-        </div>
-
-        <div className="tags-collection d-flex flex-wrap justify-content-start align-items-center mb-3">
-          {projectTechUsedTemp.map((tag, index) => {
-            return (
-              <span key={index} className="tag mx-3 px-2 py-1 mb-2 text-white">
-                {tag}
-                <i
-                  className="fa fa-times px-2"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleDelete(index)}
-                />
-              </span>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
 
   const handleChange = (name) => (e) => {
     setnewForm({ ...newForm, [name]: e.target.value });
@@ -134,46 +77,67 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
 
   return (
     <div className="form-input-take">
+      <MessageSection isSuccess={isSuccess} isFail={isFail} />
       {<FormHeading project={project} />}
 
       <div className="form-outline mb-4 d-flex flex-wrap">
-        <label htmlFor="rg-from">Name </label>
+        <label htmlFor="rg-from">Name * </label>
         <input
           id="form2Example17"
           className="form-control form-control-lg"
           value={projectName}
           name="projectName"
           onChange={handleChange("projectName")}
+          onClick={() => {
+            if (isFail) {
+              setIsFail(null);
+            }
+          }}
         />
       </div>
       <div className="form-outline mb-4 d-flex flex-wrap">
-        <label htmlFor="rg-from">Image </label>
+        <label htmlFor="rg-from">Image * </label>
         <input
           id="form2Example17"
           className="form-control form-control-lg"
           value={projectImage}
           name="projectImage"
           onChange={handleChange("projectImage")}
+          onClick={() => {
+            if (isFail) {
+              setIsFail(null);
+            }
+          }}
         />
       </div>
       <div className="form-outline mb-4 d-flex flex-wrap">
-        <label htmlFor="rg-from">Show Case </label>
+        <label htmlFor="rg-from">Show Case * </label>
         <input
           id="form2Example17"
           className="form-control form-control-lg"
           value={projectShowCase}
           name="projectShowCase"
           onChange={handleChange("projectShowCase")}
+          onClick={() => {
+            if (isFail) {
+              setIsFail(null);
+            }
+          }}
         />
       </div>
       <div className="form-outline mb-4 d-flex flex-wrap">
-        <label htmlFor="rg-from">Demo Video </label>
+        <label htmlFor="rg-from">Demo Video * </label>
         <input
           id="form2Example17"
           className="form-control form-control-lg"
           value={projectDemoVideo}
           name="projectDemoVideo"
           onChange={handleChange("projectDemoVideo")}
+          onClick={() => {
+            if (isFail) {
+              setIsFail(null);
+            }
+          }}
         />
       </div>
       <div className="form-outline mb-4 d-flex flex-wrap">
@@ -184,30 +148,56 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
           value={projectDownloadLink}
           name="projectDownloadLink"
           onChange={handleChange("projectDownloadLink")}
+          onClick={() => {
+            if (isFail) {
+              setIsFail(null);
+            }
+          }}
         />
       </div>
 
-      <ProjectTypeComponent projectsCategory={projectsCategory} />
+      <ProjectTypeComponent
+        projectsCategory={projectsCategory}
+        setnewForm={setnewForm}
+        newForm={newForm}
+        oldProject={project}
+      />
 
       <div className="form-outline mb-4 d-flex flex-wrap">
-        <label htmlFor="description">Description</label>
+        <label htmlFor="description">Description *</label>
         <textarea
+          maxLength="300"
           type="text"
           id="form2Example27"
           className="form-control form-control-lg"
           value={projectDescription}
           name="projectDescription"
           onChange={handleChange("projectDescription")}
+          placeholder="About This Project"
+          onClick={() => {
+            if (isFail) {
+              setIsFail(null);
+            }
+          }}
         />
       </div>
 
-      <TechUsedSection name="projectTechUsed" />
+      <TechUsedSection
+        name="projectTechUsed"
+        project={project}
+        setnewForm={setnewForm}
+        newForm={newForm}
+        isFail={isFail}
+        setIsFail={setIsFail}
+      />
 
       <FormButton
         newForm={newForm}
         oldProject={project}
         isLoading={isLoading}
         setisLoading={setisLoading}
+        setIsSuccess={setIsSuccess}
+        setIsFail={setIsFail}
       />
     </div>
   );
@@ -221,8 +211,111 @@ const FormHeading = ({ project }) => (
   </div>
 );
 
-const FormButton = ({ newForm, oldProject, isLoading, setisLoading }) => {
-  const buttonClassName = () => {
+const ProjectTypeComponent = ({
+  projectsCategory,
+  setnewForm,
+  oldProject,
+  newForm,
+}) => {
+  const [projectTypeTemp, setprojectTypeTemp] = useState(
+    oldProject ? oldProject.projectType : projectsCategory[0]
+  );
+
+  return (
+    <>
+      <label htmlFor="rg-from">Project Category * </label>
+      <select
+        className="form-select mb-4"
+        aria-label="Default select example"
+        value={projectTypeTemp}
+        onChange={(e) => {
+          setnewForm({ ...newForm, projectType: e.target.value });
+          setprojectTypeTemp(e.target.value);
+        }}
+      >
+        {projectsCategory.map((category, index) => {
+          return (
+            <option value={category} key={index}>
+              {category}
+            </option>
+          );
+        })}
+      </select>
+    </>
+  );
+};
+
+const TechUsedSection = ({
+  name,
+  project,
+  setnewForm,
+  newForm,
+  isFail,
+  setIsFail,
+}) => {
+  const [projectTechUsedTemp, setProjectTechUsedTemp] = useState(
+    project && project.projectTechUsed ? project.projectTechUsed : []
+  );
+
+  const handleDelete = (index) => {
+    setProjectTechUsedTemp(projectTechUsedTemp.filter((tag, i) => i !== index));
+  };
+
+  return (
+    <div>
+      <div className="form-outline mb-4 d-flex flex-wrap">
+        <label htmlFor="rg-from">Tech and Tools Used *</label>
+        <input
+          type="text"
+          id="form2Example17"
+          className="form-control form-control-lg"
+          placeholder="Write Tech Name and Enter"
+          onClick={() => {
+            if (isFail) {
+              setIsFail(null);
+            }
+          }}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              const temp = projectTechUsedTemp;
+              temp.push(e.target.value);
+
+              setnewForm({ ...newForm, [name]: temp });
+              setProjectTechUsedTemp(temp);
+
+              e.target.value = "";
+            }
+          }}
+        />
+      </div>
+
+      <div className="tags-collection d-flex flex-wrap justify-content-start align-items-center mb-3">
+        {projectTechUsedTemp.map((tag, index) => {
+          return (
+            <span key={index} className="tag mx-3 px-2 py-1 mb-2 text-white">
+              {tag}
+              <i
+                className="fa fa-times px-2"
+                style={{ cursor: "pointer" }}
+                onClick={() => handleDelete(index)}
+              />
+            </span>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const FormButton = ({
+  newForm,
+  oldProject,
+  isLoading,
+  setisLoading,
+  setIsSuccess,
+  setIsFail,
+}) => {
+  const submitButtonClassName = () => {
     if (isLoading) {
       return "btn project-add-button w-100 text-white disabled";
     } else {
@@ -230,13 +323,49 @@ const FormButton = ({ newForm, oldProject, isLoading, setisLoading }) => {
     }
   };
 
+  const backButtonClassName = () => {
+    if (isLoading) {
+      return "btn  btn-danger waves-effect w-100 mb-3 disabled";
+    } else {
+      return "btn  btn-danger waves-effect w-100 mb-3";
+    }
+  };
+
+  const handleSubmit = () => {
+    window.scrollTo(0, 0);
+
+    setisLoading(true);
+
+    if (oldProject) {
+      updateProject(newForm).then((data) => {
+        setisLoading(false);
+        if (data.error) {
+          setIsFail("😔 Project Updating Error");
+        } else {
+          setIsSuccess("😇 Project Updated Successfully");
+          window.location.replace("/admin/project-management");
+        }
+      });
+    } else {
+      addNewProject(newForm).then((data) => {
+        setisLoading(false);
+        if (data.error) {
+          setIsFail("😔 Project Adding Error");
+        } else {
+          setIsSuccess("😸 Project Added Successfully");
+
+          window.location.replace("/admin/project-management");
+        }
+      });
+    }
+  };
   return (
     <div className="row w-100 mx-1">
       <div className="col-md-6">
         <a
           href="#deletecertificateno"
           type="button"
-          className="btn  btn-danger waves-effect w-100 mb-3"
+          className={backButtonClassName()}
           onClick={() => {
             window.history.go(-1);
           }}
@@ -246,10 +375,9 @@ const FormButton = ({ newForm, oldProject, isLoading, setisLoading }) => {
       </div>
       <div className="col-md-6">
         <button
-          className={buttonClassName()}
+          className={submitButtonClassName()}
           onClick={() => {
-            setisLoading(true);
-            console.log(newForm);
+            handleSubmit();
           }}
         >
           {oldProject ? "Update" : "Save"}

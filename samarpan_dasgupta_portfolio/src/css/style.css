@@ -27,6 +27,7 @@ body {
     font-family: 'Roboto', sans-serif; */
 
   font-family: "Mulish", sans-serif;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -133,6 +134,10 @@ a {
   box-shadow: 0px 15px 50px rgb(0 0 0 / 15%);
 }
 
+.certificate-add-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(49, 253, 100, 0.5);
+}
+
 /* Certificate Section Ends */
 
 /* Skill Section starts */
@@ -156,18 +161,28 @@ a {
   color: white;
 }
 
-.filter-button {
-  background: linear-gradient(to right, #538ffb, #5b54fa);
-  transform: all 0.5s;
-}
-
-.project-add-button,.certificate-add-button {
+.certificate-add-button,
+.project-domain-type,
+.project-add-button {
   background: #4dd637;
-  transform: all 0.5s;
+  transition: all 0.5s;
+}
+.project-add-button:hover{
+  box-shadow: 0 0 0 0.25rem rgba(77, 214, 55, 0.5);
 }
 
-.project-add-button:focus, .certificate-add-button:focus{
-  box-shadow:0 0 0 .25rem rgba(49,253,100,.5)
+.new-project-add-button {
+  background: #f4be2c;
+  transition: all 0.5s;
+}
+
+.project-domain-type:hover {
+  box-shadow: 0 0 0 0.25rem rgba(77, 214, 55, 0.5);
+}
+
+.project-add-button:focus,
+.new-project-add-button:hover {
+  box-shadow: 0 0 0 0.25rem rgba(244, 190, 44, 0.5);
 }
 
 /* Skill Section Ends */
@@ -178,11 +193,16 @@ a {
   cursor: pointer;
   transition: all 0.5s;
   border: 0;
-  box-shadow: 5px 5px 15px 1px rgb(0 0 0 / 15%);
+  box-shadow: 0px 0px 15px 1px rgb(0 0 0 / 15%);
+  border-radius: 0 0 8px 8px;
+}
+
+.project-container img {
+  border-radius: 8px 8px 0px 0px;
 }
 
 .project-container:hover {
-  box-shadow: 0 40px 60px rgba(12, 5, 62, 0.15);
+  box-shadow: 0px 0px 15px 20px rgb(56 56 56 / 7%);
 }
 
 .project-container .card-body .card-inside-hover-body {
@@ -195,7 +215,8 @@ a {
   left: 0%;
   z-index: 1;
   transition: all 1s;
-  border-radius: 5px;
+  border-radius: 8px;
+  cursor: default;
 }
 
 .project-container .card-body .card-inside-hover-body:hover {
@@ -219,8 +240,6 @@ a {
   backdrop-filter: blur(30px);
   width: 100%;
   height: 70vh;
-  /* display: inline-block;
-  overflow: hidden; */
 }
 
 .footer .email {
@@ -349,7 +368,7 @@ a {
 
 /* Admin Dashboard Page Ends */
 
-.tag{
+.tag {
   background-color: rgb(61, 190, 41);
   font-size: 0.8rem;
   border-radius: 40px;
