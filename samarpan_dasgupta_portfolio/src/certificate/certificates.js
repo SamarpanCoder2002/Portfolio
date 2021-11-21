@@ -25,6 +25,8 @@ const CertificationCollectionSection = ({ setisLoading }) => {
     setisLoading(true);
     getCertificates()
       .then((data) => {
+        if (!data) return;
+
         if (data.error) {
           console.log(data.error);
         } else {
@@ -38,7 +40,13 @@ const CertificationCollectionSection = ({ setisLoading }) => {
 
   return (
     <div className="container mt-5">
-      <h2 className="fs-2 text-center">Certificates</h2>
+      <h2
+        className="fs-2 text-center"
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+      >
+        Certificates
+      </h2>
 
       {isAdminAuthenticated() && <AdminCertificateAddButton />}
 
@@ -69,7 +77,12 @@ const CertificationCard = ({
   setisLoading,
 }) => {
   return (
-    <div className="certificate-container mb-5 mx-0 col-md-12">
+    <div
+      className="certificate-container mb-5 mx-0 col-md-12 aos-removal-class"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-delay="500"
+    >
       <div className="d-flex flex-wrap justify-content-between align-content-center">
         <img
           src={particularCertificate}
@@ -102,7 +115,12 @@ const CertificationCard = ({
 const AdminCertificateAddButton = () => {
   const navigate = useNavigate();
   return (
-    <div className="container my-5 text-center">
+    <div
+      className="container my-5 text-center"
+      data-aos="fade-right"
+      data-aos-duration="1000"
+      data-aos-delay="1100"
+    >
       <button
         className="btn text-white certificate-add-button"
         onClick={() => {

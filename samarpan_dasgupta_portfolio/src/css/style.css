@@ -36,8 +36,6 @@ a {
 
 /* Common Section */
 
-
-
 .top-nav-bar {
   transition: all 0.5s;
   backdrop-filter: blur(30px);
@@ -144,15 +142,29 @@ a {
 
 /* Skill Section starts */
 
+.skill-set-card {
+  border: none;
+  box-shadow: 0 0 1rem 0rem rgb(83 143 251 / 0.6);
+  transition: all 0.5s;
+}
+
+.skill-card-header .card-header {
+  border: 0;
+}
+
 .skill-card-header {
-  background: linear-gradient(to right, #538ffb, #5b54fa);
+  background: linear-gradient(180deg, #538ffb, #538ffb);
   border: 0;
   font-size: 1.25rem;
 }
-
 .skill-set-card .domain-options {
-  background: linear-gradient(to right, #538ffb, #5b54fa);
+  background: linear-gradient(180deg, #538ffb, #538ffb);
   border: 0;
+}
+
+.skill-set-card .card-body {
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(180deg, #538ffb, #5b54fa);
 }
 
 .skill-set-card .domain-options .card-header-tabs .nav-item a {
@@ -239,6 +251,20 @@ a {
   overflow: hidden;
 }
 /* Education Section Ends Here */
+
+/* Tutorial Starts */
+
+.tutorial-card{
+  border: none;
+  box-shadow: 0 0 1rem 0rem rgb(83 143 251 / 0.6);
+  transition: all 0.5s;
+}
+
+.tutorial-card .card-header{
+  border: none;
+  background: linear-gradient(180deg, #f6f6f6, #fff);
+}
+/* Tutorial Ends Here */
 
 /* Footer section Starts Here */
 
@@ -388,13 +414,12 @@ a {
 }
 
 @media (max-width: 576px) {
-  .preloader .my-name h1{
+  .preloader .my-name h1 {
     font-size: calc(1.2rem + 3.9vw);
   }
 
-  .preloader .identity h4{
-    font-size: calc(0.9rem + .1vw);
-    
+  .preloader .identity h4 {
+    font-size: calc(0.9rem + 0.1vw);
   }
 
   .social-links {
@@ -440,6 +465,10 @@ a {
 
   .project-container .card-body .card-inside-hover-body .project-github-link {
     width: 35px;
+  }
+
+  .contact-page-aos[data-aos="fade-up"]   {
+    display: none;
   }
 }
 

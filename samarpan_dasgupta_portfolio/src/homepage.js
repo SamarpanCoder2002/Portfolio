@@ -15,17 +15,18 @@ const MiddleSection = () => {
         height="25%"
         data-aos="zoom-in"
         data-aos-duration="1000"
+        data-aos-delay="1000"
         style={{ borderRadius: "50%" }}
       />
       <h3
-        className="display-5 fw-bold home-page-my-name mt-2"
+        className="display-5 fw-bold home-page-my-name mt-2 aos-removal-class"
         data-aos="fade-up"
         data-aos-duration="2000"
       >
         Samarpan Dasgupta
       </h3>
       <h6
-        className="home-page-status fw-bold"
+        className="home-page-status fw-bold aos-removal-class"
         data-aos="fade-up"
         data-aos-duration="2000"
       >
@@ -39,7 +40,7 @@ const MiddleSection = () => {
 const AutoTypingHelper = () => {
   return (
     <div
-      className="auto-typing mt-2"
+      className="auto-typing mt-2 aos-removal-class"
       data-aos="zoom-in"
       data-aos-duration="2000"
       data-aos-delay="1000"

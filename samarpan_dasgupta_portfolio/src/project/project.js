@@ -42,6 +42,8 @@ const ProjectBringing = ({ setisLoading }) => {
 
   const callGetParticularTypeProjects = (type) => {
     getParticularDomainProjects(type.split(" ")[0]).then((data) => {
+      if (!data) return;
+
       if (data.error) {
         setprojectsCollection([]);
       } else {
@@ -71,33 +73,38 @@ const ProjectBringing = ({ setisLoading }) => {
     setisLoading(true);
     getAllProject()
       .then((data) => {
+        if (!data) return;
         const projectsCollection = [];
 
-        data.forEach((domain, index) => {
-          Object.keys(domain).forEach((key, index) => {
-            projectsCollection.push({ [key]: domain[key] });
+        if (data.error) {
+          setprojectsCollection([]);
+        } else {
+          data.forEach((domain, index) => {
+            Object.keys(domain).forEach((key, index) => {
+              projectsCollection.push({ [key]: domain[key] });
+            });
           });
-        });
 
-        projectsCollection.sort((firstElement, secondElement) => {
-          const firstKey = Number.parseInt(Object.keys(firstElement)[0]);
-          const secondKey = Number.parseInt(Object.keys(secondElement)[0]);
+          projectsCollection.sort((firstElement, secondElement) => {
+            const firstKey = Number.parseInt(Object.keys(firstElement)[0]);
+            const secondKey = Number.parseInt(Object.keys(secondElement)[0]);
 
-          if (firstKey < secondKey) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
-
-        const modifiedOrderProjectsCollection = [];
-        Object.values(projectsCollection).forEach((project, index) => {
-          Object.keys(project).forEach((projectId, index) => {
-            modifiedOrderProjectsCollection.push(project[projectId]);
+            if (firstKey < secondKey) {
+              return 1;
+            } else {
+              return -1;
+            }
           });
-        });
 
-        setprojectsCollection(modifiedOrderProjectsCollection);
+          const modifiedOrderProjectsCollection = [];
+          Object.values(projectsCollection).forEach((project, index) => {
+            Object.keys(project).forEach((projectId, index) => {
+              modifiedOrderProjectsCollection.push(project[projectId]);
+            });
+          });
+
+          setprojectsCollection(modifiedOrderProjectsCollection);
+        }
       })
       .then(() => {
         setisLoading(false);
@@ -106,7 +113,11 @@ const ProjectBringing = ({ setisLoading }) => {
 
   return (
     <div className="container certificate-collection mt-5">
-      <h2 className="text-center mb-5">
+      <h2
+        className="text-center mb-4 aos-removal-class"
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+      >
         {dropdownIndex === 0 ? "Projects" : projectsCategory[dropdownIndex]}
       </h2>
       {(projectsCollection && (
@@ -121,7 +132,7 @@ const ProjectBringing = ({ setisLoading }) => {
         <AdminProjectAddButton projectsCategory={projectsCategory} />
       )}
 
-      <div className="row">
+      <div className="row mt-5">
         {(projectsCollection &&
           projectsCollection.length > 0 &&
           projectsCollection.map((project, index) => {
@@ -153,7 +164,9 @@ const ProjectFilterComponent = ({
   setdropdownIndex,
 }) => {
   return (
-    <ul className="list-unstyled d-flex flex-wrap justify-content-center align-items-center">
+    <ul className="list-unstyled d-flex flex-wrap justify-content-center align-items-center mt-5 aos-removal-class" data-aos="fade-right"
+    data-aos-duration="1000"
+    data-aos-delay="1000">
       {projectsCategory.map((category, index) => {
         return (
           <li
@@ -179,7 +192,13 @@ const ProjectShowCaseComponent = ({
   setisLoading,
 }) => {
   return (
-    <div className="card mb-5 mx-0 mx-md-3 project-container">
+    <div
+      className="card mb-5 mx-0 mx-md-3 project-container aos-removal-class"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-delay="500"
+      style={{borderRadius: "5px"}}
+    >
       <img
         src={project.projectImage}
         alt="Project-ImageShow"
@@ -372,9 +391,12 @@ const AdminProjectAddButton = ({ projectsCategory }) => {
 
   const navigate = useNavigate();
   return (
-    <div className="container mb-5 text-center">
+    <div className="container my-3 text-center">
       <button
-        className="btn text-white new-project-add-button"
+        className="btn text-white new-project-add-button aos-removal-class"
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+        data-aos-delay="1300"
         onClick={() => {
           navigate("/admin/project-form-entry", {
             state: { projectsCategory: filteredProjectsCategory },

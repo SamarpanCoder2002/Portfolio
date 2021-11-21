@@ -62,7 +62,13 @@ const SkillSetComponent = () => {
 const SkillSetSection = ({ skillDataSet }) => {
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-5">Skill Set</h2>
+      <h2
+        className="text-center mb-5"
+        data-aos="zoom-in"
+        data-aos-duration="2000"
+      >
+        Skill Set
+      </h2>
       <div className="row justify-content-center">
         {Object.keys(skillDataSet).map((key, index) => {
           return (
@@ -81,7 +87,12 @@ const SkillSetSection = ({ skillDataSet }) => {
 
 const SkillContainer = ({ skillSingleSet, mainTechSkillName }) => {
   return (
-    <div className="card w-100 skill-set-card mb-4 mx-md-3 list-group">
+    <div
+      className="card w-100 skill-set-card mb-5 mx-md-3 list-group aos-removal-class"
+      data-aos="fade-up"
+      data-aos-duration="2000"
+      data-aos-delay="800"
+    >
       <p className="card-header text-center skill-card-header text-white">
         {mainTechSkillName}
       </p>
@@ -108,9 +119,9 @@ const ManySkillTypeCollection = ({ allTypeSkillsCollection }) => {
 
   const getCardActivationStatusNavItem = (index) => {
     if (index === currIndex) {
-      return "nav-link active text-black";
+      return "nav-link active text-black border-0 mb-1";
     } else {
-      return "nav-link";
+      return "nav-link border-0";
     }
   };
 
@@ -126,17 +137,22 @@ const ManySkillTypeCollection = ({ allTypeSkillsCollection }) => {
     <>
       <div className="card-header domain-options">
         <ul
-          className="nav nav-tabs card-header-tabs"
+          className="nav nav-tabs card-header-tabs text-center justify-content-center"
           id="bologna-list"
           role="tablist"
         >
           {Object.keys(allTypeSkillsCollection).map((key, index) => {
             return (
-              <li className="nav-item" onClick={() => setcurrIndex(index)}>
+              <li
+                className="nav-item"
+                key={index}
+                onClick={() => setcurrIndex(index)}
+              >
                 <a
                   className={getCardActivationStatusNavItem(index)}
                   aria-current="true"
                   href="#domain-navigation-tab"
+                  style={{ borderRadius: "12px" }}
                 >
                   {key}
                 </a>
@@ -148,16 +164,16 @@ const ManySkillTypeCollection = ({ allTypeSkillsCollection }) => {
       <div className="card-body">
         {Object.keys(allTypeSkillsCollection).map((key, index) => {
           return (
-            <div className="tab-content mt-3" id="myTabContent">
+            <div className="tab-content mt-3" id="myTabContent" key={index}>
               <div
                 className={getCardActivationStatusTabPane(index)}
                 id="description"
                 role="tabpanel"
                 aria-labelledby={index}
               >
-                <p className="card-text">
+                <div className="card-text">
                   <SkillShow allCategories={allTypeSkillsCollection[key]} />
-                </p>
+                </div>
               </div>
             </div>
           );
@@ -169,9 +185,21 @@ const ManySkillTypeCollection = ({ allTypeSkillsCollection }) => {
 
 const SkillShow = ({ allCategories }) => {
   return (
-    <ol>
+    <ol className="list-unstyled d-flex flex-wrap align-items-center justify-content-center">
       {allCategories.map((category, index) => {
-        return <li key={index}>{category}</li>;
+        return (
+          <li
+            key={index}
+            className="mx-5 mb-3 px-2 text-white"
+            style={{
+              background: "#EDC126",
+              borderRadius: "10px",
+              letterSpacing: "1px",
+            }}
+          >
+            {category}
+          </li>
+        );
       })}
     </ol>
   );

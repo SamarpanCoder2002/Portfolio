@@ -11,14 +11,25 @@ const TutorialComponent = () => {
 };
 
 const tutorialNameCollection = [
-  "Flutter Social Media Chat App",
+  "Flutter Social Media Chat App"
 ];
 
 const TutorialPage = () => {
   return (
     <div className="container">
-      <h2 className="text-center mt-3">Tutorial</h2>
-      <div className="card w-100 skill-set-card mb-4 mx-md-3 list-group mt-3">
+      <h2
+        className="text-center mt-3"
+        data-aos="zoom-in"
+        data-aos-duration="1000"
+      >
+        Tutorial
+      </h2>
+      <div
+        className="card w-100 tutorial-card mb-4 mx-md-3 list-group mt-5 aos-removal-class"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="800"
+      >
         <TutorialCollection />
       </div>
     </div>
@@ -30,9 +41,9 @@ const TutorialCollection = () => {
 
   const getCardActivationStatusNavItem = (index) => {
     if (index === currIndex) {
-      return "nav-link active fw-bold";
+      return "nav-link active fw-bold mx-1";
     } else {
-      return "nav-link";
+      return "nav-link bg-trnsparent fw-bold";
     }
   };
 
@@ -48,7 +59,7 @@ const TutorialCollection = () => {
     <>
       <div className="card-header ">
         <ul
-          className="nav nav-tabs card-header-tabs pb-1"
+          className="nav nav-tabs card-header-tabs pb-1 w-100 text-center d-flex flex-wrap justify-content-center align-items-center"
           id="bologna-list"
           role="tablist"
         >
@@ -59,7 +70,16 @@ const TutorialCollection = () => {
                   className={getCardActivationStatusNavItem(index)}
                   aria-current="true"
                   href="#domain-navigation-tab"
-                  style={{ backgroundColor: "#f6f6f6", border: "none" }}
+                  style={{
+                    background:
+                      index === currIndex
+                        ? "linear-gradient(180deg, #538ffb, #538ffb)"
+                        : "",
+                    border: "none",
+                    borderRadius: "50px",
+                    color: index === currIndex ? "#fff" : "rgba(0,0,0,0.4)",
+                    transition: "all 0.5s"
+                  }}
                 >
                   {tutorialNameCollection[key]}
                 </a>
@@ -95,7 +115,7 @@ const Decider = ({ index }) => {
     case 0:
       return <SocialMediaFlutterApp />;
     default:
-      return <div>No tutorial found</div>;
+      return <div className="fs-5">Coming Soon</div>;
   }
 };
 

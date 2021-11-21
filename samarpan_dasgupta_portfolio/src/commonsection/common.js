@@ -58,7 +58,11 @@ const NavigationBarSection = ({ isLoading }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
             style={{ border: "none" }}
-            onClick={() => setisOpenMenu(!isOpenMenu)}
+            onClick={() => {
+              setisOpenMenu(!isOpenMenu);
+
+              dataAOSremoval();
+            }}
           >
             {isOpenMenu ? (
               <img
@@ -241,7 +245,7 @@ const socialMediaInformation = [
 
 const Footer = () => (
   <div
-    className="container-fluid mt-5 footer d-block sticky-bottom"
+    className="container-fluid mt-5 footer d-block sticky-bottom aos-removal-class"
     data-aos="fade-up"
     data-aos-duration="1000"
   >
@@ -258,7 +262,7 @@ const Footer = () => (
             Connect With Me at
           </h2>
           <a
-            class="email"
+            className="email"
             href="https://mail.google.com/mail/?view=cm&fs=1&to=samarpanofficial2021@gmail.com"
             target="_blank"
             rel="noreferrer"
@@ -266,17 +270,18 @@ const Footer = () => (
             samarpanofficial2021@gmail.com
           </a>
 
-          <ul class="social-icons list-unstyled d-flex flex-wrap w-100 justify-content-between align-items-center mt-5">
-            {socialMediaInformation.map((item) => (
+          <ul className="social-icons list-unstyled d-flex flex-wrap w-100 justify-content-between align-items-center mt-5">
+            {socialMediaInformation.map((item, index) => (
               <SocialMediaIcons
                 icon={item.icon}
                 link={item.link}
                 color={item.color}
+                key={index}
               />
             ))}
           </ul>
 
-          <div class="copy fw-bold mt-5">
+          <div className="copy fw-bold mt-5">
             © 2021, Designed and Developed by &nbsp;
             <a href="https://samarpandasgupta.com/">Samarpan Dasgupta</a>
           </div>
@@ -289,9 +294,22 @@ const Footer = () => (
 const SocialMediaIcons = ({ icon, link, color }) => (
   <li>
     <a href={link} target="_blank" rel="noreferrer">
-      <i class={icon} style={{ color: `${color}` }}></i>
+      <i className={icon} style={{ color: `${color}` }}></i>
     </a>
   </li>
 );
+
+const dataAOSremoval = () => {
+  /// For AOS Removal
+  const aosRemovalSection =
+    document.getElementsByClassName("aos-removal-class");
+
+  aosRemovalSection &&
+    Object.keys(aosRemovalSection).forEach((key, index) => {
+      if (aosRemovalSection[key].hasAttribute("data-aos")) {
+        aosRemovalSection[key].removeAttribute("data-aos");
+      }
+    });
+};
 
 export default CommonComponent;

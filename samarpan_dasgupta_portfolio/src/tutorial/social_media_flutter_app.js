@@ -113,14 +113,43 @@ const chaptersList = [
 
 const SocialMediaFlutterApp = () => {
   return (
-    <div className="social-media-chat-app-flutter-tutorial text">
-      <p className="fs-4 text-center fw-bold heading">
-        ✨ Build a Social Media Chat App in Flutter
+    <div className="social-media-chat-app-flutter-tutorial">
+      <p
+        className="fs-4 text-center fw-bold heading aos-removal-class"
+        data-aos="zoom-in"
+        data-aos-duration="1400"
+        data-aos-delay="800"
+      >
+        <img
+          src="https://img.icons8.com/fluency/50/000000/star.png"
+          alt="star"
+          width="35px"
+          className="pb-2"
+        />{" "}
+        Build a Social Media Chat App in Flutter
       </p>
-      <p className="mt-2 fs-5 text-center">🤩 Project Demo</p>
+      <p
+        className="mt-2 fs-5 text-center aos-removal-class"
+        data-aos="zoom-in"
+        data-aos-duration="1400"
+        data-aos-delay="1000"
+      >
+        <img
+          src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/000000/external-emoji-emoji-justicon-lineal-color-justicon-9.png"
+          alt="happy"
+          width="25px"
+          className="pb-1"
+        />
+        &nbsp;Project Demo
+      </p>
 
       {
-        <div className="mt-4 mb-5">
+        <div
+          className="mt-4 mb-5 aos-removal-class"
+          data-aos="fade-up"
+          data-aos-duration="1400"
+          data-aos-delay="1200"
+        >
           <IPadContainer
             videoLink={"https://www.youtube.com/embed/QEDhmxzEqUA"}
           />
@@ -129,7 +158,11 @@ const SocialMediaFlutterApp = () => {
 
       <div className="fs-6">
         <ul className="list-unstyled">
-          <li>
+          <li
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            className="aos-removal-class"
+          >
             <a
               href="https://youtube.com/playlist?list=PLn4o1Gy6eg752X6ZaJ7UL55kLJ235laOg"
               target="_blank"
@@ -139,7 +172,11 @@ const SocialMediaFlutterApp = () => {
               👉 Checkout Full Tutorial Playlist
             </a>
           </li>
-          <li>
+          <li
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            className="aos-removal-class"
+          >
             <a
               href="https://github.com/SamarpanCoder2002/Generation-Chat-App-Tutorial.git"
               target="_blank"
@@ -152,7 +189,19 @@ const SocialMediaFlutterApp = () => {
       </div>
 
       <div className="fs-6 mt-4">
-        <h3 className="fw-bold">🌟 Chapters</h3>
+        <h3
+          className="fw-bold aos-removal-class"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          <img
+            src="https://img.icons8.com/doodle/48/000000/star--v1.png"
+            alt="star-smooth"
+            width="35px"
+            className="pb-2"
+          />
+          &nbsp;Chapters
+        </h3>
         <ul className="list-unstyled mt-3">
           {chaptersList.map((chapter, index) => (
             <ChapterSublist
@@ -161,8 +210,19 @@ const SocialMediaFlutterApp = () => {
             />
           ))}
 
-          <p className="fs-6 fw-bold mt-4" style={{ color: "#2e2e2e" }}>
-            More Coming Soon 😇
+          <p
+            className="fs-6 fw-bold mt-4 aos-removal-class"
+            style={{ color: "#2e2e2e" }}
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            More Coming Soon{" "}
+            <img
+              src="https://img.icons8.com/emoji/48/000000/grinning-face-emoji.png"
+              alt="excitement-emoji"
+              width="30px"
+              className="pb-1"
+            />
           </p>
         </ul>
       </div>
@@ -171,7 +231,12 @@ const SocialMediaFlutterApp = () => {
 };
 
 const ChapterSublist = ({ redirectLink, chapterName }) => (
-  <li style={{ lineHeight: "40px" }}>
+  <li
+    style={{ lineHeight: "40px" }}
+    data-aos="fade-left"
+    data-aos-duration="1000"
+    className="aos-removal-class"
+  >
     <a href={redirectLink} target="_blank" rel="noopener noreferrer">
       {chapterName}
     </a>

@@ -37,7 +37,7 @@ const educationDetails = [
 
 const EducationContainer = () => (
   <div className="container bg-education-section mt-5 py-md-5">
-    <h2 className="text-center mb-5">Education</h2>
+    <h2 className="text-center mb-5" data-aos="zoom-in" data-aos-duration="1000">Education</h2>
     <div className="row mt-5 mt-md-0">
       {educationDetails.map((item, index) => (
         <div className="col-lg-4 mb-5" align="center">
@@ -49,21 +49,21 @@ const EducationContainer = () => (
 );
 
 const EducationItem = ({ item }) => (
-  <div class="college">
-    <div class="circle_education">
+  <div className="college aos-removal-class" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+    <div className="circle_education">
       <i
-        class={item.logo}
+        className={item.logo}
         style={{ fontSize: "3em", color: `${item.logoColor}` }}
       ></i>
     </div>
-    <div class="para">
+    <div className="para">
       <strong>
         <p className="fs-6 mt-3">{item.title}</p>
       </strong>
-      <div class="date">{item.courseDuration}</div>
+      <div className="date">{item.courseDuration}</div>
     </div>
     <p>{item.instituteName}</p>
-    <div class="para_about">{item.score}</div>
+    <div className="para_about">{item.score}</div>
   </div>
 );
 
