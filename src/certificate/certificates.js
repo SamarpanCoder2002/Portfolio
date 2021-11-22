@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import isAdminAuthenticated from "../admin/auth/helper";
 import CommonComponent from "../commonsection/common";
+import CommonNotFoundMessage from "../commonsection/loadingwithstyle/notaddedcontent";
 import CustomSkeleton from "../helper/customskeleton";
 import { deleteCertificate, getCertificates } from "./helper/api_call";
 
@@ -9,12 +10,17 @@ const CertificatesComponent = () => {
   const [isLoading, setisLoading] = useState(false);
   return (
     <CommonComponent isLoading={isLoading}>
-      {<CertificationCollectionSection setisLoading={setisLoading} />}
+      {
+        <CertificationCollectionSection
+          setisLoading={setisLoading}
+          isLoading={isLoading}
+        />
+      }
     </CommonComponent>
   );
 };
 
-const CertificationCollectionSection = ({ setisLoading }) => {
+const CertificationCollectionSection = ({ setisLoading, isLoading }) => {
   const [certificates, setcertificates] = useState();
 
   useEffect(() => {
@@ -64,7 +70,16 @@ const CertificationCollectionSection = ({ setisLoading }) => {
                 />
               </div>
             );
-          })) || <CustomSkeleton />}
+          })) ||
+          (isLoading ? (
+            <CustomSkeleton />
+          ) : (
+            <CommonNotFoundMessage
+              message={
+                "This Website till in beta mode. Admin not added any certificate yet. Please visit after some days."
+              }
+            />
+          ))}
       </div>
     </div>
   );

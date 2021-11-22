@@ -30,6 +30,14 @@ const NavigationBarSection = ({ isLoading }) => {
     AOS.init();
   });
 
+  const focusedNavBarClass = (path) => {
+    if(window.location.pathname === path){
+      return "nav-link text-center active";
+    }else{
+      return "nav-link text-center";
+    }
+  };
+
   return (
     <div
       className="sticky-top"
@@ -81,7 +89,7 @@ const NavigationBarSection = ({ isLoading }) => {
             <div className="navbar-nav fw-bold">
               {!isAdminAuthenticated() && (
                 <Link
-                  className="nav-link text-center"
+                  className={focusedNavBarClass("/")}
                   aria-current="page"
                   to="/"
                 >
@@ -90,7 +98,7 @@ const NavigationBarSection = ({ isLoading }) => {
               )}
               {!isAdminAuthenticated() && (
                 <Link
-                  className="nav-link text-center"
+                  className={focusedNavBarClass("/about")}
                   aria-current="page"
                   to="/about"
                 >
@@ -98,38 +106,38 @@ const NavigationBarSection = ({ isLoading }) => {
                 </Link>
               )}
               {!isAdminAuthenticated() && (
-                <Link className="nav-link text-center" to="/skill">
+                <Link className={focusedNavBarClass("/skill")} to="/skill">
                   Skills
                 </Link>
               )}
               {!isAdminAuthenticated() && (
-                <Link className="nav-link text-center" to="/project">
+                <Link className={focusedNavBarClass("/project")} to="/project">
                   Projects
                 </Link>
               )}
               {!isAdminAuthenticated() && (
-                <Link className="nav-link text-center" to="/certificate">
+                <Link className={focusedNavBarClass("/certificate")} to="/certificate">
                   Certificates
                 </Link>
               )}
               {!isAdminAuthenticated() && (
-                <Link className="nav-link text-center" to="/education">
+                <Link className={focusedNavBarClass("/education")} to="/education">
                   Education
                 </Link>
               )}
               {!isAdminAuthenticated() && (
-                <Link className="nav-link text-center" to="/tutorial">
+                <Link className={focusedNavBarClass("/tutorial")} to="/tutorial">
                   Tutorial
                 </Link>
               )}
               {!isAdminAuthenticated() && (
-                <Link className="nav-link text-center" to="/contact">
+                <Link className={focusedNavBarClass("/contact")} to="/contact">
                   Contact
                 </Link>
               )}
               {isAdminAuthenticated() && (
                 <Link
-                  className="nav-link text-center"
+                  className={focusedNavBarClass("/admin/certificate-management")}
                   to="/admin/certificate-management"
                 >
                   Certificate Management
@@ -137,7 +145,7 @@ const NavigationBarSection = ({ isLoading }) => {
               )}
               {isAdminAuthenticated() && (
                 <Link
-                  className="nav-link text-center"
+                  className={focusedNavBarClass("/admin/project-management")}
                   to="/admin/project-management"
                 >
                   Project Management
@@ -145,7 +153,7 @@ const NavigationBarSection = ({ isLoading }) => {
               )}
               {isAdminAuthenticated() && (
                 <span
-                  className="nav-link text-center"
+                  className={focusedNavBarClass("/signout")}
                   style={{ cursor: "pointer" }}
                   onClick={() => {
                     signoutHandler();

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import isAdminAuthenticated from "../admin/auth/helper";
 import CommonComponent from "../commonsection/common";
+import CommonNotFoundMessage from "../commonsection/loadingwithstyle/notaddedcontent";
 import CustomSkeleton from "../helper/customskeleton";
 import {
   deleteProject,
@@ -13,12 +14,12 @@ const ProjectComponent = () => {
   const [isLoading, setisLoading] = useState(false);
   return (
     <CommonComponent isLoading={isLoading}>
-      <ProjectBringing setisLoading={setisLoading} />
+      <ProjectBringing setisLoading={setisLoading} isLoading={isLoading} />
     </CommonComponent>
   );
 };
 
-const ProjectBringing = ({ setisLoading }) => {
+const ProjectBringing = ({ setisLoading, isLoading }) => {
   const projectsCategory = [
     "Show All",
     "Flutter Projects",
@@ -41,32 +42,37 @@ const ProjectBringing = ({ setisLoading }) => {
   }, [dropdownIndex]);
 
   const callGetParticularTypeProjects = (type) => {
-    getParticularDomainProjects(type.split(" ")[0]).then((data) => {
-      if (!data) return;
+    setisLoading(true);
+    getParticularDomainProjects(type.split(" ")[0])
+      .then((data) => {
+        if (!data) return;
 
-      if (data.error) {
-        setprojectsCollection([]);
-      } else {
-        const projectsCollection = [];
+        if (data.error) {
+          setprojectsCollection([]);
+        } else {
+          const projectsCollection = [];
 
-        Object.entries(data).sort(([firstKey], [secondKey]) => {
-          firstKey = parseInt(firstKey);
-          secondKey = parseInt(secondKey);
+          Object.entries(data).sort(([firstKey], [secondKey]) => {
+            firstKey = parseInt(firstKey);
+            secondKey = parseInt(secondKey);
 
-          if (firstKey < secondKey) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
+            if (firstKey < secondKey) {
+              return 1;
+            } else {
+              return -1;
+            }
+          });
 
-        Object.keys(data).forEach((key, index) => {
-          projectsCollection.push(data[key]);
-        });
+          Object.keys(data).forEach((key, index) => {
+            projectsCollection.push(data[key]);
+          });
 
-        setprojectsCollection(projectsCollection);
-      }
-    });
+          setprojectsCollection(projectsCollection);
+        }
+      })
+      .then(() => {
+        setisLoading(false);
+      });
   };
 
   const callGetAllProjects = () => {
@@ -120,13 +126,13 @@ const ProjectBringing = ({ setisLoading }) => {
       >
         {dropdownIndex === 0 ? "Projects" : projectsCategory[dropdownIndex]}
       </h2>
-      {(projectsCollection && (
+      {projectsCollection && projectsCollection.length > 0 && (
         <ProjectFilterComponent
           projectsCategory={projectsCategory}
           dropdownIndex={dropdownIndex}
           setdropdownIndex={setdropdownIndex}
         />
-      )) || <CustomSkeleton />}
+      )}
 
       {projectsCollection && isAdminAuthenticated() && (
         <AdminProjectAddButton projectsCategory={projectsCategory} />
@@ -145,14 +151,12 @@ const ProjectBringing = ({ setisLoading }) => {
                 />
               </div>
             );
-          })) || (
-          <div
-            className="d-flex flex-wrap justify-content-center mt-5 fw-bold fs-2"
-            style={{ height: "80vh" }}
-          >
-            No Projects Found
-          </div>
-        )}
+          })) ||
+          (isLoading ? (
+            <CustomSkeleton />
+          ) : (
+            <CommonNotFoundMessage message={"This Website till in beta mode. Admin not added any project yet. Please visit after some days."} />
+          ))}
       </div>
     </div>
   );
@@ -164,9 +168,12 @@ const ProjectFilterComponent = ({
   setdropdownIndex,
 }) => {
   return (
-    <ul className="list-unstyled d-flex flex-wrap justify-content-center align-items-center mt-5 aos-removal-class" data-aos="fade-right"
-    data-aos-duration="1000"
-    data-aos-delay="1000">
+    <ul
+      className="list-unstyled d-flex flex-wrap justify-content-center align-items-center mt-5 aos-removal-class"
+      data-aos="fade-right"
+      data-aos-duration="1000"
+      data-aos-delay="1000"
+    >
       {projectsCategory.map((category, index) => {
         return (
           <li
@@ -197,7 +204,7 @@ const ProjectShowCaseComponent = ({
       data-aos="fade-up"
       data-aos-duration="1000"
       data-aos-delay="500"
-      style={{borderRadius: "5px"}}
+      style={{ borderRadius: "5px" }}
     >
       <img
         src={project.projectImage}
