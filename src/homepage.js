@@ -12,11 +12,10 @@ const MiddleSection = () => {
       <img
         src={samarpan_dasgupta_pic}
         alt="Samarpan Dasgupta Logo"
-        height="25%"
         data-aos="zoom-in"
         data-aos-duration="1000"
         data-aos-delay="1000"
-        style={{ borderRadius: "50%" }}
+        className="h-25 img-fluid"
       />
       <h3
         className="display-5 fw-bold home-page-my-name mt-2 aos-removal-class"
@@ -26,7 +25,7 @@ const MiddleSection = () => {
         Samarpan Dasgupta
       </h3>
       <h6
-        className="home-page-status fw-bold aos-removal-class"
+        className="home-page-status aos-removal-class"
         data-aos="fade-up"
         data-aos-duration="2000"
       >
@@ -40,7 +39,7 @@ const MiddleSection = () => {
 const AutoTypingHelper = () => {
   return (
     <div
-      className="auto-typing mt-2 aos-removal-class"
+      className="auto-typing aos-removal-class"
       data-aos="zoom-in"
       data-aos-duration="2000"
       data-aos-delay="1000"

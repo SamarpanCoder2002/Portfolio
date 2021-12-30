@@ -40,7 +40,7 @@ const ImageInLargeScreen = () => {
       data-aos-duration="1000"
       data-aos-delay="500"
     >
-      <img src={ContactPageImage} alt="contact" className="img-fluid" />
+      <img src={ContactPageImage} alt="contact" className="img-fluid rounded-3" />
     </div>
   );
 };
@@ -54,20 +54,8 @@ const ConatctForFreelancing = () => {
         data-aos-duration="1000"
         data-aos-delay="500"
       >
-        <Typewriter
-          onInit={(typewriter) => {
-            typewriter
-              .typeString(
-                `Want to Hire me as a Freelancer? Send me an email with relevant
-                information and I will get back to you as soon as possible!`
-              )
-              .start();
-          }}
-          options={{
-            delay: 20,
-            typeSpeed: 40,
-          }}
-        />
+        Want to Hire me as a Freelancer? Send me an email with relevant
+                information and I will get back to you as soon as possible!
       </p>
 
       <p

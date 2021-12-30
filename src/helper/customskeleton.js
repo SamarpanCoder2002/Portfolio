@@ -3,13 +3,13 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const CustomSkeleton = () => {
   return (
-    <div className="container mt-5 ">
+    <div className="container">
       <div className="container justify-content-center">
         <div
-          className="d-flex flex-wrap justify-content-center mt-5 fw-bold fs-4 text-center"
+          className="d-flex flex-wrap justify-content-center fw-bold fs-4 text-center"
           style={{ color: "gray", letterSpacing: "1px" }}
         >
-          Hang tight, Data Fetching From API
+          Hang tight, Data Fetching in Progress...
         </div>
 
         <div className="row skeleton-container d-flex flex-wrap justify-content-center align-items-center mt-5">

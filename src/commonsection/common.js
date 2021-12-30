@@ -31,9 +31,9 @@ const NavigationBarSection = ({ isLoading }) => {
   });
 
   const focusedNavBarClass = (path) => {
-    if(window.location.pathname === path){
+    if (window.location.pathname === path) {
       return "nav-link text-center active";
-    }else{
+    } else {
       return "nav-link text-center";
     }
   };
@@ -45,6 +45,7 @@ const NavigationBarSection = ({ isLoading }) => {
       data-aos-duration="2000"
       data-aos-delay="1200"
     >
+      <LoadingBar isLoading={isLoading} />
       <nav className="navbar navbar-expand-lg navbar-light top-nav-bar">
         <div className="container-fluid">
           <Link className="navbar-brand " to="/">
@@ -116,17 +117,26 @@ const NavigationBarSection = ({ isLoading }) => {
                 </Link>
               )}
               {!isAdminAuthenticated() && (
-                <Link className={focusedNavBarClass("/certificate")} to="/certificate">
+                <Link
+                  className={focusedNavBarClass("/certificate")}
+                  to="/certificate"
+                >
                   Certificates
                 </Link>
               )}
               {!isAdminAuthenticated() && (
-                <Link className={focusedNavBarClass("/education")} to="/education">
+                <Link
+                  className={focusedNavBarClass("/education")}
+                  to="/education"
+                >
                   Education
                 </Link>
               )}
               {!isAdminAuthenticated() && (
-                <Link className={focusedNavBarClass("/tutorial")} to="/tutorial">
+                <Link
+                  className={focusedNavBarClass("/tutorial")}
+                  to="/tutorial"
+                >
                   Tutorial
                 </Link>
               )}
@@ -137,7 +147,9 @@ const NavigationBarSection = ({ isLoading }) => {
               )}
               {isAdminAuthenticated() && (
                 <Link
-                  className={focusedNavBarClass("/admin/certificate-management")}
+                  className={focusedNavBarClass(
+                    "/admin/certificate-management"
+                  )}
                   to="/admin/certificate-management"
                 >
                   Certificate Management
@@ -166,7 +178,6 @@ const NavigationBarSection = ({ isLoading }) => {
           </div>
         </div>
       </nav>
-      <LoadingBar isLoading={isLoading} />
     </div>
   );
 };
