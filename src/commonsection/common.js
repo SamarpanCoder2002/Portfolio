@@ -301,7 +301,7 @@ const Footer = () => (
           </ul>
 
           <div className="copy fw-bold mt-5">
-            © 2021, Designed and Developed by &nbsp;
+            © 2022, Designed and Developed by &nbsp;
             <a href="https://samarpandasgupta.com/">Samarpan Dasgupta</a>
           </div>
         </div>
