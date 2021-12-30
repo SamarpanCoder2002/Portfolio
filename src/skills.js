@@ -3,7 +3,7 @@ import CommonComponent from "./commonsection/common";
 import CustomSkeleton from "./helper/customskeleton";
 
 const SkillSetComponent = () => {
-  const [skillDataSet, setskillDataSet] = useState({
+  const skillDataSet = {
     Frontend: {
       category: 2,
       all_categories: {
@@ -12,9 +12,9 @@ const SkillSetComponent = () => {
           "CSS3",
           "Javascript",
           "React.js",
-          "Redux-Saga",
+          "Redux",
           "Bootstrap",
-          "Material UI",
+          "Tailwind CSS",
         ],
         Mobile: ["Flutter"],
       },
@@ -48,7 +48,7 @@ const SkillSetComponent = () => {
         ],
       },
     },
-  });
+  };
 
   return (
     <CommonComponent>
