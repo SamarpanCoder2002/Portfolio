@@ -9,6 +9,7 @@ import {
   getAllProject,
   getParticularDomainProjects,
 } from "./helper/api_call";
+import Masonry from "react-masonry-css";
 
 const ProjectComponent = () => {
   const [isLoading, setisLoading] = useState(false);
@@ -117,6 +118,15 @@ const ProjectBringing = ({ setisLoading, isLoading }) => {
       });
   };
 
+  const defaultItemsGrid = () => (projectsCollection?.length > 0 ? 3 : 1);
+  const midItemsGrid = () => (projectsCollection?.length > 0 ? 2 : 1);
+
+  const breakpointColumnsObj = {
+    default: defaultItemsGrid(),
+    1100: midItemsGrid(),
+    640: 1,
+  };
+
   return (
     <div className="container certificate-collection mt-5">
       <h2
@@ -138,12 +148,17 @@ const ProjectBringing = ({ setisLoading, isLoading }) => {
         <AdminProjectAddButton projectsCategory={projectsCategory} />
       )}
 
-      <div className="row mt-5">
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+        align="center"
+      >
         {(projectsCollection &&
           projectsCollection.length > 0 &&
           projectsCollection.map((project, index) => {
             return (
-              <div className="col-lg-4" key={index}>
+              <div className="" key={index}>
                 <ProjectShowCaseComponent
                   project={project}
                   projectsCategory={projectsCategory}
@@ -155,9 +170,13 @@ const ProjectBringing = ({ setisLoading, isLoading }) => {
           (isLoading ? (
             <CustomSkeleton />
           ) : (
-            <CommonNotFoundMessage message={"This Website till in beta mode. Admin not added any project yet. Please visit after some days."} />
+            <CommonNotFoundMessage
+              message={
+                "This Website till in beta mode. Admin not added any project yet. Please visit after some days."
+              }
+            />
           ))}
-      </div>
+      </Masonry>
     </div>
   );
 };
@@ -169,7 +188,7 @@ const ProjectFilterComponent = ({
 }) => {
   return (
     <ul
-      className="list-unstyled d-flex flex-wrap justify-content-center align-items-center mt-5 aos-removal-class"
+      className="list-unstyled d-flex flex-wrap justify-content-center align-items-center mt-3 aos-removal-class"
       data-aos="fade-right"
       data-aos-duration="1000"
       data-aos-delay="1000"
@@ -212,8 +231,8 @@ const ProjectShowCaseComponent = ({
         className="card-img-top"
       />
       <div className="card-body">
-        <h5 className="card-title fw-bold">{project.projectName}</h5>
-        <p className="card-text">{project.projectDescription}</p>
+        <h5 className="card-title fw-bold text-start">{project.projectName}</h5>
+        <p className="card-text text-start">{project.projectDescription}</p>
         {
           <ProjectMaterial
             project={project}
@@ -228,7 +247,7 @@ const ProjectShowCaseComponent = ({
 
 const ProjectMaterial = ({ project, projectsCategory, setisLoading }) => {
   return (
-    <div className="card-inside-hover-body">
+    <div className="card-inside-hover-body w-100">
       <div
         className="d-flex flex-wrap justify-content-center align-items-center text-white w-100 all-in-one p-3"
         style={{ height: "100%" }}
@@ -243,7 +262,9 @@ const ProjectMaterial = ({ project, projectsCategory, setisLoading }) => {
         )}
         <ProjectShowCaseOptionsManagement project={project} />
       </div>
-      <ProjectGithubLink project={project} />
+      <div className="w-100 position-absolute top-0 left-0 project-github-link p-1 text-start">
+        <ProjectGithubLink project={project} />
+      </div>
     </div>
   );
 };
@@ -253,7 +274,7 @@ const ProjectGithubLink = ({ project }) => {
     (project.projectGithubLink && (
       <img
         src="https://img.icons8.com/ios-filled/50/ffffff/github.png"
-        className="position-absolute top-0 left-0 project-github-link p-1"
+        className="project-github-link p-1"
         alt="github-logo"
         onClick={() => {
           window.open(project.projectGithubLink);

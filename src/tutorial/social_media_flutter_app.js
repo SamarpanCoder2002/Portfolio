@@ -210,7 +210,7 @@ const SocialMediaFlutterApp = () => {
             />
           ))}
 
-          <p
+          {/* <p
             className="fs-6 fw-bold mt-4 aos-removal-class"
             style={{ color: "#2e2e2e" }}
             data-aos="fade-up"
@@ -223,7 +223,7 @@ const SocialMediaFlutterApp = () => {
               width="30px"
               className="pb-1"
             />
-          </p>
+          </p> */}
         </ul>
       </div>
     </div>

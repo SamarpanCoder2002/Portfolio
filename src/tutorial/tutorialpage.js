@@ -25,7 +25,7 @@ const TutorialPage = () => {
         Tutorial
       </h2>
       <div
-        className="card w-100 tutorial-card mb-4 mx-md-3 list-group mt-5 aos-removal-class"
+        className="card w-100 tutorial-card mb-4 mx-md-3 list-group mt-5 aos-removal-class rounded-3"
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="800"
@@ -57,7 +57,7 @@ const TutorialCollection = () => {
 
   return (
     <>
-      <div className="card-header ">
+      <div className="card-header">
         <ul
           className="nav nav-tabs card-header-tabs pb-1 w-100 text-center d-flex flex-wrap justify-content-center align-items-center"
           id="bologna-list"

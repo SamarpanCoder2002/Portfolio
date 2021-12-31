@@ -49,7 +49,7 @@ const ConatctForFreelancing = () => {
   return (
     <div className="container mt-3 contact-for-freelancing">
       <p
-        className="fs-5 text-center  aos-removal-class"
+        className="fs-5 text-center aos-removal-class"
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="500"
