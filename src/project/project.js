@@ -7,6 +7,7 @@ import CustomSkeleton from "../helper/customskeleton";
 import {
   deleteProject,
   getAllProject,
+  getAllProjectCategory,
   getParticularDomainProjects,
 } from "./helper/api_call";
 import Masonry from "react-masonry-css";
@@ -21,30 +22,32 @@ const ProjectComponent = () => {
 };
 
 const ProjectBringing = ({ setisLoading, isLoading }) => {
-  const projectsCategory = [
-    "Show All",
-    "Flutter Projects",
-    "React Projects",
-    "MERN Projects",
-    "Python Projects",
-  ];
-
-  const [dropdownIndex, setdropdownIndex] = useState(0);
-
-  /// Project API will update that only
+  const [projectsCategory, setprojectsCategory] = useState([]);
+  const [dropdownIndex, setdropdownIndex] = useState(-1);
   const [projectsCollection, setprojectsCollection] = useState();
 
   useEffect(() => {
-    if (dropdownIndex === 0) {
-      callGetAllProjects();
-    } else {
-      callGetParticularTypeProjects(projectsCategory[dropdownIndex]);
-    }
+    if (dropdownIndex === -1) fetchAllProjectCategory();
+
+    if (dropdownIndex === 0) callGetAllProjects();
+    else callGetParticularTypeProjects(projectsCategory[dropdownIndex]);
   }, [dropdownIndex]);
+
+  const fetchAllProjectCategory = () => {
+    getAllProjectCategory()
+      .then((data) => {
+        if (!data) return;
+        setprojectsCategory(data);
+        setdropdownIndex(0);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const callGetParticularTypeProjects = (type) => {
     setisLoading(true);
-    getParticularDomainProjects(type.split(" ")[0])
+    type && getParticularDomainProjects(type.split(" ")[0])
       .then((data) => {
         if (!data) return;
 
@@ -172,7 +175,7 @@ const ProjectBringing = ({ setisLoading, isLoading }) => {
           ) : (
             <CommonNotFoundMessage
               message={
-                "This Website till in beta mode. Admin not added any project yet. Please visit after some days."
+                "Admin not added any project yet. Please visit after some days."
               }
             />
           ))}
@@ -200,9 +203,9 @@ const ProjectFilterComponent = ({
               setdropdownIndex(index);
             }}
             key={index}
-            className="btn project-domain-type border-0 mx-3 mb-3"
+            className={`btn ${index === dropdownIndex?"selected-project-domain-type":"project-domain-type border-0"}  mx-3 mb-3`}
           >
-            <a href={`#${category}`} className="text-white">
+            <a href={`#${category}`} className={`${index === dropdownIndex?"text-success":"text-white"}`} >
               {category}
             </a>
           </li>
@@ -353,10 +356,6 @@ const MakeButton = ({ linkToRedirect, buttonName }) => (
 
 const AdminControlSection = ({ project, projectsCategory, setisLoading }) => {
   const navigate = useNavigate();
-  // Modify Projects Category
-  const filteredProjectsCategory = projectsCategory.map(
-    (category, index) => category.split(" ")[0]
-  );
 
   const handleDelete = () => {
     setisLoading(true);
@@ -381,7 +380,7 @@ const AdminControlSection = ({ project, projectsCategory, setisLoading }) => {
           navigate("/admin/project-form-entry", {
             state: {
               project: project,
-              projectsCategory: filteredProjectsCategory,
+              projectsCategory: projectsCategory,
             },
           });
         }}
@@ -412,11 +411,6 @@ const AdminControlSection = ({ project, projectsCategory, setisLoading }) => {
 };
 
 const AdminProjectAddButton = ({ projectsCategory }) => {
-  // Modify Projects Category
-  const filteredProjectsCategory = projectsCategory.map(
-    (category, index) => category.split(" ")[0]
-  );
-
   const navigate = useNavigate();
   return (
     <div className="container my-3 text-center">
@@ -427,7 +421,7 @@ const AdminProjectAddButton = ({ projectsCategory }) => {
         data-aos-delay="1300"
         onClick={() => {
           navigate("/admin/project-form-entry", {
-            state: { projectsCategory: filteredProjectsCategory },
+            state: { projectsCategory: projectsCategory },
           });
         }}
       >

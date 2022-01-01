@@ -180,6 +180,20 @@ a {
   background: #4dd637;
   transition: all 0.5s;
 }
+
+.selected-project-domain-type{
+  transition: all 0.5s;
+  border: 1.5px solid #4dd637;
+}
+
+.selected-category-text .selected-category-text:hover{
+  color: #4dd637;
+}
+
+.selected-project-domain-type:hover{
+  transform: scale(1.4);
+}
+
 .project-add-button:hover {
   box-shadow: 0 0 0 0.25rem rgba(77, 214, 55, 0.5);
 }

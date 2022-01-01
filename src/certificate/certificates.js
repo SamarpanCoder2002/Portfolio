@@ -76,7 +76,7 @@ const CertificationCollectionSection = ({ setisLoading, isLoading }) => {
           ) : (
             <CommonNotFoundMessage
               message={
-                "This Website till in beta mode. Admin not added any certificate yet. Please visit after some days."
+                "Admin not added any certificate yet. Please visit after some days."
               }
             />
           ))}

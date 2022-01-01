@@ -1,5 +1,23 @@
 import { API } from "../../helper/backend_api_root";
 
+export const getAllProjectCategory = () => {
+  return fetch(`${API}/project/getAllProjectCategory`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+      return responseJson;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
 export const addNewProject = (project) => {
   console.log(project);
   return fetch(`${API}/project/add`, {
