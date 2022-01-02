@@ -31,7 +31,7 @@ const AboutPage = () => {
                   new technologies.<br /><br />
   
                   Love to create Websites, Android App with Mobile And Web
-                  app designing. I am second year student persuing BSC Computer
+                  app designing. I am second year student pursuing BSC Computer
                   Science Hons. I help my clients to build and grow their business with the help of
                   the best web and mobile app design and development.`
               )
