@@ -55,7 +55,11 @@ const RoutesEntryPoint = () => {
         <Route path="/education" exact element={<EducationComponent />} />
         <Route path="/tutorial" exact element={<TutorialComponent />} />
         <Route path="/contact" exact element={<ContactComponent />} />
-        <Route path="/experience" exact element={<ExperienceTimelineComponent />} />
+        <Route
+          path="/experience"
+          exact
+          element={<ExperienceTimelineComponent />}
+        />
         <Route path="admin">
           <Route path="signin" exact element={AdminIsSignedIn()} />
           <Route
