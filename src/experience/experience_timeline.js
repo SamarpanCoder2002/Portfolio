@@ -39,16 +39,15 @@ const MakeTimeLine = () => {
               contentArrowStyle={{
                 borderRight: "7px solid  rgb(33, 150, 243)",
               }}
-              date="2011 - present"
+              date={`${experience.startDate} - ${experience.endDate}`}
+              dateClassName="font-weight-bold text-primary"
               iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
             >
               <h3 className="vertical-timeline-element-title">
                 {experience.title}
               </h3>
               <h6 className="mt-2">{experience.company}</h6>
-              <p>
-                {HTMLReactParser(experience.details)}
-              </p>
+              <p>{HTMLReactParser(experience.details)}</p>
             </VerticalTimelineElement>
           );
         })}
