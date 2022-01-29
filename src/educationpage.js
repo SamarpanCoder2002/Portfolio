@@ -13,7 +13,7 @@ const educationDetails = [
     title: "Bachelor of Science (CS)",
     courseDuration: "2020 - 2023",
     instituteName: "Kalyani Mahavidyalaya",
-    score: "SGPA: 9.0",
+    score: "SGPA: 9.0, 8.6",
     logo: "fas fa-graduation-cap",
     logoColor: "#925EE6",
   },
@@ -40,7 +40,7 @@ const EducationContainer = () => (
     <h2 className="text-center mb-5" data-aos="zoom-in" data-aos-duration="1000">Education</h2>
     <div className="row mt-5 mt-md-0">
       {educationDetails.map((item, index) => (
-        <div className="col-lg-4 mb-5" align="center">
+        <div className="col-lg-4 mb-5" align="center" key={index}>
           {<EducationItem item={educationDetails[index]} />}
         </div>
       ))}

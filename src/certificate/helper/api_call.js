@@ -23,10 +23,9 @@ export const getCertificates = () => {
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
-}
+};
 
 export const deleteCertificate = (id) => {
-  console.log("Certificate id: ", id);
   return fetch(`${API}/certificate/delete/${id}`, {
     method: "DELETE",
     headers: {
@@ -36,4 +35,4 @@ export const deleteCertificate = (id) => {
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
-}
+};

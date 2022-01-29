@@ -1,4 +1,3 @@
-import Typewriter from "typewriter-effect";
 import CommonComponent from "./commonsection/common";
 import ContactPageImage from "./images/conatact-page-image.jpg";
 

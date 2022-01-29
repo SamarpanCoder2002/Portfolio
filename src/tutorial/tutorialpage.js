@@ -65,7 +65,7 @@ const TutorialCollection = () => {
         >
           {Object.keys(tutorialNameCollection).map((key, index) => {
             return (
-              <li className="nav-item" onClick={() => setcurrIndex(index)}>
+              <li className="nav-item" onClick={() => setcurrIndex(index)} key={index}>
                 <a
                   className={getCardActivationStatusNavItem(index)}
                   aria-current="true"
@@ -91,16 +91,16 @@ const TutorialCollection = () => {
       <div className="card-body">
         {Object.keys(tutorialNameCollection).map((key, index) => {
           return (
-            <div className="tab-content mt-3" id="myTabContent">
+            <div className="tab-content mt-3" id="myTabContent" key={index}>
               <div
                 className={getCardActivationStatusTabPane(index)}
                 id="description"
                 role="tabpanel"
                 aria-labelledby={index}
               >
-                <p className="card-text">
+                <div className="card-text">
                   <Decider index={index} />
-                </p>
+                </div>
               </div>
             </div>
           );

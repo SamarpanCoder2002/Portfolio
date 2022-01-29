@@ -207,6 +207,7 @@ const SocialMediaFlutterApp = () => {
             <ChapterSublist
               redirectLink={chapter.redirectLink}
               chapterName={chapter.title}
+              key={index}
             />
           ))}
 

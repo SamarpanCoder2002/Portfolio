@@ -43,11 +43,18 @@ const AutoTypingHelper = () => {
       data-aos="zoom-in"
       data-aos-duration="2000"
       data-aos-delay="1000"
+      style={{ color: "#0d6efd", fontSize: "1.5rem" }}
     >
-      &nbsp;I am a&nbsp;
       <Typewriter
         options={{
-          strings: ["Developer", "Designer", "Freelancer", "Youtuber"],
+          strings: [
+            "Developer From India",
+            "Love To Create Android Apps Using Flutter",
+            "Also Works on Full Stack Website Development",
+            "Love To Create Web App",
+            "Worked With Making and Managing APIs",
+            "Sometime Also Works as a Youtuber",
+          ],
           autoStart: true,
           loop: true,
           delay: 40,

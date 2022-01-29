@@ -10,16 +10,14 @@ export const getAllProjectCategory = () => {
   })
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log(responseJson);
       return responseJson;
     })
     .catch((error) => {
       console.error(error);
     });
-}
+};
 
 export const addNewProject = (project) => {
-  console.log(project);
   return fetch(`${API}/project/add`, {
     method: "POST",
     headers: {
@@ -33,7 +31,6 @@ export const addNewProject = (project) => {
 };
 
 export const updateProject = (project) => {
-  console.log(project);
   return fetch(`${API}/project/update/${project.projectId}`, {
     method: "PUT",
     headers: {
@@ -47,7 +44,6 @@ export const updateProject = (project) => {
 };
 
 export const getAllProject = () => {
-  console.log();
   return fetch(`${API}/project/getall`, {
     method: "GET",
     headers: {
@@ -62,7 +58,6 @@ export const getAllProject = () => {
 };
 
 export const getParticularDomainProjects = (domain) => {
-  console.log(domain);
   return fetch(`${API}/project/getparticulardomain/${domain}`, {
     method: "GET",
     headers: {
@@ -75,7 +70,6 @@ export const getParticularDomainProjects = (domain) => {
 };
 
 export const deleteProject = (projectId, projectType) => {
-console.log(projectId, projectType);
   return fetch(`${API}/project/delete/${projectId}`, {
     method: "DELETE",
     headers: {

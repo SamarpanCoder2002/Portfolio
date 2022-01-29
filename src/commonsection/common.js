@@ -111,6 +111,16 @@ const NavigationBarSection = ({ isLoading }) => {
                   Skills
                 </Link>
               )}
+
+              {!isAdminAuthenticated() && (
+                <Link
+                  className={focusedNavBarClass("/experience")}
+                  to="/experience"
+                >
+                  Experience
+                </Link>
+              )}
+
               {!isAdminAuthenticated() && (
                 <Link className={focusedNavBarClass("/project")} to="/project">
                   Projects
@@ -124,6 +134,7 @@ const NavigationBarSection = ({ isLoading }) => {
                   Certificates
                 </Link>
               )}
+
               {!isAdminAuthenticated() && (
                 <Link
                   className={focusedNavBarClass("/education")}

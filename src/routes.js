@@ -17,6 +17,7 @@ import CertificatesComponent from "./certificate/certificates";
 import ContactComponent from "./contactpage";
 import EducationComponent from "./educationpage";
 import ErrorPath from "./errorpage";
+import ExperienceTimelineComponent from "./experience/experience_timeline";
 import HomeComponent from "./homepage";
 import ProjectComponent from "./project/project";
 import SkillSetComponent from "./skills";
@@ -54,6 +55,7 @@ const RoutesEntryPoint = () => {
         <Route path="/education" exact element={<EducationComponent />} />
         <Route path="/tutorial" exact element={<TutorialComponent />} />
         <Route path="/contact" exact element={<ContactComponent />} />
+        <Route path="/experience" exact element={<ExperienceTimelineComponent />} />
         <Route path="admin">
           <Route path="signin" exact element={AdminIsSignedIn()} />
           <Route
