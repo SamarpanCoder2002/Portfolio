@@ -15,7 +15,7 @@ const AboutPage = () => {
       <h2 className="text-center" data-aos="zoom-in" data-aos-duration="1000">
         About Myself
       </h2>
-      <div
+      <p
         className="mt-4 about-me"
         data-aos="fade-out"
         data-aos-duration="2000"
@@ -41,7 +41,7 @@ const AboutPage = () => {
             typeSpeed: 40,
           }}
         />
-      </div>
+      </p>
     </div>
   );
 };
