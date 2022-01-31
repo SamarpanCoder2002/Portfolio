@@ -1,0 +1,28 @@
+{
+  "short_name": "Samarpan Dasgupta Portfolio",
+  "name": "Samarpan Dasgupta Portfolio",
+  "author": "Samarpan Dasgupta",
+  "version": "1.8",
+  "description": "Flutter and MERN/FERN Stack Developer From India.",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "400x400",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "400x400"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "developer": {
+    "name": "Samarpan Dasgupta",
+    "url": "https://www.samarpandasgupta.com/"
+  },
+  "manifest_version": 3
+}

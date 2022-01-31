@@ -51,7 +51,7 @@ const NavigationBarSection = ({ isLoading }) => {
           <Link className="navbar-brand " to="/">
             <div className="row w-50">
               <div className="col-md-6">
-                <img src={logo} alt="Logo" width="50px" />
+                <img src={logo} alt="Samarpan Dasgupta Portfolio Logo" width="50px" className="img-fluid" />
               </div>
               <div className="col-md-6 d-none d-md-block mt-2 my-name">
                 Samarpan Dasgupta
