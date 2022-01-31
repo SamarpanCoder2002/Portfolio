@@ -43,7 +43,7 @@ const AutoTypingHelper = () => {
       data-aos="zoom-in"
       data-aos-duration="2000"
       data-aos-delay="1000"
-      style={{ color: "#0d6efd", fontSize: "1.5rem" }}
+      style={{ color: "#0d6efd" }}
     >
       <Typewriter
         options={{
