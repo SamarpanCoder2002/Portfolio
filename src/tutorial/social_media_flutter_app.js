@@ -126,7 +126,7 @@ const SocialMediaFlutterApp = () => {
           width="35px"
           className="pb-2"
         />{" "}
-        Build a Social Media Chat App in Flutter
+        Build a Realtime Messaging App in Flutter
       </p>
       <p
         className="mt-2 fs-5 text-center aos-removal-class"

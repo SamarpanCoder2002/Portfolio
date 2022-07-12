@@ -60,6 +60,9 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
       project && project.projectTechUsed ? project.projectTechUsed : [],
     projectType: project ? project.projectType : projectsCategory[0],
     projectGithubLink: project ? project.projectGithubLink : "",
+    projectAvailableOnPlayStore: project
+      ? project.projectAvailableOnPlayStore ?? false
+      : "",
   });
 
   const {
@@ -69,7 +72,6 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
     projectShowCase,
     projectDemoVideo,
     projectDownloadLink,
-    projectType,
     projectGithubLink,
   } = newForm;
 
@@ -204,6 +206,15 @@ const FormMaker = ({ project, projectsCategory, isLoading, setisLoading }) => {
           }}
         />
       </div>
+
+      <PlayStoreAvailableSection
+        name="projectAvailableOnPlayStore"
+        project={project}
+        setnewForm={setnewForm}
+        newForm={newForm}
+        isFail={isFail}
+        setIsFail={setIsFail}
+      />
 
       <TechUsedSection
         name="projectTechUsed"
@@ -405,6 +416,56 @@ const FormButton = ({
         >
           {oldProject ? "Update" : "Save"}
         </button>
+      </div>
+    </div>
+  );
+};
+
+const PlayStoreAvailableSection = ({
+  name,
+  project,
+  setnewForm,
+  newForm,
+  isFail,
+  setIsFail,
+}) => {
+  const handleChange = (value) => {
+    console.log(value);
+    setnewForm({...newForm, projectAvailableOnPlayStore: value })
+  };
+
+  return (
+    <div className="mb-4 mt-1">
+      <label htmlFor="description" className="form-check form-check-inline p-0">
+        Available on PlayStore
+      </label>
+      <div className="form-check form-check-inline" >
+        <input
+          className="form-check-input"
+          type="radio"
+          name="inlineRadioOptions"
+          id="inlineRadio1"
+          value={true}
+          checked={newForm.projectAvailableOnPlayStore ? "checked" : ""}
+          onClick={() => handleChange(true)}
+        />
+        <label className="form-check-label" for="inlineRadio1">
+          Yes
+        </label>
+      </div>
+      <div className="form-check form-check-inline" >
+        <input
+          className="form-check-input"
+          type="radio"
+          name="inlineRadioOptions"
+          id="inlineRadio2"
+          value={false}
+          checked={!newForm.projectAvailableOnPlayStore ? "checked" : ""}
+          onClick={() => handleChange(false)}
+        />
+        <label className="form-check-label" for="inlineRadio2">
+          No
+        </label>
       </div>
     </div>
   );

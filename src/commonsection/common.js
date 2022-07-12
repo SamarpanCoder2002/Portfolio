@@ -51,7 +51,12 @@ const NavigationBarSection = ({ isLoading }) => {
           <Link className="navbar-brand " to="/">
             <div className="row w-50">
               <div className="col-md-6">
-                <img src={logo} alt="Samarpan Dasgupta Portfolio Logo" width="50px" className="img-fluid" />
+                <img
+                  src={logo}
+                  alt="Samarpan Dasgupta Portfolio Logo"
+                  width="50px"
+                  className="img-fluid"
+                />
               </div>
               <div className="col-md-6 d-none d-md-block mt-2 my-name">
                 Samarpan Dasgupta
@@ -151,10 +156,20 @@ const NavigationBarSection = ({ isLoading }) => {
                   Tutorial
                 </Link>
               )}
-              {!isAdminAuthenticated() && (
+              {/* {!isAdminAuthenticated() && (
                 <Link className={focusedNavBarClass("/contact")} to="/contact">
                   Contact
                 </Link>
+              )} */}
+              {!isAdminAuthenticated() && (
+                <a
+                  className={focusedNavBarClass("/blog")}
+                  href="https://blog.samarpandasgupta.in/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Blog
+                </a>
               )}
               {isAdminAuthenticated() && (
                 <Link
@@ -312,7 +327,7 @@ const Footer = () => (
           </ul>
 
           <div className="copy fw-bold mt-5">
-            © 2022, Designed and Developed by &nbsp;
+            © {new Date().getFullYear()}, Designed and Developed by &nbsp;
             <a href="https://samarpandasgupta.com/">Samarpan Dasgupta</a>
           </div>
         </div>

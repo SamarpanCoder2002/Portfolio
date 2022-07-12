@@ -18,14 +18,6 @@
 }
 
 body {
-  /* font-family: 'Karla', sans-serif;
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Mulish', sans-serif;
-    font-family: 'Nunito', sans-serif;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-family: 'Poppins', sans-serif;
-    font-family: 'Roboto', sans-serif; */
-
   font-family: "Mulish", sans-serif;
   scroll-behavior: smooth;
 }
@@ -181,16 +173,16 @@ a {
   transition: all 0.5s;
 }
 
-.selected-project-domain-type{
+.selected-project-domain-type {
   transition: all 0.5s;
   border: 1.5px solid #4dd637;
 }
 
-.selected-category-text .selected-category-text:hover{
+.selected-category-text .selected-category-text:hover {
   color: #4dd637;
 }
 
-.selected-project-domain-type:hover{
+.selected-project-domain-type:hover {
   transform: scale(1.4);
 }
 

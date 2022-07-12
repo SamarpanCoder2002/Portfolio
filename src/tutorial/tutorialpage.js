@@ -11,7 +11,7 @@ const TutorialComponent = () => {
 };
 
 const tutorialNameCollection = [
-  "Flutter Social Media Chat App"
+  "Flutter Social Media Chat App",
 ];
 
 const TutorialPage = () => {

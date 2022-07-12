@@ -11,7 +11,7 @@ const EducationComponent = () => {
 const educationDetails = [
   {
     title: "Bachelor of Science (CS)",
-    courseDuration: "2020 - 2023",
+    courseDuration: "2020 - 2022",
     instituteName: "Kalyani Mahavidyalaya",
     score: "SGPA: 9.0, 8.6",
     logo: "fas fa-graduation-cap",

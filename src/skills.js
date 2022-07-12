@@ -5,31 +5,33 @@ import CustomSkeleton from "./helper/customskeleton";
 const SkillSetComponent = () => {
   const skillDataSet = {
     Frontend: {
-      category: 2,
+      category: 3,
       all_categories: {
         Web: [
           "HTML5",
           "CSS3",
           "Javascript",
           "React.js",
-          "Redux",
+          "Next.js",
           "Bootstrap",
           "Tailwind CSS",
+          "Material UI",
         ],
         Mobile: ["Flutter"],
+       'State Management': ['Redux', 'Provider']
       },
     },
     Backend: {
-      category: 2,
+      category: 1,
       all_categories: {
-        Web: ["Node.js", "Express.js", "REST APIs"],
-        Mobile: ["Flutter"],
+        Backend: ["Node.js", "Express.js", "REST APIs"],
+        // Mobile: ["Flutter"],
       },
     },
     Database: {
       category: 1,
       all_categories: {
-        Database: ["Firebase", "MongoDB", "SQLite"],
+        Database: ["Firebase", "MongoDB", "SQLite", "MySQL"],
       },
     },
     "Tools Used": {
@@ -97,7 +99,7 @@ const SkillContainer = ({ skillSingleSet, mainTechSkillName }) => {
         {mainTechSkillName}
       </p>
 
-      {skillSingleSet.category === 2 ? (
+      {skillSingleSet.category >= 2 ? (
         <ManySkillTypeCollection
           allTypeSkillsCollection={skillSingleSet.all_categories}
         />
@@ -192,7 +194,7 @@ const SkillShow = ({ allCategories }) => {
             key={index}
             className="mx-5 mb-3 px-2 text-white"
             style={{
-              background: "#EDC126",
+              background: "#19E738",
               borderRadius: "10px",
               letterSpacing: "1px",
             }}

@@ -11,6 +11,7 @@ import {
   getParticularDomainProjects,
 } from "./helper/api_call";
 import Masonry from "react-masonry-css";
+import DownloadFromPlayStorePic from "../images/download_from_play_store.png";
 
 const ProjectComponent = () => {
   const [isLoading, setisLoading] = useState(false);
@@ -47,36 +48,37 @@ const ProjectBringing = ({ setisLoading, isLoading }) => {
 
   const callGetParticularTypeProjects = (type) => {
     setisLoading(true);
-    type && getParticularDomainProjects(type.split(" ")[0])
-      .then((data) => {
-        if (!data) return;
+    type &&
+      getParticularDomainProjects(type.split(" ")[0])
+        .then((data) => {
+          if (!data) return;
 
-        if (data.error) {
-          setprojectsCollection([]);
-        } else {
-          const projectsCollection = [];
+          if (data.error) {
+            setprojectsCollection([]);
+          } else {
+            const projectsCollection = [];
 
-          Object.entries(data).sort(([firstKey], [secondKey]) => {
-            firstKey = parseInt(firstKey);
-            secondKey = parseInt(secondKey);
+            Object.entries(data).sort(([firstKey], [secondKey]) => {
+              firstKey = parseInt(firstKey);
+              secondKey = parseInt(secondKey);
 
-            if (firstKey < secondKey) {
-              return 1;
-            } else {
-              return -1;
-            }
-          });
+              if (firstKey < secondKey) {
+                return 1;
+              } else {
+                return -1;
+              }
+            });
 
-          Object.keys(data).forEach((key, index) => {
-            projectsCollection.push(data[key]);
-          });
+            Object.keys(data).forEach((key, index) => {
+              projectsCollection.push(data[key]);
+            });
 
-          setprojectsCollection(projectsCollection);
-        }
-      })
-      .then(() => {
-        setisLoading(false);
-      });
+            setprojectsCollection(projectsCollection);
+          }
+        })
+        .then(() => {
+          setisLoading(false);
+        });
   };
 
   const callGetAllProjects = () => {
@@ -203,9 +205,18 @@ const ProjectFilterComponent = ({
               setdropdownIndex(index);
             }}
             key={index}
-            className={`btn ${index === dropdownIndex?"selected-project-domain-type":"project-domain-type border-0"}  mx-3 mb-3`}
+            className={`btn ${
+              index === dropdownIndex
+                ? "selected-project-domain-type"
+                : "project-domain-type border-0"
+            }  mx-3 mb-3`}
           >
-            <a href={`#${category}`} className={`${index === dropdownIndex?"text-success":"text-white"}`} >
+            <a
+              href={`#${category}`}
+              className={`${
+                index === dropdownIndex ? "text-success" : "text-white"
+              }`}
+            >
               {category}
             </a>
           </li>
@@ -318,7 +329,7 @@ const ProjectShowCaseOptionsManagement = ({ project }) => (
     {project.projectShowCase && (
       <MakeButton
         linkToRedirect={project.projectShowCase}
-        buttonName={"Visit Site"}
+        buttonName={"Explore"}
       />
     )}
 
@@ -329,7 +340,14 @@ const ProjectShowCaseOptionsManagement = ({ project }) => (
       />
     )}
 
-    {project.projectDownloadLink && (
+    {project.projectDownloadLink && project.projectAvailableOnPlayStore && (
+      <DownloadFromPlayStoreButton
+        linkToRedirect={project.projectDownloadLink}
+        buttonImg={DownloadFromPlayStorePic}
+      />
+    )}
+
+    {project.projectDownloadLink && !project.projectAvailableOnPlayStore && (
       <MakeButton
         linkToRedirect={project.projectDownloadLink}
         buttonName={"Download Now"}
@@ -337,6 +355,19 @@ const ProjectShowCaseOptionsManagement = ({ project }) => (
     )}
   </div>
 );
+
+const DownloadFromPlayStoreButton = ({ linkToRedirect, buttonImg }) => {
+  return (
+    <a
+      href={linkToRedirect}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mx-3"
+    >
+      <img src={buttonImg} alt="Download app from play store" width="150" />
+    </a>
+  );
+};
 
 const MakeButton = ({ linkToRedirect, buttonName }) => (
   <a
@@ -347,7 +378,7 @@ const MakeButton = ({ linkToRedirect, buttonName }) => (
   >
     <button
       className="btn btn-success text-white border-0 fs-6"
-      style={{ backgroundColor: "#00D84A" }}
+      style={{ backgroundColor: "#19E738" }}
     >
       {buttonName}
     </button>
