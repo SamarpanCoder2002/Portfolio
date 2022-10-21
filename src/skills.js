@@ -18,14 +18,20 @@ const SkillSetComponent = () => {
           "Material UI",
         ],
         Mobile: ["Flutter"],
-       'State Management': ['Redux', 'Provider']
+        "State Management": ["Redux", "Provider"],
       },
     },
     Backend: {
       category: 1,
       all_categories: {
-        Backend: ["Node.js", "Express.js", "REST APIs"],
+        Backend: ["Node.js", "Express.js", "REST APIs", "Flask"],
         // Mobile: ["Flutter"],
+      },
+    },
+    "Data Science": {
+      category: 1,
+      all_categories: {
+        "Data Science": ["Pandas", "Numpy", "seaborn", "matplotlib"],
       },
     },
     Database: {
@@ -52,11 +58,22 @@ const SkillSetComponent = () => {
     },
   };
 
+  // const defaultItemsGrid = () => (Object.keys(skillDataSet).length > 0 ? 3 : 1);
+  // const midItemsGrid = () => (Object.keys(skillDataSet).length > 0 ? 2 : 1);
+
+  // const breakpointColumnsObj = {
+  //   default: defaultItemsGrid(),
+  //   1100: midItemsGrid(),
+  //   500: 1,
+  // };
+
   return (
     <CommonComponent>
-      {(skillDataSet && <SkillSetSection skillDataSet={skillDataSet} />) || (
-        <CustomSkeleton />
-      )}
+     
+        {(skillDataSet && <SkillSetSection skillDataSet={skillDataSet} />) || (
+          <CustomSkeleton />
+        )}
+      
     </CommonComponent>
   );
 };

@@ -54,7 +54,7 @@ const AutoTypingHelper = () => {
             "Also works on full stack Web Development",
             "Love to create Web App",
             "Works with making and managing APIs",
-            "Sometime also works as a Youtuber",
+            "Creating content as Youtuber",
           ],
           autoStart: true,
           loop: true,

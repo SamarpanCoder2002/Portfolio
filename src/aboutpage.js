@@ -25,13 +25,12 @@ const AboutPage = () => {
           onInit={(typewriter) => {
             typewriter
               .typeString(
-                `Myself <a href="https://www.linkedin.com/in/samarpan-dasgupta-4aa1061b0/" target="_blank">Samarpan Dasgupta</a>, a
-                  MERN/FERN Stack and Flutter Developer from
-                  Kolkata, India. I am 20 years old with having a great passion for learning
+                `Myself <a href="https://www.linkedin.com/in/samarpan-dasgupta-4aa1061b0/" target="_blank">Samarpan Dasgupta</a>, Software Developer from
+                  Kolkata, India. Working with Flutter and MERN technologies with having a great passion for learning
                   new technologies.<br /><br />
   
                   Love to create Website, Web App, Android App with Making and Managing APIs. Having Experience to Work in Full Stack Projects. 
-                  I am now working as a full-time Software Developer in a startup. Beside that, working on some of my personal projects and learning new technologies.`
+                  Working as a full-time Software Developer in a startup. Beside that, working on some of my personal projects and learning new technologies. Also creating content on youtube about various technologies.`
               )
               .start();
           }}
