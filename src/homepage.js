@@ -1,12 +1,23 @@
+import { useEffect } from "react";
 import Typewriter from "typewriter-effect";
 import CommonComponent from "./commonsection/common";
 import samarpan_dasgupta_pic from "./images/samarpan_dasgupta.png";
+import { getAllProjectCategory } from "./project/helper/api_call";
 
 const HomeComponent = () => {
   return <CommonComponent>{<MiddleSection />}</CommonComponent>;
 };
 
 const MiddleSection = () => {
+  // As backend sometime sleeps, that's for trigger so that Projects and Certificate section loads faster
+  useEffect(() => {
+    fetchAllProjectCategory();
+  }, []);
+
+  const fetchAllProjectCategory = () => {
+    getAllProjectCategory();
+  };
+
   return (
     <div className="container bg-home-section" align="center">
       <img
