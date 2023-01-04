@@ -5,6 +5,7 @@ import CommonComponent from "../commonsection/common";
 import CommonNotFoundMessage from "../commonsection/loadingwithstyle/notaddedcontent";
 import CustomSkeleton from "../helper/customskeleton";
 import { deleteCertificate, getCertificates } from "./helper/api_call";
+import Masonry from "react-masonry-css";
 
 const CertificatesComponent = () => {
   const [isLoading, setisLoading] = useState(false);
@@ -44,6 +45,15 @@ const CertificationCollectionSection = ({ setisLoading, isLoading }) => {
       });
   };
 
+  const defaultItemsGrid = () => (certificates?.length > 0 ? 3 : 1);
+  const midItemsGrid = () => (certificates?.length > 0 ? 2 : 1);
+
+  const breakpointColumnsObj = {
+    default: defaultItemsGrid(),
+    1100: midItemsGrid(),
+    640: 1,
+  };
+
   return (
     <div className="container mt-5">
       <h2
@@ -57,29 +67,37 @@ const CertificationCollectionSection = ({ setisLoading, isLoading }) => {
       {isAdminAuthenticated() && <AdminCertificateAddButton />}
 
       <div className="row mt-5">
-        {(certificates &&
-          certificates.map((certi, index) => {
-            const { image, name, id } = certi;
-            return (
-              <div className="col-md-6 col-lg-4" key={index}>
-                <CertificationCard
-                  particularCertificate={image}
-                  certificateName={name}
-                  certificateId={id}
-                  setisLoading={setisLoading}
-                />
-              </div>
-            );
-          })) ||
-          (isLoading ? (
-            <CustomSkeleton />
-          ) : (
-            <CommonNotFoundMessage
-              message={
-                "Admin not added any certificate yet. Please visit after some days."
-              }
-            />
-          ))}
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+          align="center"
+        >
+          {(certificates &&
+            certificates.map((certi, index) => {
+              const { image, name, id } = certi;
+              return (
+                <div className="" key={index}>
+                  {/* col-md-6 col-lg-4 */}
+                  <CertificationCard
+                    particularCertificate={image}
+                    certificateName={name}
+                    certificateId={id}
+                    setisLoading={setisLoading}
+                  />
+                </div>
+              );
+            })) ||
+            (isLoading ? (
+              <CustomSkeleton />
+            ) : (
+              <CommonNotFoundMessage
+                message={
+                  "Admin not added any certificate yet. Please visit after some days."
+                }
+              />
+            ))}
+        </Masonry>
       </div>
     </div>
   );

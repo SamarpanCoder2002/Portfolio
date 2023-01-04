@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CommonComponent from "../commonsection/common";
+import PopularVideosCollection from "./popular_videos";
 import SocialMediaFlutterApp from "./social_media_flutter_app";
 
 const TutorialComponent = () => {
@@ -12,6 +13,7 @@ const TutorialComponent = () => {
 
 const tutorialNameCollection = [
   "Flutter Social Media Chat App",
+  // "Popular Videos"
 ];
 
 const TutorialPage = () => {
@@ -114,6 +116,8 @@ const Decider = ({ index }) => {
   switch (index) {
     case 0:
       return <SocialMediaFlutterApp />;
+    case 1:
+      return <PopularVideosCollection />;
     default:
       return <div className="fs-5">Coming Soon</div>;
   }
