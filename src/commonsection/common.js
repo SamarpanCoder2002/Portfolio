@@ -164,7 +164,7 @@ const NavigationBarSection = ({ isLoading }) => {
               {!isAdminAuthenticated() && (
                 <a
                   className={focusedNavBarClass("/blog")}
-                  href="https://blog.samarpandasgupta.in/"
+                  href="https://blog.tech.samarpandasgupta.in/"
                   target="_blank"
                   rel="noreferrer"
                 >
