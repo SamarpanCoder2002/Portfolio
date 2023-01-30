@@ -231,9 +231,11 @@ const ProjectShowCaseComponent = ({
   projectsCategory,
   setisLoading,
 }) => {
+  // mb-5 mx-0 mx-md-3
+
   return (
     <div
-      className="card mb-5 mx-0 mx-md-3 project-container aos-removal-class"
+      className="card  project-container aos-removal-class"
       data-aos="fade-up"
       data-aos-duration="1000"
       data-aos-delay="500"

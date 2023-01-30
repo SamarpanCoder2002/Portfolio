@@ -54,15 +54,20 @@ const CertificationCollectionSection = ({ setisLoading, isLoading }) => {
     640: 1,
   };
 
+  if (isLoading) {
+    return (
+      <div className="container mt-5">
+        {<CertificateHeadingSection />}
+        <div className="mt-5">
+          <CustomSkeleton />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mt-5">
-      <h2
-        className="fs-2 text-center"
-        data-aos="zoom-in"
-        data-aos-duration="1000"
-      >
-        Certificates
-      </h2>
+      <CertificateHeadingSection />
 
       {isAdminAuthenticated() && <AdminCertificateAddButton />}
 
@@ -100,6 +105,18 @@ const CertificationCollectionSection = ({ setisLoading, isLoading }) => {
         </Masonry>
       </div>
     </div>
+  );
+};
+
+const CertificateHeadingSection = () => {
+  return (
+    <h2
+      className="fs-2 text-center"
+      data-aos="zoom-in"
+      data-aos-duration="1000"
+    >
+      Certificates
+    </h2>
   );
 };
 
